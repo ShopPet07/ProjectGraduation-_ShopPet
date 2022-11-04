@@ -29,16 +29,16 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email.toString(),
-          password: password.toString(),
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
+      // fetch("http://localhost:5000/api/auth/login", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     email: email.toString(),
+      //     password: password.toString(),
+      //   }),
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => console.log(data));
     } else {
       setError(true);
     }

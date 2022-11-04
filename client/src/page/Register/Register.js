@@ -80,7 +80,7 @@ const Register = () => {
       checkBox
     ) {
       setError(false);
-    } else if (firstName == "" || lastName == "") {
+    } else if (firstName === "" || lastName === "") {
       setCheckName(false);
       setError(true);
     } else {
