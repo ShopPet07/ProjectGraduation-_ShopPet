@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { AuthRegister, AuthLogin } from '../../dto/auth.dto'
+import { AuthRegister, AuthLogin } from './auth.dto'
 import { Users } from '../../entity/users.entity'
 import { AppDataSource } from '../../utils/data-source'
 import bcrypt from 'bcrypt'
