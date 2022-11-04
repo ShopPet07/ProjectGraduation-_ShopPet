@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +19,14 @@ function App() {
           Learn React
         </a>
       </header>
+=======
+import Register from "./page/Register/Register";
+
+function App() {
+  return (
+    <div className="wrapper">
+      <Register />
+>>>>>>> Stashed changes
     </div>
   );
 }

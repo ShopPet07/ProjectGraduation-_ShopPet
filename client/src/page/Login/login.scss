@@ -1,0 +1,96 @@
+@import "../../global/variables";
+.login {
+  &-container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: #1c1c24;
+    border-radius: 20px;
+    width: 400px;
+    padding: 40px;
+    position: relative;
+  }
+  &-container.error {
+    border: 3px solid red;
+  }
+  &-heading {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: $white;
+    margin-bottom: 10px;
+  }
+  &-more {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: $gray-color;
+    margin-bottom: 30px;
+    a {
+      color: $green-color;
+      text-decoration: none;
+    }
+  }
+  &-google {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 13px 0;
+    border: 1px solid $white;
+    background-color: transparent;
+    color: $white;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    img {
+      margin-right: 10px;
+    }
+    &:hover {
+      border: 1px solid $green-color;
+    }
+  }
+  &-primary {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  &-forgot {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: calc(22 / 14);
+    text-align: right;
+    color: $green-color;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  &-submit {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 17px 0;
+    border: 1px solid transparent;
+    background-color: $green-color;
+    color: $white;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    img {
+      margin-right: 10px;
+    }
+  }
+  &-submit.check-email {
+    color: $white;
+    background-color: $error-color;
+    user-select: none;
+    cursor: not-allowed;
+  }
+}

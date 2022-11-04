@@ -1,0 +1,119 @@
+@import "../../global/variables";
+.register {
+  &-container {
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: #1c1c24;
+    border-radius: 20px;
+    width: 450px;
+    padding: 40px;
+    position: relative;
+  }
+  &-container.error {
+    border: 3px solid red;
+  }
+  &-heading {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: $white;
+    margin-bottom: 10px;
+  }
+  &-email {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    color: $gray-color;
+    margin-bottom: 20px;
+  }
+  &-more {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: $gray-color;
+    margin-bottom: 30px;
+    a {
+      color: $green-color;
+      text-decoration: none;
+    }
+  }
+  &-google {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 13px 0;
+    border: 1px solid $white;
+    background-color: transparent;
+    color: $white;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    img {
+      margin-right: 10px;
+    }
+    &:hover {
+      border: 1px solid $green-color;
+    }
+  }
+  &-primary {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  &-input {
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  &-agree {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: left;
+    color: $gray-color;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    input {
+      margin-right: 20px;
+      width: 23px;
+      height: 23px;
+    }
+  }
+  &-submit {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 17px 0;
+    border: 1px solid transparent;
+    background-color: $green-color;
+    color: $white;
+    font-size: 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    img {
+      margin-right: 10px;
+    }
+  }
+  &-submit.check-email {
+    color: $white;
+    background-color: $error-color;
+    user-select: none;
+    cursor: not-allowed;
+  }
+}

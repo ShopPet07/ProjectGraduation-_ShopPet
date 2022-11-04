@@ -1,0 +1,43 @@
+@import "../../global/variables";
+
+.input {
+  &-label {
+    color: $text-color;
+    font-size: 16px;
+  }
+  &-component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid $white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    input {
+      outline: none;
+      border: none;
+      background-color: transparent;
+      color: $white;
+      font-size: 16px;
+      padding: 15px 10px;
+      width: 100%;
+      &:focus {
+        .input-component {
+          border: 1px solid $green-color;
+        }
+      }
+    }
+
+    span {
+      width: 30px;
+      cursor: pointer;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  &-component.error {
+    border: 1px solid $error-color;
+  }
+}
