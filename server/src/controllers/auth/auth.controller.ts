@@ -39,10 +39,10 @@ export class AuthController {
                 data.email
             )
             // console.log('check user', user)
-            if (!user) res.status(404).json('User not found')
+            if (!user) res.status(404).json('UserNotFound')
             const validPassword = await AuthController.validate(data, user)
             // console.log('Check password', validPassword)
-            if (!validPassword) res.status(403).json('Password not match')
+            if (!validPassword) res.status(403).json('PasswordNotMatch')
             const token: string = jwt.sign(
                 {
                     id: user!.id,
@@ -59,7 +59,7 @@ export class AuthController {
                 .status(200)
                 .json({ userEmail: user!.email, userId: user!.id })
         } catch (error) {
-            console.log(error)
+            return res.status(404).json('Something went wrong')
         }
     }
 

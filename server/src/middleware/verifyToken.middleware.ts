@@ -11,7 +11,7 @@ export const VerifyToken = async (
     //Try to validate the token and get data
     try {
         const token: string = req.cookies['access_token']
-        console.log('Check token', req.cookies['access_token'])
+        // console.log('Check token', req.cookies['access_token'])
         jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
         res.locals.jwtPayload = jwtPayload
     } catch (error) {

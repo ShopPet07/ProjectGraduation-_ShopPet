@@ -5,7 +5,6 @@ import {
     Entity,
     ManyToOne,
     PrimaryGeneratedColumn,
-    Unique,
     UpdateDateColumn,
 } from 'typeorm'
 import { Users } from './users.entity'
@@ -42,6 +41,12 @@ export class Pets {
 
     @Column()
     image: string
+
+    @Column()
+    poster: string
+
+    @Column()
+    posterPhoneNumber: number
 
     @Column({ default: 1 })
     number: number

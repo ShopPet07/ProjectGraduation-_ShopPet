@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+import { Pets } from 'src/entity/pets.entity'
 import { Users } from '../../entity/users.entity'
 import { AppDataSource } from '../../utils/data-source'
 
@@ -28,5 +29,24 @@ export class UsersController {
         const userId: number = Number(res.locals.jwtPayload.id)
         if (!userId) res.status(401).json('User id is required, Please Login!')
         return userId
+    }
+
+    static GetAllPetPost = async (
+        req: Request,
+        res: Response
+    ): Promise<Users | any> => {
+        const userId: number = Number(res.locals.jwtPayload.id)
+        const postId: number = Number(req.params.id)
+        try {
+            const usersRepository = AppDataSource.getRepository(Users)
+            const user = await usersRepository.find({
+                where: { id: userId },
+                relations: ['pet'],
+            })
+            const allPostInUser = user[0].pet
+            res.status(200).json(allPostInUser)
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
