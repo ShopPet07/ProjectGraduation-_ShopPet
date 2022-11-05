@@ -1,0 +1,35 @@
+@import "../../global/variables";
+.main {
+  &-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-menu {
+    background-color: #ccc;
+    width: 100%;
+    flex: 0.5;
+    height: 100vh;
+    padding: 20px;
+    ul {
+      list-style: none;
+      li {
+        margin-bottom: 20px;
+        a {
+          text-decoration: none;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+  &-content {
+    background-color: #ddd;
+    width: 100%;
+    flex: 3;
+    text-align: center;
+  }
+  &-more {
+    background-color: #ccc;
+    width: 100%;
+    flex: 1;
+  }
+}
