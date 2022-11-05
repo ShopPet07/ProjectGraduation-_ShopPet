@@ -7,6 +7,7 @@ import {
     Unique,
 } from 'typeorm'
 import { Pets } from './pets.entity'
+import bcrypt from 'bcrypt'
 
 @Entity({ name: 'users' })
 @Unique(['email'])
@@ -46,4 +47,8 @@ export class Users {
 
     @OneToMany(() => Pets, (pet) => pet.user)
     pet: Pets[]
+
+    checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
+        return bcrypt.compareSync(unencryptedPassword, this.password)
+    }
 }

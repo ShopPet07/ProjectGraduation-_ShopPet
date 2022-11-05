@@ -15,13 +15,14 @@ export class PetsController {
                     ...data,
                     userId: userId,
                 })
-                console.log('Check pet:', newPet)
+                // console.log('Check pet:', newPet)
                 if (newPet) {
                     return res.status(200).json(newPet)
                 }
             } else res.status(401).json('Data invalid')
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 
@@ -47,7 +48,8 @@ export class PetsController {
                     .json({ message: 'Update successful', data: updated })
             }
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 
@@ -64,7 +66,8 @@ export class PetsController {
             }
             res.send('Delete Successfully')
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 
@@ -77,31 +80,8 @@ export class PetsController {
             const petsPost: Pets[] = await petsRepository.find()
             return res.status(200).json(petsPost)
         } catch (error) {
-            console.log(error)
-        }
-    }
-
-    static GetAllPetPost = async (
-        req: Request,
-        res: Response
-    ): Promise<Pets[] | any> => {
-        const userId: number = Number(res.locals.jwtPayload.id)
-        const postId: number = Number(req.params.id)
-        try {
-            const petsRepository = AppDataSource.getRepository(Pets)
-            const allPostInUser = await petsRepository.find({
-                relations: {
-                    user: true,
-                },
-                where: {
-                    user: {
-                        id: userId,
-                    },
-                },
-            })
-            console.log(allPostInUser)
-        } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 }

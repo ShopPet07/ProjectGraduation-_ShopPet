@@ -5,6 +5,9 @@ import { AppDataSource } from '../../utils/data-source'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import config from 'config'
+import HttpException from '../../utils/HttpException'
+import { STATUS_CODES } from 'http'
+// import { PassThrough } from 'stream'
 export class AuthController {
     static Register = async (
         req: Request,
@@ -13,18 +16,22 @@ export class AuthController {
         const data: AuthRegister = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
-            const isExistsUser = await usersRepository.findOne({
-                where: { email: data.email },
-            })
-            if (isExistsUser) res.status(401).json('User already exists')
-            const hashed: string = bcrypt.hashSync(data.password, 12)
+
+            const user = await AuthController.validateUser(data.email)
+            if (user) {
+                res.status(401).json('User already exists')
+                return
+            }
+            const hashed: string = bcrypt.hashSync(data.password, 8)
+
             const newUser = await usersRepository.save({
                 ...data,
                 password: hashed,
             })
-            return res.status(200).json(newUser)
+            return res.status(200).json(newUser.email)
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 
@@ -39,10 +46,19 @@ export class AuthController {
                 data.email
             )
             // console.log('check user', user)
-            if (!user) res.status(404).json('UserNotFound')
-            const validPassword = await AuthController.validate(data, user)
+            if (!user) {
+                res.status(404).send('UserNotFound')
+                return
+            }
+            // const validPassword = await bcrypt.compare(
+            //     data!.password,
+            //     user!.password
+            // )
             // console.log('Check password', validPassword)
-            if (!validPassword) res.status(403).json('PasswordNotMatch')
+            if (!user.checkIfUnencryptedPasswordIsValid(data.password)) {
+                res.status(401).send('Password is not match')
+                return
+            }
             const token: string = jwt.sign(
                 {
                     id: user!.id,
@@ -59,19 +75,15 @@ export class AuthController {
                 .status(200)
                 .json({ userEmail: user!.email, userId: user!.id })
         } catch (error) {
-            return res.status(404).json('Something went wrong')
+            res.status(403).send(error)
+            // console.log(error)
         }
     }
 
     static validateUser = async (email: string): Promise<Users | null> => {
         const usersRepository = AppDataSource.getRepository(Users)
         const user = await usersRepository.findOne({ where: { email } })
-        console.log('check validate user', user)
+        // console.log('check validate user', user)
         return user
-    }
-
-    static validate = (data: AuthLogin, user: Users): Promise<Boolean> => {
-        const validatePassword = bcrypt.compare(data.password, user.password)
-        return validatePassword
     }
 }

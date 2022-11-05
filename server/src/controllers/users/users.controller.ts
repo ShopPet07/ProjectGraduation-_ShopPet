@@ -17,11 +17,11 @@ export class UsersController {
                 const user: Users | any = await userRepository.findOne({
                     where: { id: paramsId },
                 })
-                res.status(200).json(user)
-                return user
+                return res.status(200).json(user)
             }
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 
@@ -46,7 +46,8 @@ export class UsersController {
             const allPostInUser = user[0].pet
             res.status(200).json(allPostInUser)
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
+            return
         }
     }
 }
