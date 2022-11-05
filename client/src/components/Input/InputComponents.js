@@ -4,7 +4,14 @@ import { useState } from "react";
 import "./input.scss";
 import eyeHidden from "../../assets/icons/eye-hidden.svg";
 import eyeShow from "../../assets/icons/eye-show.svg";
-const InputComponents = ({ label, password, placeholder, onChange }) => {
+const InputComponents = ({
+  label,
+  password,
+  placeholder,
+  onChange,
+  value,
+  error,
+}) => {
   const [eye, setEye] = useState(false);
   const handleShowPassword = () => {
     setEye(!eye);
@@ -12,8 +19,9 @@ const InputComponents = ({ label, password, placeholder, onChange }) => {
   return (
     <div>
       <label className="input-label">{label}</label>
-      <div className="input-component">
+      <div className={error ? "input-component error" : "input-component"}>
         <input
+          value={value}
           onChange={onChange}
           placeholder={placeholder}
           type={password ? (eye ? "text" : "password") : "text"}
