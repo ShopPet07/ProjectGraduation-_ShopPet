@@ -36,7 +36,7 @@ const Register = () => {
   };
   const getEmail = (e) => {
     setEmail(e.target.value);
-    if (validateEmail(email)) {
+    if (validateEmail(e.target.value)) {
       setCheckEmail(true);
       setError(false);
       setCheckCofirm(true);
