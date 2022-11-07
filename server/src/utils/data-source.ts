@@ -1,6 +1,7 @@
-import { Users } from '../entity/users.entity'
-import { Pets } from '../entity/pets.entity'
+// import { Users } from '../entity/users.entity'
+// import { Pets } from '../entity/pets.entity'
 import { DataSource } from 'typeorm'
+// import { ShoppingCart } from '../entity/cart.entity'
 export const AppDataSource = new DataSource({
     type: 'mysql',
     host: 'localhost',
@@ -10,5 +11,5 @@ export const AppDataSource = new DataSource({
     database: 'shop-pet',
     synchronize: true,
     logging: true,
-    entities: [Users, Pets],
+    entities: ['src/**/*.entity.ts'],
 })

@@ -2,12 +2,16 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinColumn,
     OneToMany,
+    OneToOne,
     PrimaryGeneratedColumn,
     Unique,
 } from 'typeorm'
 import { Pets } from './pets.entity'
 import bcrypt from 'bcrypt'
+import { ShoppingCart } from './cart.entity'
+// import { ShoppingCart } from './cart.entity'
 
 @Entity({ name: 'users' })
 @Unique(['email'])
@@ -47,6 +51,10 @@ export class Users {
 
     @OneToMany(() => Pets, (pet) => pet.user)
     pet: Pets[]
+
+    @OneToOne(() => ShoppingCart, (cart) => cart.user) // specify inverse side as a second parameter
+    @JoinColumn()
+    cart: ShoppingCart
 
     checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
         return bcrypt.compareSync(unencryptedPassword, this.password)

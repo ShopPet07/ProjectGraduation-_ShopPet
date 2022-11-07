@@ -10,4 +10,6 @@ router.post(
     AuthController.Login
 )
 
+router.post('/logou', AuthController.Logout)
+
 export default router
