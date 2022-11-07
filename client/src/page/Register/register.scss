@@ -1,12 +1,12 @@
 @import "../../global/variables";
-.login {
+.register {
   &-container {
     box-sizing: border-box;
     margin: 0 auto;
     margin-top: 30px;
     background-color: #1c1c24;
     border-radius: 20px;
-    width: 400px;
+    width: 450px;
     padding: 40px;
     position: relative;
   }
@@ -21,6 +21,14 @@
     text-align: center;
     color: $white;
     margin-bottom: 10px;
+  }
+  &-email {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    color: $gray-color;
+    margin-bottom: 20px;
   }
   &-more {
     font-weight: 400;
@@ -60,15 +68,30 @@
     justify-content: flex-start;
     flex-direction: column;
   }
-  &-forgot {
-    display: block;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: calc(22 / 14);
-    text-align: right;
-    color: $green-color;
-    text-decoration: none;
+  &-input {
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  &-agree {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: left;
+    color: $gray-color;
     margin-bottom: 10px;
+    margin-top: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    input {
+      margin-right: 20px;
+      width: 23px;
+      height: 23px;
+    }
   }
   &-submit {
     cursor: pointer;

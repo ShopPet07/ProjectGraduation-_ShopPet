@@ -4,7 +4,6 @@
   &-label {
     color: $text-color;
     font-size: 16px;
-    margin-bottom: 20px;
   }
   &-component {
     display: flex;
@@ -12,7 +11,7 @@
     align-items: center;
     border: 1px solid $white;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 10px;
     input {
       outline: none;
@@ -28,6 +27,7 @@
         }
       }
     }
+
     span {
       width: 30px;
       cursor: pointer;
@@ -36,5 +36,8 @@
         height: 20px;
       }
     }
+  }
+  &-component.error {
+    border: 1px solid $error-color;
   }
 }
