@@ -1,5 +1,7 @@
 import { Request, Response } from 'express'
-import { Pets } from 'src/entity/pets.entity'
+// import { ShoppingCart } from 'src/entity/cart.entity'
+import { ShoppingCart } from '../../entity/cart.entity'
+import { Pets } from '../../entity/pets.entity'
 import { Users } from '../../entity/users.entity'
 import { AppDataSource } from '../../utils/data-source'
 

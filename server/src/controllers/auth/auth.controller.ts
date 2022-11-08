@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken'
 import config from 'config'
 import HttpException from '../../utils/HttpException'
 import { STATUS_CODES } from 'http'
+import { ShoppingCart } from '../../entity/cart.entity'
 // import { PassThrough } from 'stream'
 export class AuthController {
     static Register = async (
@@ -16,7 +17,7 @@ export class AuthController {
         const data: AuthRegister = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
-
+            // const cartRepository = AppDataSource.getRepository(ShoppingCart)
             const user = await AuthController.validateUser(data.email)
             if (user) {
                 res.status(401).json('User already exists')
@@ -28,6 +29,7 @@ export class AuthController {
                 ...data,
                 password: hashed,
             })
+            // await cartRepository.save({ cartId: newUser.id })
             return res.status(200).json(newUser.email)
         } catch (error) {
             res.status(500).send(error)
@@ -78,6 +80,10 @@ export class AuthController {
             res.status(403).send(error)
             // console.log(error)
         }
+    }
+
+    static Logout = async (req: Request, res: Response) => {
+        res.clearCookie('access_token').status(200).json('Logout success')
     }
 
     static validateUser = async (email: string): Promise<Users | null> => {

@@ -7,6 +7,8 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm'
+import { ShoppingCart } from './cart.entity'
+// import { ShoppingCart } from './cart.entity'
 import { Users } from './users.entity'
 
 @Entity({ name: 'pets' })
@@ -59,4 +61,7 @@ export class Pets {
 
     @ManyToOne(() => Users, (user) => user.pet)
     user: Users
+
+    @ManyToOne(() => ShoppingCart, (cart) => cart.pet)
+    cart: ShoppingCart
 }

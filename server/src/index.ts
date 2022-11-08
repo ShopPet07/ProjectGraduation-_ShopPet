@@ -2,13 +2,12 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import dotenv from 'dotenv'
 import { AppDataSource } from './utils/data-source'
 import usersRoutes from './routes/users.routes'
 import authRoutes from './routes/auth.routes'
 import petsRoutes from './routes/pets.routes'
-dotenv.config()
-
+import cartRoutes from './routes/cart.routes'
+import config from 'config'
 AppDataSource.initialize()
     .then(() => {
         const app = express()
@@ -20,7 +19,8 @@ AppDataSource.initialize()
         app.use('/api/users', usersRoutes)
         app.use('/api/auth', authRoutes)
         app.use('/api/pets', petsRoutes)
-        const Port: number | string = process.env.PORT || 5000
+        app.use('/api/cart', cartRoutes)
+        const Port: number | string = config.get<number>('PORT') || 5000
         app.listen(Port, () => console.log(`Server id running on port ${5000}`))
     })
     .catch((err) => console.log(err))
