@@ -1,0 +1,31 @@
+@import "../../../global/variables";
+
+.home {
+  &-title {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 25px;
+    line-height: calc(30 / 25);
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  &-dev {
+    margin-bottom: 40px;
+    img {
+      object-fit: cover;
+      width: 100%;
+      border-radius: 50px;
+    }
+  }
+  &-post {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+.slick-prev {
+  display: none !important;
+}
+.slick-next {
+  display: none !important;
+}
