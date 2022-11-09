@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Information from "../../../components/Infomation/Infomation";
 import "./user.scss";
 import ic_pencil from "../../../assets/icons/icon-pencil.svg";
-import ic_avatar from "../../../assets/icons/icon-avatar.png";
+// import ic_avatar from "../../../assets/icons/icon-avatar.png";
 
 const User = () => {
+  const [updateButton, setUpdateButton] = useState(false);
+
   return (
     <div className="user">
       <div className="user-top">
@@ -17,35 +19,78 @@ const User = () => {
           </p>
         </div>
         <div className="user-top-button">
-          <button className="user-top-btn">
+          <button
+            onClick={() => setUpdateButton(!updateButton)}
+            className="user-top-btn"
+          >
             <img src={ic_pencil} alt="" />
             Change information
           </button>
         </div>
       </div>
       <div className="user-primary">
-        <h3 className="user-primary-heading">Hellow User, Have a good day</h3>
-        <div className="user-primary-infomation">
-          <div className="scroll">
-            <img src={ic_avatar} className="user-primary-avatar" alt="" />
-            <div className="user-primary-personal">
-              <h6>Personal Information</h6>
-              <div className="row">
-                <Information label={"First name"} showInfo="First name" />
-                <span></span>
-                <Information label={"Last name"} showInfo="Last name" />
-              </div>
-              <Information label={"Number phone"} showInfo="Last name" />
-              <Information label={"Date of Birth"} showInfo="Last name" />
+        <div className="personal">
+          {/* <img src={ic_avatar} className="user-primary-avatar" alt="" /> */}
+          <h6>Personal Information</h6>
+          <div className="user-primary-personal">
+            <div className="row">
+              <Information
+                dsb={updateButton ? false : true}
+                label={"First name"}
+                showInfo="First name"
+              />
+              <span></span>
+              <Information
+                dsb={updateButton ? false : true}
+                label={"Last name"}
+                showInfo="Last name"
+              />
             </div>
+            <Information
+              dsb={updateButton ? false : true}
+              label={"Number phone"}
+              showInfo="Last name"
+            />
+            <Information
+              dsb={updateButton ? false : true}
+              label={"Date of Birth"}
+              showInfo="Last name"
+            />
+          </div>
+        </div>
+        <div className="credentials">
+          <div className="scroll">
             <div className="user-primary-credentials">
               <h6>Credentials</h6>
-              <Information label={"Email"} showInfo="Last name" />
-              <Information label={"Password"} showInfo="Last name" />
-              <Information label={"Cofirm Password"} showInfo="Last name" />
+              <Information
+                dsb={updateButton ? false : true}
+                label={"Email"}
+                showInfo="Last name"
+              />
+              <Information
+                dsb={updateButton ? false : true}
+                label={"Password"}
+                showInfo="Last name"
+              />
+              <Information
+                dsb={updateButton ? false : true}
+                label={"Cofirm Password"}
+                showInfo="Last name"
+              />
             </div>
           </div>
-          <button className="update-infomation">Save</button>
+          {updateButton ? (
+            <button
+              onClick={() => setUpdateButton(!updateButton)}
+              className="update-infomation"
+            >
+              Save
+            </button>
+          ) : (
+            <button disabled className="update-infomation disable">
+              Save
+            </button>
+          )}
         </div>
       </div>
     </div>

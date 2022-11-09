@@ -2,7 +2,7 @@ import HomePage from "../page/Main/Home/Home";
 
 import UserPage from "../page/Main/User/User";
 import ContactPage from "../page/Main/Contact/Contact";
-import FavouritePage from "../page/Main/Favourite/Favourite";
+import MyPost from "../page/Main/MyPost/MyPost";
 import SettingsPage from "../page/Main/Settings/Settings";
 
 import Login from "../page/Login/Login";
@@ -24,9 +24,9 @@ const publicRoutes = [
     layout: ContactPage,
   },
   {
-    path: "/favourite",
-    components: FavouritePage,
-    layout: FavouritePage,
+    path: "/mypost",
+    components: MyPost,
+    layout: MyPost,
   },
   {
     path: "/settings",

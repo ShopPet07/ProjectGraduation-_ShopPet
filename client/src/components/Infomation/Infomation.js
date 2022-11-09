@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./infomation.scss";
 import eyeHidden from "../../assets/icons/eye-hidden.svg";
 import eyeShow from "../../assets/icons/eye-show.svg";
-const Infomation = ({ label, password, showInfo, onChange, value }) => {
+const Infomation = ({ label, dsb, password, showInfo, onChange, value }) => {
   const [eye, setEye] = useState(false);
   const handleShowPassword = () => {
     setEye(!eye);
@@ -11,8 +11,13 @@ const Infomation = ({ label, password, showInfo, onChange, value }) => {
   return (
     <div>
       <label className="infomation-label">{label}</label>
-      <div className="infomation-component">
+      <div
+        className={
+          dsb ? "infomation-component" : "infomation-component disable"
+        }
+      >
         <input
+          disabled={dsb ? true : false}
           value={value}
           onChange={onChange}
           placeholder={showInfo}

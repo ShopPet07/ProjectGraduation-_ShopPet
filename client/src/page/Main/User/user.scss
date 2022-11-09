@@ -51,14 +51,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 20px;
-    &-infomation {
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(15px);
-      border-radius: 20px;
-      width: 50%;
-      height: 100%;
-      padding: 20px 5%;
-    }
+    position: relative;
     &-avatar {
       width: 130px;
       height: 130px;
@@ -68,28 +61,40 @@
       transform: translateX(-50%);
       margin-bottom: 20px;
     }
-    &-personal {
-      h6 {
-        font-weight: 700;
-        font-size: 20px;
-        line-height: calc(30 / 20);
-        color: $white;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
   }
 }
-.scroll {
-  overflow-y: scroll;
-  max-height: 90%;
-  &::-webkit-scrollbar {
-    display: none;
+.personal {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  width: 50%;
+  height: 100%;
+  padding: 20px 5%;
+  border-radius: 20px 0 0 20px;
+  h6 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: calc(30 / 20);
+    color: $white;
+    margin-bottom: 20px;
   }
 }
-.row {
+.credentials {
+  border-radius: 0 20px 20px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  width: 50%;
+  height: 100%;
+  padding: 20px 5%;
+  h6 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: calc(30 / 20);
+    color: $white;
+    margin-bottom: 20px;
+  }
+}
+
+.user-primary-personal > .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,9 +111,18 @@
   line-height: calc(21 / 18);
   color: $white;
   padding: 15px 0;
-  width: 100%;
+  width: 75%;
   background: $green-color;
   border-radius: 100rem;
   transition: all 0.2s linear;
   text-transform: uppercase;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.update-infomation.disable {
+  user-select: none;
+  background-color: $text-color;
+  cursor: not-allowed;
 }

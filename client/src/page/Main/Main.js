@@ -20,7 +20,6 @@ const Main = ({ children }) => {
   const handleToggleTab = (index) => {
     setToggleState(index);
   };
-
   return (
     <div className="container">
       <div className="main-container">
@@ -51,7 +50,7 @@ const Main = ({ children }) => {
                 <Link
                   onClick={() => handleToggleTab(3)}
                   className={toggleState === 3 ? "active" : ""}
-                  to="/favourite"
+                  to="/mypost"
                 >
                   <img src={ic_Favourite} alt="" />
                 </Link>

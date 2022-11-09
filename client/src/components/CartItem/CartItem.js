@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./cartitem.scss";
 import icon_user from "../../assets/icons/icon-user.svg";
 
 const CartItem = ({ image, name, user, status, price }) => {
+  const [active, setActive] = useState(false);
+
   return (
-    <div className="cart">
+    <div
+      onClick={() => setActive(!active)}
+      className={active ? "cart active" : "cart"}
+    >
       <div className="cart-image">
         <img src={image} alt="" />
       </div>

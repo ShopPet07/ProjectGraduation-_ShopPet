@@ -8,13 +8,18 @@ body {
   font-weight: 400;
   font-family: $font;
   color: $white;
-  background-image: $background-gradient;
-  // background: $background-color;
+  // background-image: $background-gradient;
+  background-image: url("https://media.sketchfab.com/models/132e3bb7e52f47c89bba65bbb5978e4b/thumbnails/29d6b31659c24367884764f26c4313ac/8fb86fa3d45c472a8d4de7fe3e11bbd0.jpeg");
+  backdrop-filter: blur(10px);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .wrapper {
   max-width: 100vw;
   max-height: 100vh;
   margin: 0 auto;
+  background: rgba(18, 18, 18, 0.76);
+  backdrop-filter: blur(100px);
 }
 .container {
   max-width: 100%;

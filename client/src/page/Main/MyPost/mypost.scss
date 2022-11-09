@@ -1,0 +1,56 @@
+@import "../../../global/variables";
+
+.mypost {
+  &-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: $background-light;
+    border-radius: 35px;
+    margin-bottom: 20px;
+    &-heading {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: calc(24 / 20);
+      color: $white;
+      margin-bottom: 5px;
+    }
+    &-desc {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: calc(19 / 16);
+      color: $text-color;
+      max-width: 500px;
+      width: 100%;
+    }
+    &-btn {
+      cursor: pointer;
+      outline: none;
+      border: 2px solid $white;
+      border-radius: 25px;
+      padding: 15px 20px;
+      background: $text-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+  &-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: -20px;
+  }
+}
