@@ -88,7 +88,7 @@ const Register = () => {
     }
   }
   return (
-    <div className="container">
+    <div className="login-background">
       <div className="register-container">
         <div className="register-primary">
           <h1 className="register-heading">Register</h1>
@@ -149,23 +149,23 @@ const Register = () => {
               understand the <a href="/">Privacy policy.</a>
             </p>
           </div>
-          <button
-            onClick={handleButonSubmit}
-            className={
-              checkEmail
-                ? error
-                  ? "register-submit check-email"
-                  : "register-submit"
-                : "register-submit check-email"
-            }
-          >
-            {checkEmail
-              ? error
-                ? "Please, Check again!!!"
-                : "Create my account"
-              : "Wrong email format!!!"}
-          </button>
         </div>
+        <button
+          onClick={handleButonSubmit}
+          className={
+            checkEmail
+              ? error
+                ? "register-submit check-email"
+                : "register-submit"
+              : "register-submit check-email"
+          }
+        >
+          {checkEmail
+            ? error
+              ? "Please, Check again!!!"
+              : "Create my account"
+            : "Wrong email format!!!"}
+        </button>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import UserPage from "../page/Main/User/User";
 import ContactPage from "../page/Main/Contact/Contact";
 import MyPost from "../page/Main/MyPost/MyPost";
 import SettingsPage from "../page/Main/Settings/Settings";
+import AddPost from "../page/Main/Add/AddPost";
 
 import Login from "../page/Login/Login";
 import Register from "../page/Register/Register";
@@ -27,6 +28,11 @@ const publicRoutes = [
     path: "/mypost",
     components: MyPost,
     layout: MyPost,
+  },
+  {
+    path: "/add",
+    components: AddPost,
+    layout: AddPost,
   },
   {
     path: "/settings",

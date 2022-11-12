@@ -1,6 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./main.scss";
 import ic_Home from "../../assets/icons/icon-home.svg";
@@ -8,18 +9,52 @@ import ic_User from "../../assets/icons/icon-user.svg";
 import ic_Favourite from "../../assets/icons/icon-favourite.svg";
 import ic_Contact from "../../assets/icons/icon-contact.svg";
 import ic_Settings from "../../assets/icons/icon-settings.svg";
-import ic_Search from "../../assets/icons/icon-search.svg";
 import ic_avatar from "../../assets/icons/icon-avatar.png";
 import ic_location from "../../assets/icons/icon-location.svg";
-import ic_notification from "../../assets/icons/icon-notification.svg";
-import ic_plus from "../../assets/icons/icon-plus.svg";
 import CartItem from "../../components/CartItem/CartItem";
+import ic_plus from "../../assets/icons/icon-plus.svg";
 
+import { getCarts } from "../../redux/selectors";
+import MainHeader from "../../components/MainHeader/MainHeader";
 const Main = ({ children }) => {
+  const carts = useSelector(getCarts);
   const [toggleState, setToggleState] = useState(1);
+  const [cart, setCartItem] = useState({
+    userId: 1,
+    cartId: [],
+  });
+
+  function addCart(id) {
+    let addCartitem = [...cart.cartId];
+
+    let checkCart = addCartitem.find((c) => c === id);
+    if (checkCart) {
+      addCartitem.find((item, index) => {
+        if (item === id) {
+          addCartitem.splice(index, 1);
+        }
+        return addCartitem;
+      });
+      setCartItem((prev) => {
+        return {
+          ...prev,
+          cartId: addCartitem,
+        };
+      });
+    } else {
+      addCartitem.push(id);
+      setCartItem((prev) => {
+        return {
+          ...prev,
+          cartId: addCartitem,
+        };
+      });
+    }
+  }
   const handleToggleTab = (index) => {
     setToggleState(index);
   };
+
   return (
     <div className="container">
       <div className="main-container">
@@ -59,6 +94,15 @@ const Main = ({ children }) => {
                 <Link
                   onClick={() => handleToggleTab(4)}
                   className={toggleState === 4 ? "active" : ""}
+                  to="/add"
+                >
+                  <img src={ic_plus} alt="" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => handleToggleTab(5)}
+                  className={toggleState === 5 ? "active" : ""}
                   to="/contact"
                 >
                   <img src={ic_Contact} alt="" />
@@ -70,8 +114,8 @@ const Main = ({ children }) => {
             <li>
               <Link
                 to="/settings"
-                onClick={() => handleToggleTab(5)}
-                className={toggleState === 5 ? "active" : ""}
+                onClick={() => handleToggleTab(6)}
+                className={toggleState === 6 ? "active" : ""}
               >
                 <img src={ic_Settings} alt="" />
               </Link>
@@ -79,38 +123,7 @@ const Main = ({ children }) => {
           </ul>
         </div>
         <div className="main-content">
-          <div className="main-content-header">
-            <div className="row">
-              <div className="main-search">
-                <input
-                  placeholder="Search for the product you want"
-                  type="text"
-                />
-                <button>
-                  <img src={ic_Search} alt="" />
-                </button>
-              </div>
-              <select className="main-category">
-                <option value="1" key="0">
-                  All
-                </option>
-                <option value="1" key="1">
-                  Dogs
-                </option>
-                <option value="2" key="2">
-                  Cats
-                </option>
-              </select>
-            </div>
-            <div className="row">
-              <div className="main-add">
-                <img src={ic_plus} alt="" />
-              </div>
-              <div className="main-notification">
-                <img src={ic_notification} alt="" />
-              </div>
-            </div>
-          </div>
+          <MainHeader></MainHeader>
           <div className="main-content-primary">{children}</div>
         </div>
         <div className="main-more">
@@ -155,53 +168,27 @@ const Main = ({ children }) => {
             </div>
             <div className="main-cart-container">
               <div className="main-cart-list">
-                <CartItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf70i10lZNUmlA4yU8cIYpwGhM7OzSdS24CNeT96NboOTBd1taUxHIh1lT_gmW97qivcQ&usqp=CAU"
-                  }
-                  name="Lorem ajsdi as..."
-                  user="UserName"
-                  status="True"
-                  price={1200}
-                />
-                <CartItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf70i10lZNUmlA4yU8cIYpwGhM7OzSdS24CNeT96NboOTBd1taUxHIh1lT_gmW97qivcQ&usqp=CAU"
-                  }
-                  name="Lorem ajsdi as..."
-                  user="UserName"
-                  status="True"
-                  price={1200}
-                />
-                <CartItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf70i10lZNUmlA4yU8cIYpwGhM7OzSdS24CNeT96NboOTBd1taUxHIh1lT_gmW97qivcQ&usqp=CAU"
-                  }
-                  name="Lorem ajsdi as..."
-                  user="UserName"
-                  status="True"
-                  price={1200}
-                />
-                <CartItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf70i10lZNUmlA4yU8cIYpwGhM7OzSdS24CNeT96NboOTBd1taUxHIh1lT_gmW97qivcQ&usqp=CAU"
-                  }
-                  name="Lorem ajsdi as..."
-                  user="UserName"
-                  status="True"
-                  price={1200}
-                />
-                <CartItem
-                  image={
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf70i10lZNUmlA4yU8cIYpwGhM7OzSdS24CNeT96NboOTBd1taUxHIh1lT_gmW97qivcQ&usqp=CAU"
-                  }
-                  name="Lorem ajsdi as..."
-                  user="UserName"
-                  status="True"
-                  price={1200}
-                />
+                {carts.map((itemCart) => {
+                  return (
+                    <span
+                      onClick={() => addCart(itemCart.id)}
+                      key={itemCart.id}
+                    >
+                      <CartItem
+                        image={itemCart.image}
+                        name={itemCart.name}
+                        user={itemCart.user}
+                        status={itemCart.status}
+                        price={itemCart.price}
+                      />
+                    </span>
+                  );
+                })}
               </div>
-              <button className="main-cart-pay">Order</button>
+              <div className="main-cart-btn">
+                <button className="main-cart-pay">Order</button>
+                <button className="main-cart-delete">Delete</button>
+              </div>
             </div>
           </div>
         </div>

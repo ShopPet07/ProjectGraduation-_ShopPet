@@ -15,6 +15,7 @@ const PostComponent = ({
 }) => {
   const [onClick, setOnClick] = useState(false);
 
+  console.log(image);
   return (
     <div className="post-container">
       <div
@@ -24,7 +25,14 @@ const PostComponent = ({
         className="post-hidden"
       >
         <div className="post-image">
-          <img src={image} alt="" />
+          <img
+            src={
+              image
+                ? image
+                : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"
+            }
+            alt=""
+          />
         </div>
         <div className="post-content">
           <div className="post-category">
@@ -58,7 +66,14 @@ const PostComponent = ({
             <img src={ic_dog} alt="" />
           </div>
           <div className="post-show-image">
-            <img src={image} alt="" />
+            <img
+              src={
+                image
+                  ? image
+                  : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"
+              }
+              alt=""
+            />
           </div>
           <div className="post-show-content">
             <div className="post-show-more">

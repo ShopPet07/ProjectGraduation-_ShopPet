@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Information from "../../../components/Infomation/Infomation";
 import "./user.scss";
 import ic_pencil from "../../../assets/icons/icon-pencil.svg";
-// import ic_avatar from "../../../assets/icons/icon-avatar.png";
 
 const User = () => {
   const [updateButton, setUpdateButton] = useState(false);
@@ -29,8 +28,13 @@ const User = () => {
         </div>
       </div>
       <div className="user-primary">
+        <div className="user-image">
+          <img
+            src="https://www.24petwatch.com/content/24petwatch/us/en/_jcr_content/root/container/container/container_11073310_c/container_hero_copy/container_image/image.coreimg.85.1024.png/1663861300485/cat-image-new-529x540.png"
+            alt=""
+          />
+        </div>
         <div className="personal">
-          {/* <img src={ic_avatar} className="user-primary-avatar" alt="" /> */}
           <h6>Personal Information</h6>
           <div className="user-primary-personal">
             <div className="row">
@@ -53,8 +57,13 @@ const User = () => {
             />
             <Information
               dsb={updateButton ? false : true}
-              label={"Date of Birth"}
-              showInfo="Last name"
+              label={"Address"}
+              showInfo="68 - KG"
+            />
+            <Information
+              dsb={updateButton ? false : true}
+              label={"Sex"}
+              showInfo="Female"
             />
           </div>
         </div>

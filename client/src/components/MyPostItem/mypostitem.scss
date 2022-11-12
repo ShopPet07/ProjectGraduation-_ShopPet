@@ -1,7 +1,7 @@
 @import "../../global/variables";
 
 .mypost-item {
-  width: 265px;
+  width: 225px;
   background-color: $background-light;
   border-radius: 20px;
   display: none;
@@ -20,6 +20,7 @@
     padding: 10px;
     h6 {
       margin-bottom: 5px;
+      font-size: 16px;
     }
   }
   &-title {
@@ -30,10 +31,14 @@
   }
   &-desc {
     font-weight: 300;
-    font-size: 14px;
+    font-size: 12px;
     line-height: calc(17 / 14);
     color: $text-color;
     margin-bottom: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
   }
   &-update {
     cursor: pointer;

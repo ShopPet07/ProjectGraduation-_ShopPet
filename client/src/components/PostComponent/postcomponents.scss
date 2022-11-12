@@ -1,6 +1,9 @@
 @import "../../global/variables";
 
 .post {
+  &-container {
+    transition: all 0.3s linear;
+  }
   &-hidden {
     width: 210px;
     background: $background-light;
@@ -20,13 +23,16 @@
     }
   }
   &-image {
-    width: 285px;
     width: 100%;
-    height: 20%;
+    max-height: 110px;
+    height: 100%;
     border-radius: 20px;
     margin-bottom: 5px;
     img {
       border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   &-content {
@@ -72,6 +78,7 @@
     line-height: calc(17 / 14);
     color: $text-color;
     margin-bottom: 10px;
+    min-height: 25px;
   }
   &-more {
     display: flex;
