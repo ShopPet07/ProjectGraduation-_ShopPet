@@ -1,9 +1,12 @@
 import React from "react";
 import MyPostItem from "../../../components/MyPostItem/MyPostItem";
+import { useSelector } from "react-redux";
 
 import "./mypost.scss";
+import { getMyPosts } from "../../../redux/selectors";
 
 const MyPost = () => {
+  const myPosts = useSelector(getMyPosts);
   return (
     <div className="MyPost">
       <div className="mypost-top">
@@ -16,106 +19,21 @@ const MyPost = () => {
         </div>
       </div>
       <div className="mypost-primary">
-        <MyPostItem
-          image="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445"
-          title="TrongPhucs"
-          desc="TrongPhucs is dog"
-          user="ManhHys"
-          number="+84892922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Dog-main_gdcdzd.jpg"
-          title="DienThanh"
-          desc="DienThanh is dog"
-          user="ManhHys"
-          number="+848972922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445"
-          title="TrongPhucs"
-          desc="TrongPhucs is dog"
-          user="ManhHys"
-          number="+84892922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Dog-main_gdcdzd.jpg"
-          title="DienThanh"
-          desc="DienThanh is dog"
-          user="ManhHys"
-          number="+848972922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445"
-          title="TrongPhucs"
-          desc="TrongPhucs is dog"
-          user="ManhHys"
-          number="+84892922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Dog-main_gdcdzd.jpg"
-          title="DienThanh"
-          desc="DienThanh is dog"
-          user="ManhHys"
-          number="+848972922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445"
-          title="TrongPhucs"
-          desc="TrongPhucs is dog"
-          user="ManhHys"
-          number="+84892922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Dog-main_gdcdzd.jpg"
-          title="DienThanh"
-          desc="DienThanh is dog"
-          user="ManhHys"
-          number="+848972922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://www.cdc.gov/healthypets/images/pets/cute-dog-headshot.jpg?_=42445"
-          title="TrongPhucs"
-          desc="TrongPhucs is dog"
-          user="ManhHys"
-          number="+84892922"
-          status="true"
-          species="species"
-          price={1200}
-        />
-        <MyPostItem
-          image="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Dog-main_gdcdzd.jpg"
-          title="DienThanh"
-          desc="DienThanh is dog"
-          user="ManhHys"
-          number="+848972922"
-          status="true"
-          species="species"
-          price={1200}
-        />
+        {myPosts.map((post) => {
+          return (
+            <MyPostItem
+              key={post.id}
+              image={post.image}
+              title={post.title}
+              desc={post.desc}
+              user={post.user}
+              number={post.number}
+              status={post.status}
+              species={post.species}
+              price={post.price}
+            />
+          );
+        })}
       </div>
     </div>
   );

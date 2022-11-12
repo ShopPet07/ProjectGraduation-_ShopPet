@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 // import Slider from "react-slick";
 
 import PostComponent from "../../../components/PostComponent/PostComponent";
-// import test from "../../../assets/images/test.png";
 import "./home.scss";
 import { todosRemaining } from "../../../redux/selectors";
 const Home = () => {

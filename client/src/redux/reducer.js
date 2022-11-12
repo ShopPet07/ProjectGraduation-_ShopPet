@@ -1,4 +1,10 @@
 const initState = {
+  user: {
+    id: "0",
+    name: "MR. Manh Hyy’S",
+    email: "",
+    address: "RG, Kien Giang",
+  },
   filters: {
     search: "",
     category: "All",
@@ -206,11 +212,60 @@ const initState = {
       price: 1200,
     },
   ],
+  postsUser: [
+    {
+      id: 0,
+      title: "Abigail",
+      image:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      desc: "Anh huy dep trai hahah ahsdpas ",
+      user: "huypham",
+      number: "+84 07837238",
+      status: true,
+      price: 1200,
+      amount: 1,
+      species: "species",
+      category: "Dogs",
+    },
+    {
+      id: 1,
+      title: "Abigail",
+      image:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      desc: "Anh huy dep trai hahah ahsdpas ",
+      user: "huypham",
+      number: "+84 07837238",
+      status: true,
+      price: 1200,
+      amount: 1,
+      species: "species",
+      category: "Dogs",
+    },
+    {
+      id: 2,
+      title: "Abigail",
+      image:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1.00xw:0.669xh;0,0.190xh&resize=1200:*",
+      desc: "Anh huy dep trai hahah ahsdpas ",
+      user: "huypham",
+      number: "+84 07837238",
+      status: true,
+      price: 1200,
+      amount: 1,
+      species: "species",
+      category: "Dogs",
+    },
+  ],
 };
 
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
     case "posts/addPost":
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
+    case "cartUser/addPost":
       return {
         ...state,
         posts: [...state.posts, action.payload],

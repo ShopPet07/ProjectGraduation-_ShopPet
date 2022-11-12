@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -9,48 +8,14 @@ import ic_User from "../../assets/icons/icon-user.svg";
 import ic_Favourite from "../../assets/icons/icon-favourite.svg";
 import ic_Contact from "../../assets/icons/icon-contact.svg";
 import ic_Settings from "../../assets/icons/icon-settings.svg";
-import ic_avatar from "../../assets/icons/icon-avatar.png";
-import ic_location from "../../assets/icons/icon-location.svg";
-import CartItem from "../../components/CartItem/CartItem";
 import ic_plus from "../../assets/icons/icon-plus.svg";
 
-import { getCarts } from "../../redux/selectors";
 import MainHeader from "../../components/MainHeader/MainHeader";
+import MainCart from "../../components/MainCart/MainCart";
+import MainUser from "../../components/MainUser/MainUser";
 const Main = ({ children }) => {
-  const carts = useSelector(getCarts);
   const [toggleState, setToggleState] = useState(1);
-  const [cart, setCartItem] = useState({
-    userId: 1,
-    cartId: [],
-  });
 
-  function addCart(id) {
-    let addCartitem = [...cart.cartId];
-
-    let checkCart = addCartitem.find((c) => c === id);
-    if (checkCart) {
-      addCartitem.find((item, index) => {
-        if (item === id) {
-          addCartitem.splice(index, 1);
-        }
-        return addCartitem;
-      });
-      setCartItem((prev) => {
-        return {
-          ...prev,
-          cartId: addCartitem,
-        };
-      });
-    } else {
-      addCartitem.push(id);
-      setCartItem((prev) => {
-        return {
-          ...prev,
-          cartId: addCartitem,
-        };
-      });
-    }
-  }
   const handleToggleTab = (index) => {
     setToggleState(index);
   };
@@ -127,70 +92,8 @@ const Main = ({ children }) => {
           <div className="main-content-primary">{children}</div>
         </div>
         <div className="main-more">
-          <div className="main-profile">
-            <div className="main-profile-caption">
-              <h5>My Profile</h5>
-            </div>
-            <div className="main-profile-container">
-              <div className="main-profile-info">
-                <img src={ic_avatar} alt="" />
-                <span>
-                  <h6 className="main-profile-name">MR. Manh Hyy’S</h6>
-                  <p className="main-profile-permission">User</p>
-                  <div className="main-profile-location">
-                    <img src={ic_location} alt="" />
-                    <span>RG, Kien Giang </span>
-                  </div>
-                </span>
-              </div>
-              <div className="main-profile-param">
-                <div className="main-profile-param-item">
-                  <p>Posts</p>
-                  <span>55</span>
-                </div>
-                <div className="main-profile-param-item">
-                  <p>Posts</p>
-                  <span>55</span>
-                </div>
-                <div className="main-profile-param-item">
-                  <p>Posts</p>
-                  <span>55</span>
-                </div>
-              </div>
-              <a href="/login" className="main-profile-logout">
-                Log Out
-              </a>
-            </div>
-          </div>
-          <div className="main-cart">
-            <div className="main-cart-caption">
-              <h5>My Cart</h5>
-            </div>
-            <div className="main-cart-container">
-              <div className="main-cart-list">
-                {carts.map((itemCart) => {
-                  return (
-                    <span
-                      onClick={() => addCart(itemCart.id)}
-                      key={itemCart.id}
-                    >
-                      <CartItem
-                        image={itemCart.image}
-                        name={itemCart.name}
-                        user={itemCart.user}
-                        status={itemCart.status}
-                        price={itemCart.price}
-                      />
-                    </span>
-                  );
-                })}
-              </div>
-              <div className="main-cart-btn">
-                <button className="main-cart-pay">Order</button>
-                <button className="main-cart-delete">Delete</button>
-              </div>
-            </div>
-          </div>
+          <MainUser></MainUser>
+          <MainCart></MainCart>
         </div>
       </div>
     </div>
