@@ -1,7 +1,9 @@
 import { Request, Response } from 'express'
+import { Like } from 'typeorm'
 import { Pets } from '../../entity/pets.entity'
 import { AppDataSource } from '../../utils/data-source'
 export class PetsController {
+    // create new post
     static CreatePost = async (
         req: Request,
         res: Response
@@ -82,6 +84,26 @@ export class PetsController {
         } catch (error) {
             res.status(500).send(error)
             return
+        }
+    }
+
+    static GetItemBySearch = async (
+        req: Request,
+        res: Response
+    ): Promise<Pets[] | any> => {
+        let { searchQuery }: any = req.query
+        try {
+            searchQuery = new RegExp(searchQuery, 'i')
+            const pets = await AppDataSource.getRepository(Pets)
+                .createQueryBuilder('pet')
+                .where(
+                    'pet.title Like :title AND pet.description Like :description',
+                    { title: `%${searchQuery}%` }
+                )
+                .getMany()
+            res.status(200).json(pets)
+        } catch (error) {
+            res.status(500).send(error)
         }
     }
 }

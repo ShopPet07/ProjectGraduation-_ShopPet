@@ -17,14 +17,12 @@ export class AuthController {
         const data: AuthRegister = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
-            // const cartRepository = AppDataSource.getRepository(ShoppingCart)
-            const user = await AuthController.validateUser(data.email)
+            const user: any = await AuthController.validateUser(data.email)
             if (user) {
                 res.status(401).json('User already exists')
                 return
             }
             const hashed: string = bcrypt.hashSync(data.password, 8)
-
             const newUser = await usersRepository.save({
                 ...data,
                 password: hashed,

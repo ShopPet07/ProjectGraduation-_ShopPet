@@ -12,10 +12,10 @@ import { Users } from './users.entity'
 @Entity({ name: 'cart' })
 export class ShoppingCart {
     @PrimaryGeneratedColumn()
-    id: number
-    
-    @Column()
     cartId: number
+
+    @Column()
+    cartCartId: number
 
     @Column()
     productId: number

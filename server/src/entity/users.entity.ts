@@ -46,6 +46,9 @@ export class Users {
     @Column()
     avatar: string
 
+    @Column()
+    cartId: number
+
     @CreateDateColumn()
     createdAt: Date
 
@@ -53,7 +56,6 @@ export class Users {
     pet: Pets[]
 
     @OneToOne(() => ShoppingCart, (cart) => cart.user) // specify inverse side as a second parameter
-    @JoinColumn()
     cart: ShoppingCart
 
     checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
