@@ -6,6 +6,7 @@ import { getCarts } from "../../redux/selectors";
 
 const MainCart = () => {
   const carts = useSelector(getCarts);
+
   const [cart, setCartItem] = useState({
     userId: 1,
     cartId: [],

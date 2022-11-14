@@ -16,7 +16,7 @@ export const todosRemaining = createSelector(
       if (category === "All") {
         return post.desc.includes(textChange);
       }
-      return post.desc.includes(textChange) && category.includes(post.category);
+      return post.desc.includes(textChange) && post.category.includes(category);
     });
   }
 );

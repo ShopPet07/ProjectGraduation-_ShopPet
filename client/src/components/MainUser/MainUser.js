@@ -7,6 +7,10 @@ import { userSelector } from "../../redux/selectors";
 
 const MainUser = () => {
   const user = useSelector(userSelector);
+
+  const LogOut = () => {
+    localStorage.clear();
+  };
   return (
     <div className="main-profile">
       <div className="main-profile-caption">
@@ -24,21 +28,7 @@ const MainUser = () => {
             </div>
           </span>
         </div>
-        <div className="main-profile-param">
-          <div className="main-profile-param-item">
-            <p>Posts</p>
-            <span>55</span>
-          </div>
-          <div className="main-profile-param-item">
-            <p>Posts</p>
-            <span>55</span>
-          </div>
-          <div className="main-profile-param-item">
-            <p>Posts</p>
-            <span>55</span>
-          </div>
-        </div>
-        <a href="/login" className="main-profile-logout">
+        <a href="/login" onClick={LogOut} className="main-profile-logout">
           Log Out
         </a>
       </div>

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./main.scss";
@@ -14,12 +14,15 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import MainCart from "../../components/MainCart/MainCart";
 import MainUser from "../../components/MainUser/MainUser";
 const Main = ({ children }) => {
+  const navigate = useNavigate();
   const [toggleState, setToggleState] = useState(1);
+  useEffect(() => {
+    localStorage.getItem("userLogin") ? navigate("/") : navigate("/login");
+  }, []);
 
   const handleToggleTab = (index) => {
     setToggleState(index);
   };
-
   return (
     <div className="container">
       <div className="main-container">

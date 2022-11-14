@@ -200,6 +200,10 @@
     height: 100%;
     max-width: 20vw;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
   }
   &-profile {
     background: #5c5c5c33;
@@ -222,7 +226,7 @@
     &-info {
       display: flex;
       align-items: center;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       span {
         margin-left: 20px;
         display: flex;
@@ -275,29 +279,6 @@
       display: block;
       text-align: center;
       text-decoration: none;
-    }
-    &-param {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      margin-bottom: 20px;
-      &-item {
-        p {
-          font-weight: 500;
-          font-size: 12px;
-          line-height: calc(14 / 12);
-          color: $text-color;
-          margin-bottom: 3px;
-        }
-        h6 {
-          font-weight: 500;
-          font-size: 16px;
-          line-height: calc(19 / 16);
-          color: $white;
-        }
-      }
     }
   }
   &-cart {
@@ -359,7 +340,7 @@
     }
     &-list {
       overflow-y: scroll;
-      max-height: 33vh;
+      max-height: 25vh;
       &::-webkit-scrollbar {
         display: none;
       }

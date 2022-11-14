@@ -1,13 +1,14 @@
-import HomePage from "../page/Main/Home/Home";
+import HomePage from "../page/Main/Home";
 
-import UserPage from "../page/Main/User/User";
-import ContactPage from "../page/Main/Contact/Contact";
-import MyPost from "../page/Main/MyPost/MyPost";
-import SettingsPage from "../page/Main/Settings/Settings";
-import AddPost from "../page/Main/Add/AddPost";
+import UserPage from "../page/Main/User";
+import ContactPage from "../page/Main/Contact";
+import MyPost from "../page/Main/MyPost";
+import SettingsPage from "../page/Main/Settings";
+import AddPost from "../page/Main/AddPost";
 
-import Login from "../page/Login/Login";
-import Register from "../page/Register/Register";
+import Login from "../page/Login";
+import Register from "../page/Register";
+import Forgot from "../page/Forgot";
 const publicRoutes = [
   {
     path: "/",
@@ -47,6 +48,11 @@ const publicRoutes = [
   {
     path: "/register",
     components: Register,
+    layout: null,
+  },
+  {
+    path: "/forgot",
+    components: Forgot,
     layout: null,
   },
 ];

@@ -1,10 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import InputComponents from "../../components/Input/InputComponents";
 
 import "./login.scss";
+import { API } from "../../api";
 import google from "../../assets/icons/Google.svg";
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -29,16 +33,19 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      axios
+        .post(`${API}/api/auth/login`, {
           email: email.toString(),
           password: password.toString(),
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
+        })
+        .then(function (response) {
+          console.log(response.data);
+          localStorage.setItem("userLogin", response.data);
+          navigate("/");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     } else {
       setError(true);
     }
@@ -58,7 +65,7 @@ const Login = () => {
           <InputComponents
             value={email}
             onChange={getEmail}
-            placeholder={"phammanhhuy@gmail.com"}
+            placeholder={"abc@gmail.com"}
             label={"Email"}
           />
           <InputComponents
@@ -68,10 +75,7 @@ const Login = () => {
             label={"Password"}
             password
           />
-          <a
-            href="https://www.youtube.com/watch?v=DXT9dF-WK-I"
-            className="login-forgot"
-          >
+          <a href="/forgot" className="login-forgot">
             Forgot password
           </a>
           <button

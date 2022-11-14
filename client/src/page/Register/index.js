@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 import google from "../../assets/icons/Google.svg";
 import InputComponents from "../../components/Input/InputComponents";
 import "./register.scss";
+import { API } from "../../api";
 const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -80,6 +82,16 @@ const Register = () => {
       checkBox
     ) {
       setError(false);
+      axios
+        .post(`${API}/api/auth/register`, {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+        })
+        .then((response) => {
+          setError(true, response);
+        });
     } else if (firstName === "" || lastName === "") {
       setCheckName(false);
       setError(true);
