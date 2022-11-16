@@ -9,6 +9,7 @@
     width: 450px;
     padding: 20px 30px;
     position: relative;
+    overflow-y: scroll;
   }
   &-container.error {
     border: 3px solid red;
@@ -123,5 +124,15 @@
     background-color: $error-color;
     user-select: none;
     cursor: not-allowed;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .register {
+    &-container {
+      max-width: 300px;
+      max-height: 90vh;
+      overflow-y: scroll;
+    }
   }
 }

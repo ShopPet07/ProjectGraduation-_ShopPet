@@ -6,6 +6,7 @@
   }
   &-hidden {
     width: 210px;
+    height: 300px;
     background: $background-light;
     border-radius: 20px;
     margin-bottom: 30px;
@@ -28,11 +29,16 @@
     height: 100%;
     border-radius: 20px;
     margin-bottom: 5px;
+    overflow: hidden;
     img {
       border-radius: 20px;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
+      &:hover {
+        scale: 1.3;
+      }
     }
   }
   &-content {
@@ -262,5 +268,75 @@
   }
   &-show.active {
     display: block;
+  }
+}
+@media screen and (max-width: 1439.98px) {
+  .post {
+    &-container {
+      transition: all 0.1s linear;
+    }
+    &-hidden {
+      width: 210px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 1023.98px) {
+  .post {
+    &-container {
+      transition: all 0.1s linear;
+    }
+    &-hidden {
+      width: 170px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .post {
+    &-container {
+      transition: all 0.1s linear;
+    }
+    &-hidden {
+      width: 160px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+      height: 230px;
+    }
+    &-desc {
+      display: none;
+    }
+    &-price {
+      font-size: 12px;
+    }
+    &-more {
+      span {
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 413.98px) {
+  .post {
+    &-hidden {
+      width: 150px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+      height: 230px;
+    }
+  }
+}
+@media screen and (max-width: 374.98px) {
+  .post {
+    &-hidden {
+      width: 125px;
+      margin-bottom: 20px;
+      margin-right: 10px;
+      height: 230px;
+    }
   }
 }

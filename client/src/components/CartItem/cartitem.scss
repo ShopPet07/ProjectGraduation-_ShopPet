@@ -72,3 +72,40 @@
 .cart.active {
   border: 2px solid $green-color;
 }
+@media screen and (max-width: 1439.98px) {
+  .cart {
+    padding: 5px;
+    position: relative;
+    &:hover {
+      .cart-price {
+        opacity: 1;
+      }
+    }
+    &-image {
+      width: 50px;
+      height: 50px;
+    }
+    &-name {
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+    &-user {
+      img {
+        width: 10px;
+        height: 10px;
+      }
+      span {
+        font-size: 8px;
+      }
+    }
+    &-price {
+      font-size: 12px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translate(0%, 50%);
+      opacity: 0;
+      transition: all 0.2s linear;
+    }
+  }
+}

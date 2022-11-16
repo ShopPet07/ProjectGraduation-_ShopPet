@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import InputComponents from "../../components/Input/InputComponents";
 
@@ -38,13 +39,13 @@ const Login = () => {
           email: email.toString(),
           password: password.toString(),
         })
-        .then(function (response) {
+        .then((response) => {
           console.log(response.data);
           localStorage.setItem("userLogin", response.data);
           navigate("/");
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((error) => {
+          toast.error(error.message);
         });
     } else {
       setError(true);
@@ -52,6 +53,7 @@ const Login = () => {
   }
   return (
     <div className="login-background">
+      <ToastContainer></ToastContainer>
       <div className="login-container">
         <div className="login-primary">
           <h1 className="login-heading">Welcome Back!</h1>
@@ -69,6 +71,9 @@ const Login = () => {
             label={"Email"}
           />
           <InputComponents
+            onKeyPress={(event) => {
+              if (event.key === "Enter") Login();
+            }}
             value={password}
             onChange={getPassword}
             placeholder={"********"}

@@ -75,6 +75,10 @@
   height: 100%;
   padding: 20px 5%;
   border-radius: 20px 0 0 20px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   h6 {
     font-weight: 700;
     font-size: 20px;
@@ -90,6 +94,11 @@
   width: 50%;
   height: 100%;
   padding: 20px 5%;
+  padding-bottom: 50px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   h6 {
     font-weight: 700;
     font-size: 20px;
@@ -124,10 +133,59 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
 }
 .update-infomation.disable {
   user-select: none;
   background-color: $text-color;
   cursor: not-allowed;
+}
+
+@media screen and (max-width: 1439.98px) {
+  .user {
+    &-image {
+      display: none;
+    }
+  }
+}
+@media screen and (max-width: 767.98px) {
+  .user {
+    &-top {
+      &-desc {
+        display: none;
+      }
+      &-heading {
+        font-size: 16px;
+      }
+      &-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+        img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+    &-primary {
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 100%;
+      margin-bottom: 50px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .personal {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .credentials {
+    width: 100%;
+  }
+  .update-infomation {
+    position: static;
+    transform: translate(0);
+    width: 100%;
+  }
 }

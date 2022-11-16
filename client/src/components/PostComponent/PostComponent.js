@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./postcomponents.scss";
 import ic_category from "../../assets/icons/icon-category.svg";
 import ic_dog from "../../assets/icons/icon-dog.svg";
-// import ic_close from "../../assets/icons/close-outline.svg";
 const PostComponent = ({
   image,
   category,

@@ -1,10 +1,14 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 import InputComponents from "../../components/Input/InputComponents";
 import { API } from "../../api";
 
 const Forgot = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,7 +41,7 @@ const Forgot = () => {
     console.log(newPassword);
   };
 
-  function Login() {
+  function handleForgot() {
     if (email !== "" && firstName !== "" && lastName !== "") {
       setError(false);
       axios
@@ -48,14 +52,17 @@ const Forgot = () => {
           newPassword: newPassword.toString(),
         })
         .then(function (response) {
-          console.log(response.data);
-          localStorage.setItem("userLogin", response.data);
-          const test = localStorage.getItem("userLogin");
-          console.log(test);
-          return response;
+          toast.success("Change password successfully <3", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          setTimeout(() => {
+            navigate("/login");
+          }, 5000);
         })
         .catch(function (error) {
-          console.log(error);
+          toast.error("Error !", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
         });
     } else {
       setError(true);
@@ -63,9 +70,10 @@ const Forgot = () => {
   }
   return (
     <div className="login-background">
+      <ToastContainer></ToastContainer>
       <div className="login-container">
         <div className="login-primary">
-          <h1 className="login-heading">Mẹ mày ngu!</h1>
+          <h1 className="login-heading">Forgot Password</h1>
           <div className="row">
             <InputComponents
               value={firstName}
@@ -88,6 +96,11 @@ const Forgot = () => {
             label={"Email"}
           />
           <InputComponents
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                handleForgot();
+              }
+            }}
             password
             value={newPassword}
             onChange={getNewPassword}
@@ -95,7 +108,7 @@ const Forgot = () => {
             label={"New Password"}
           />
           <button
-            onClick={Login}
+            onClick={handleForgot}
             className={
               checkEmail
                 ? error

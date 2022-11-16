@@ -26,7 +26,7 @@ const Home = () => {
             return (
               <PostComponent
                 key={post.id}
-                image={post.image !== "" ? "" : false}
+                image={post.image !== "" ? post.image : false}
                 title={post.title}
                 desc={post.desc}
                 status={post.status}

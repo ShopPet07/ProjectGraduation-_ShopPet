@@ -106,3 +106,12 @@
     cursor: not-allowed;
   }
 }
+
+@media screen and (max-width: 413.98px) {
+  .login {
+    &-container {
+      max-width: 300px;
+      max-height: 90vh;
+    }
+  }
+}

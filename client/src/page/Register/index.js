@@ -1,12 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 import google from "../../assets/icons/Google.svg";
 import InputComponents from "../../components/Input/InputComponents";
 import "./register.scss";
 import { API } from "../../api";
 const Register = () => {
+  const navigator = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -90,7 +93,22 @@ const Register = () => {
           password: password,
         })
         .then((response) => {
-          setError(true, response);
+          if (response.status === 200) {
+            setTimeout(() => {
+              navigator("/login");
+            }, 1000);
+          }
+        })
+        .catch((error) => {
+          if (error.status === 401) {
+            toast.error("Email already exists  !", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+          } else {
+            toast.error("Check again !", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+          }
         });
     } else if (firstName === "" || lastName === "") {
       setCheckName(false);
@@ -101,6 +119,7 @@ const Register = () => {
   }
   return (
     <div className="login-background">
+      <ToastContainer></ToastContainer>
       <div className="register-container">
         <div className="register-primary">
           <h1 className="register-heading">Register</h1>
@@ -143,6 +162,11 @@ const Register = () => {
             password
           />
           <InputComponents
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                handleButonSubmit();
+              }
+            }}
             error={checkCofirm ? false : true}
             value={cofirmPassword}
             onChange={getCofirmPassword}
