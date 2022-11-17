@@ -9,6 +9,7 @@ const InputComponents = ({
   password,
   placeholder,
   onChange,
+  onKeyPress,
   value,
   error,
 }) => {
@@ -21,6 +22,7 @@ const InputComponents = ({
       <label className="input-label">{label}</label>
       <div className={error ? "input-component error" : "input-component"}>
         <input
+          onKeyPress={onKeyPress}
           value={value}
           onChange={onChange}
           placeholder={placeholder}

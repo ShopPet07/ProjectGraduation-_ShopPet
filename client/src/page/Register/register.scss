@@ -3,12 +3,13 @@
   &-container {
     box-sizing: border-box;
     margin: 0 auto;
-    margin-top: 30px;
-    background-color: #1c1c24;
+    background-color: $background-light;
     border-radius: 20px;
+    max-height: 90vh;
     width: 450px;
-    padding: 40px;
+    padding: 20px 30px;
     position: relative;
+    overflow-y: scroll;
   }
   &-container.error {
     border: 3px solid red;
@@ -67,6 +68,10 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   &-input {
     &-container {
@@ -92,20 +97,24 @@
       width: 23px;
       height: 23px;
     }
+    p {
+      a {
+        color: $gray-color;
+      }
+    }
   }
   &-submit {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     padding: 17px 0;
+    width: 100%;
     border: 1px solid transparent;
     background-color: $green-color;
     color: $white;
     font-size: 14px;
     border-radius: 8px;
-    margin-bottom: 10px;
     img {
       margin-right: 10px;
     }
@@ -115,5 +124,15 @@
     background-color: $error-color;
     user-select: none;
     cursor: not-allowed;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .register {
+    &-container {
+      max-width: 300px;
+      max-height: 90vh;
+      overflow-y: scroll;
+    }
   }
 }

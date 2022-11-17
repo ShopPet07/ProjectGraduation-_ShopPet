@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./postcomponents.scss";
 import ic_category from "../../assets/icons/icon-category.svg";
 import ic_dog from "../../assets/icons/icon-dog.svg";
-// import ic_close from "../../assets/icons/close-outline.svg";
 const PostComponent = ({
   image,
   category,
@@ -15,6 +14,7 @@ const PostComponent = ({
 }) => {
   const [onClick, setOnClick] = useState(false);
 
+  console.log(image);
   return (
     <div className="post-container">
       <div
@@ -24,7 +24,14 @@ const PostComponent = ({
         className="post-hidden"
       >
         <div className="post-image">
-          <img src={image} alt="" />
+          <img
+            src={
+              image
+                ? image
+                : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"
+            }
+            alt=""
+          />
         </div>
         <div className="post-content">
           <div className="post-category">
@@ -58,7 +65,14 @@ const PostComponent = ({
             <img src={ic_dog} alt="" />
           </div>
           <div className="post-show-image">
-            <img src={image} alt="" />
+            <img
+              src={
+                image
+                  ? image
+                  : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"
+              }
+              alt=""
+            />
           </div>
           <div className="post-show-content">
             <div className="post-show-more">

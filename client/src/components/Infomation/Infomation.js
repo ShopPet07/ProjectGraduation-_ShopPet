@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import "./infomation.scss";
 import eyeHidden from "../../assets/icons/eye-hidden.svg";
 import eyeShow from "../../assets/icons/eye-show.svg";
-const Infomation = ({ label, dsb, password, showInfo, onChange, value }) => {
+const Infomation = ({
+  date,
+  label,
+  dsb,
+  password,
+  showInfo,
+  onChange,
+  value,
+}) => {
   const [eye, setEye] = useState(false);
   const handleShowPassword = () => {
     setEye(!eye);
@@ -21,7 +29,7 @@ const Infomation = ({ label, dsb, password, showInfo, onChange, value }) => {
           value={value}
           onChange={onChange}
           placeholder={showInfo}
-          type={password ? (eye ? "text" : "password") : "text"}
+          type={date ? "date" : password ? (eye ? "text" : "password") : "text"}
         />
         <span onClick={handleShowPassword}>
           {password ? (

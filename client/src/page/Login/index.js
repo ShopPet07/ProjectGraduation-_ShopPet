@@ -1,10 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 import InputComponents from "../../components/Input/InputComponents";
 
 import "./login.scss";
+import { API } from "../../api";
 import google from "../../assets/icons/Google.svg";
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -29,22 +34,26 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      axios
+        .post(`${API}/api/auth/login`, {
           email: email.toString(),
           password: password.toString(),
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
+        })
+        .then((response) => {
+          console.log(response.data);
+          localStorage.setItem("userLogin", response.data);
+          navigate("/");
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     } else {
       setError(true);
     }
   }
   return (
-    <div className="container">
+    <div className="login-background">
+      <ToastContainer></ToastContainer>
       <div className="login-container">
         <div className="login-primary">
           <h1 className="login-heading">Welcome Back!</h1>
@@ -58,20 +67,20 @@ const Login = () => {
           <InputComponents
             value={email}
             onChange={getEmail}
-            placeholder={"phammanhhuy@gmail.com"}
+            placeholder={"abc@gmail.com"}
             label={"Email"}
           />
           <InputComponents
+            onKeyPress={(event) => {
+              if (event.key === "Enter") Login();
+            }}
             value={password}
             onChange={getPassword}
             placeholder={"********"}
             label={"Password"}
             password
           />
-          <a
-            href="https://www.youtube.com/watch?v=DXT9dF-WK-I"
-            className="login-forgot"
-          >
+          <a href="/forgot" className="login-forgot">
             Forgot password
           </a>
           <button
