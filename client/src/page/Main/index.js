@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { userSelector } from "../../redux/selectors";
 import { changeTextSearch, changeCategory } from "../../redux/actions";
 import "./main.scss";
 import logo from "../../assets/images/logo.png";
@@ -16,6 +16,7 @@ import ic_Settings from "../../assets/icons/icon-settings.svg";
 import ic_plus from "../../assets/icons/icon-plus.svg";
 import ic_Search from "../../assets/icons/icon-search.svg";
 import ic_notification from "../../assets/icons/icon-notification.svg";
+import ic_notificationFalse from "../../assets/icons/icon-notification-false.svg";
 import ic_menu from "../../assets/icons/icon-menu.svg";
 import ic_menuLeft from "../../assets/icons/icon-menuLeft.svg";
 import ic_arrow from "../../assets/icons/icon-arrow.svg";
@@ -23,6 +24,7 @@ import ic_close from "../../assets/icons/icon-close.svg";
 
 import MainMore from "../../components/MainMore";
 const Main = ({ children }) => {
+  const checkNotification = useSelector(userSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [toggleState, setToggleState] = useState(1);
@@ -47,7 +49,8 @@ const Main = ({ children }) => {
     setToggleState(index);
   };
   const handleShowMenu = async () => {
-    await setShowMenu(true);
+    setShowMenu(true);
+    setShowMore(false);
   };
   return (
     <div className="container">
@@ -176,10 +179,17 @@ const Main = ({ children }) => {
             </div>
             <div className="row-mobile">
               <div className="main-notification ">
-                <img src={ic_notification} alt="" />
+                {checkNotification.notification ? (
+                  <img src={ic_notification} alt="" />
+                ) : (
+                  <img src={ic_notificationFalse} alt="" />
+                )}
               </div>
               <div
-                onClick={() => setShowMore(!showMore)}
+                onClick={() => {
+                  setShowMore(!showMore);
+                  setShowMenu(false);
+                }}
                 className="main-notification main-menu-icon"
               >
                 <img src={ic_menu} alt="" />
