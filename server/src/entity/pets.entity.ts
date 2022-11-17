@@ -8,6 +8,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm'
 import { ShoppingCart } from './cart.entity'
+import { Order } from './order.entity'
 // import { ShoppingCart } from './cart.entity'
 import { Users } from './users.entity'
 
@@ -64,4 +65,7 @@ export class Pets {
 
     @ManyToOne(() => ShoppingCart, (cart) => cart.pet)
     cart: ShoppingCart
+
+    @ManyToOne(() => Order, (order) => order.pet)
+    order: Order
 }

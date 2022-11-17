@@ -11,5 +11,6 @@ router.post(
 )
 
 router.post('/logout', AuthController.Logout)
+router.post('/forgot', AuthController.ForgotPassword)
 
 export default router

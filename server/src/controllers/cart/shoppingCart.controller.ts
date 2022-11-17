@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-// import { ShoppingCart } from '../../entity/cart.entity'
 import { AppDataSource } from '../../utils/data-source'
 import { Pets } from '../../entity/pets.entity'
 import { Users } from '../../entity/users.entity'
@@ -13,7 +12,6 @@ export class ShoppingCartController {
             if (userId) {
                 const cartRepository = AppDataSource.getRepository(ShoppingCart)
                 const usersRepository = AppDataSource.getRepository(Users)
-
                 const cart = new ShoppingCart()
                 cart.productId = petId
                 cart.userId = userId
@@ -26,7 +24,6 @@ export class ShoppingCartController {
                 user.cart = cart
                 console.log('Chcek cart in user:', user.cart)
                 const newUser = await usersRepository.create(user)
-                // console.log(user.cart)
                 usersRepository.save(newUser)
                 return res.status(200).json(cart)
             }
@@ -62,8 +59,9 @@ export class ShoppingCartController {
 
     static DeletePostFromCart = async (req: Request, res: Response) => {
         const userId: number = Number(res.locals.jwtPayload.id)
-        const petId: number = Number(req.params.id)
+        const petId = req.body.cartId
         try {
+           
         } catch (error) {
             res.status(403).send(error)
         }

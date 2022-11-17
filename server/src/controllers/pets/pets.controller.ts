@@ -41,10 +41,9 @@ export class PetsController {
                 where: { productId: petId },
             })
             if (pets!.userId === userId) {
-                const updated = await petsRepository.update(pets!.productId, {
+                const updated: Pets | any = await petsRepository.update(pets!.productId, {
                     ...data,
                 })
-                // console.log('check update post', updated)
                 return res
                     .status(200)
                     .json({ message: 'Update successful', data: updated })
@@ -87,23 +86,23 @@ export class PetsController {
         }
     }
 
-    static GetItemBySearch = async (
-        req: Request,
-        res: Response
-    ): Promise<Pets[] | any> => {
-        let { searchQuery }: any = req.query
-        try {
-            searchQuery = new RegExp(searchQuery, 'i')
-            const pets = await AppDataSource.getRepository(Pets)
-                .createQueryBuilder('pet')
-                .where(
-                    'pet.title Like :title AND pet.description Like :description',
-                    { title: `%${searchQuery}%` }
-                )
-                .getMany()
-            res.status(200).json(pets)
-        } catch (error) {
-            res.status(500).send(error)
-        }
-    }
+    // static GetItemBySearch = async (
+    //     req: Request,
+    //     res: Response
+    // ): Promise<Pets[] | any> => {
+    //     let { searchQuery }: any = req.query
+    //     try {
+    //         searchQuery = new RegExp(searchQuery, 'i')
+    //         const pets = await AppDataSource.getRepository(Pets)
+    //             .createQueryBuilder('pet')
+    //             .where(
+    //                 'pet.title Like :title AND pet.description Like :description',
+    //                 { title: `%${searchQuery}%` }
+    //             )
+    //             .getMany()
+    //         res.status(200).json(pets)
+    //     } catch (error) {
+    //         res.status(500).send(error)
+    //     }
+    // }
 }

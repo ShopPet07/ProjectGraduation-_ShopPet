@@ -5,10 +5,6 @@ import { AppDataSource } from '../../utils/data-source'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import config from 'config'
-import HttpException from '../../utils/HttpException'
-import { STATUS_CODES } from 'http'
-import { ShoppingCart } from '../../entity/cart.entity'
-// import { PassThrough } from 'stream'
 export class AuthController {
     static Register = async (
         req: Request,
@@ -19,16 +15,15 @@ export class AuthController {
             const usersRepository = AppDataSource.getRepository(Users)
             const user: any = await AuthController.validateUser(data.email)
             if (user) {
-                res.status(401).json('User already exists')
-                return
+                return res.status(401).json('User already exists')
+            } else {
+                const hashed: string = bcrypt.hashSync(data.password, 8)
+                const newUser = await usersRepository.save({
+                    ...data,
+                    password: hashed,
+                })
+                return res.status(200).json(newUser.email)
             }
-            const hashed: string = bcrypt.hashSync(data.password, 8)
-            const newUser = await usersRepository.save({
-                ...data,
-                password: hashed,
-            })
-            // await cartRepository.save({ cartId: newUser.id })
-            return res.status(200).json(newUser.email)
         } catch (error) {
             res.status(500).send(error)
             return
@@ -40,21 +35,14 @@ export class AuthController {
         res: Response
     ): Promise<Users | any> => {
         const data: AuthLogin = req.body
-        // const key = process.env.JWT_KEY
         try {
             const user: Users | any = await AuthController.validateUser(
                 data.email
             )
-            // console.log('check user', user)
             if (!user) {
                 res.status(404).send('UserNotFound')
                 return
             }
-            // const validPassword = await bcrypt.compare(
-            //     data!.password,
-            //     user!.password
-            // )
-            // console.log('Check password', validPassword)
             if (!user.checkIfUnencryptedPasswordIsValid(data.password)) {
                 res.status(401).send('Password is not match')
                 return
@@ -67,7 +55,6 @@ export class AuthController {
                 },
                 config.get<string>('JWT_KEY')
             )
-            // console.log('Check token:', token)
             return res
                 .cookie('access_token', token, {
                     httpOnly: true,
@@ -76,7 +63,6 @@ export class AuthController {
                 .json({ userEmail: user!.email, userId: user!.id })
         } catch (error) {
             res.status(403).send(error)
-            // console.log(error)
         }
     }
 
@@ -87,7 +73,33 @@ export class AuthController {
     static validateUser = async (email: string): Promise<Users | null> => {
         const usersRepository = AppDataSource.getRepository(Users)
         const user = await usersRepository.findOne({ where: { email } })
-        // console.log('check validate user', user)
         return user
+    }
+
+    static ForgotPassword = async (req: Request, res: Response) => {
+        const { email, lastName, firstName, newPassword } = req.body
+        console.log(req.body)
+        try {
+            const usersRepository = AppDataSource.getRepository(Users)
+            const user = await usersRepository.findOne({
+                where: { email: email },
+            })
+            if (
+                email !== user!.email &&
+                lastName !== user!.lastName &&
+                firstName !== user!.firstName
+            ) {
+                res.status(403).json('Data is validateUser')
+            } else {
+                const hashPassword = bcrypt.hashSync(newPassword, 8)
+                const newUser = await usersRepository.update(user!.id, {
+                    password: hashPassword,
+                })
+                res.status(200).json('Change Password is successful')
+            }
+        } catch (error) {
+            res.status(402).send(error)
+            return
+        }
     }
 }

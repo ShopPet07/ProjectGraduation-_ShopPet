@@ -1,21 +1,24 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import config from 'config'
+// import { decode } from 'punycode';
 export const VerifyToken = async (
     req: Request,
     res: Response,
     next: NextFunction
 ) => {
     let jwtPayload
-    // const key = process.env.JWT_KEY
-    //Try to validate the token and get data
+    let decodeData
     try {
         const token: string = req.cookies['access_token']
-        // console.log('Check token', req.cookies['access_token'])
-        jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
-        res.locals.jwtPayload = jwtPayload
+        if (token) {
+            jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
+            res.locals.jwtPayload = jwtPayload
+        } else {
+            decodeData = jwt.decode(token)
+            res.locals.jwtPayload = decodeData?.sub
+        }
     } catch (error) {
-        //If token is not valid, respond with 401 (unauthorized)
         res.status(401).send()
         return
     }

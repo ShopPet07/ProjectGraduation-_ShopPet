@@ -1,7 +1,4 @@
-// import { Users } from '../entity/users.entity'
-// import { Pets } from '../entity/pets.entity'
 import { DataSource } from 'typeorm'
-// import { ShoppingCart } from '../entity/cart.entity'
 export const AppDataSource = new DataSource({
     type: 'mysql',
     host: 'localhost',

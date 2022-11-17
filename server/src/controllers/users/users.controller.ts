@@ -52,4 +52,17 @@ export class UsersController {
             return
         }
     }
+    static GetAllUserAdmin = async (
+        req: Request,
+        res: Response
+    ): Promise<Users[] | any> => {
+        try {
+            const usersRepository = AppDataSource.getRepository(Users)
+            const AllUser: Users[] = await usersRepository.find()
+
+            return res.status(200).json(AllUser)
+        } catch (error) {
+            res.status(404).send(error)
+        }
+    }
 }
