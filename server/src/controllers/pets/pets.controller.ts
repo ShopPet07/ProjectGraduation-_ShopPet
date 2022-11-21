@@ -41,9 +41,12 @@ export class PetsController {
                 where: { productId: petId },
             })
             if (pets!.userId === userId) {
-                const updated: Pets | any = await petsRepository.update(pets!.productId, {
-                    ...data,
-                })
+                const updated: Pets | any = await petsRepository.update(
+                    pets!.productId,
+                    {
+                        ...data,
+                    }
+                )
                 return res
                     .status(200)
                     .json({ message: 'Update successful', data: updated })
