@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import AnimatedCursor from "react-animated-cursor";
 
 import google from "../../assets/icons/Google.svg";
 import ic_mail from "../../assets/icons/icon-mail.svg";
@@ -120,6 +121,30 @@ const Register = () => {
   }
   return (
     <div className="wrapper">
+      <AnimatedCursor
+        innerSize={13}
+        outerSize={30}
+        color="220, 90, 90"
+        outerAlpha={0.5}
+        innerScale={1.2}
+        outerScale={3}
+        outerStyle={{
+          mixBlendMode: "exclusion",
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
       <div className="register-container">
         <ToastContainer></ToastContainer>
         <div className="login-primary register-primary">

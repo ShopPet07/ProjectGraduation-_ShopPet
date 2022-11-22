@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import AnimatedCursor from "react-animated-cursor";
 
 import InputComponents from "../../components/Input/InputComponents";
 import { API } from "../../api";
@@ -72,6 +73,30 @@ const Forgot = () => {
   }
   return (
     <div className="wrapper">
+      <AnimatedCursor
+        innerSize={13}
+        outerSize={30}
+        color="220, 90, 90"
+        outerAlpha={0.5}
+        innerScale={1.2}
+        outerScale={3}
+        outerStyle={{
+          mixBlendMode: "exclusion",
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
       <div className="forgot-container">
         <ToastContainer></ToastContainer>
         <div className="forgot-primary">
