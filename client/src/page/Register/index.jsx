@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 import google from "../../assets/icons/Google.svg";
+import ic_mail from "../../assets/icons/icon-mail.svg";
 import InputComponents from "../../components/Input/InputComponents";
 import "./register.scss";
 import { API } from "../../api";
@@ -118,13 +119,13 @@ const Register = () => {
     }
   }
   return (
-    <div className="login-background">
-      <ToastContainer></ToastContainer>
+    <div className="wrapper">
       <div className="register-container">
-        <div className="register-primary">
+        <ToastContainer></ToastContainer>
+        <div className="login-primary register-primary">
           <h1 className="register-heading">Register</h1>
           <p className="register-more">
-            Already have an account? <a href="./Register">Sign in</a>
+            Already have an account? <a href="./login">Sign in</a>
           </p>
           <button className="register-google">
             <img src={google} alt="" />
@@ -148,6 +149,7 @@ const Register = () => {
             />
           </div>
           <InputComponents
+            icon={ic_mail}
             value={email}
             onChange={getEmail}
             placeholder={"abc@gmail.com"}
@@ -185,23 +187,24 @@ const Register = () => {
               understand the <a href="/">Privacy policy.</a>
             </p>
           </div>
-        </div>
-        <button
-          onClick={handleButonSubmit}
-          className={
-            checkEmail
+          <button
+            onClick={handleButonSubmit}
+            className={
+              checkEmail
+                ? error
+                  ? "register-submit check-email"
+                  : "register-submit"
+                : "register-submit check-email"
+            }
+          >
+            {checkEmail
               ? error
-                ? "register-submit check-email"
-                : "register-submit"
-              : "register-submit check-email"
-          }
-        >
-          {checkEmail
-            ? error
-              ? "Please, Check again!!!"
-              : "Create my account"
-            : "Wrong email format!!!"}
-        </button>
+                ? "Please, Check again!!!"
+                : "Create my account"
+              : "Wrong email format!!!"}
+          </button>
+        </div>
+        <div className="login-background"></div>
       </div>
     </div>
   );

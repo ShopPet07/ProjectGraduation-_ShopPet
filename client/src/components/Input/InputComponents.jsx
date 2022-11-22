@@ -11,23 +11,27 @@ const InputComponents = ({
   onChange,
   onKeyPress,
   value,
-  error,
+  icon,
 }) => {
   const [eye, setEye] = useState(false);
   const handleShowPassword = () => {
     setEye(!eye);
   };
   return (
-    <div>
-      <label className="input-label">{label}</label>
-      <div className={error ? "input-component error" : "input-component"}>
-        <input
-          onKeyPress={onKeyPress}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          type={password ? (eye ? "text" : "password") : "text"}
-        />
+    <div className="input-container">
+      <div className="input-primary">
+        <label className="input-label">{label}</label>
+        <div className="input-component">
+          <input
+            onKeyPress={onKeyPress}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            type={password ? (eye ? "text" : "password") : "text"}
+          />
+        </div>
+      </div>
+      {password ? (
         <span onClick={handleShowPassword}>
           {password ? (
             eye ? (
@@ -39,7 +43,11 @@ const InputComponents = ({
             ""
           )}
         </span>
-      </div>
+      ) : icon ? (
+        <span>
+          <img src={icon} alt="" />
+        </span>
+      ) : null}
     </div>
   );
 };

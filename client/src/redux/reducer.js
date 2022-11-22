@@ -323,8 +323,6 @@ const initState = {
   ],
 };
 
-// import postsSlide from "../page/Main/Home/postsSlide";
-
 const rootReducer = (state = initState, action) => {
   switch (action.type) {
     case "posts/addPost":
@@ -353,12 +351,3 @@ const rootReducer = (state = initState, action) => {
 };
 
 export default rootReducer;
-
-// const rootReducer = (state = {}, action) => {
-//   return {
-//     posts: postsSlide(state.posts, action),
-//     filters: { ...state.filters, search: action.payload },
-//   };
-// };
-
-// export default rootReducer;

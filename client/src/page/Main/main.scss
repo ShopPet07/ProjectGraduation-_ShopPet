@@ -215,6 +215,7 @@
     border-radius: 35px;
     margin-bottom: 20px;
     max-height: 43vh;
+    width: 100%;
     &-caption {
       font-weight: 700;
       font-size: 18px;
@@ -292,6 +293,7 @@
   &-cart {
     background: #5c5c5c33;
     border-radius: 35px;
+    width: 100%;
     &-caption {
       font-weight: 700;
       font-size: 18px;
@@ -367,7 +369,12 @@
     display: none;
   }
 }
-
+.desktop-icon {
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}
 .main-item li a.active {
   width: 60px;
   height: 60px;
@@ -428,6 +435,11 @@
       img {
         width: 15px;
         height: 15px;
+      }
+      a {
+        font-size: 16px;
+        text-decoration: none;
+        color: $white;
       }
     }
     &-cart-caption {
@@ -516,6 +528,9 @@
         width: 300px;
       }
     }
+  }
+  .desktop-icon {
+    display: none;
   }
   .row {
     &-mobile {

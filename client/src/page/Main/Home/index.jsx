@@ -22,20 +22,21 @@ const Home = () => {
         </div>
         <h3 className="home-title">Posts</h3>
         <div className="home-post">
-          {posts.map((post) => {
-            return (
-              <PostComponent
-                key={post.id}
-                image={post.image !== "" ? post.image : false}
-                title={post.title}
-                desc={post.desc}
-                status={post.status}
-                amount={post.amount}
-                price={post.price}
-                category={post.category}
-              />
-            );
-          })}
+          {posts &&
+            posts.map((post) => {
+              return (
+                <PostComponent
+                  key={post.productId}
+                  image={post.image !== "" ? post.image : false}
+                  title={post.title}
+                  desc={post.description}
+                  status={post.status}
+                  amount={post.amount}
+                  price={post.price}
+                  category={post.category}
+                />
+              );
+            })}
         </div>
       </div>
     </div>

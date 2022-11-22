@@ -14,15 +14,9 @@ const PostComponent = ({
 }) => {
   const [onClick, setOnClick] = useState(false);
 
-  console.log(image);
   return (
     <div className="post-container">
-      <div
-        onClick={() => {
-          setOnClick(!onClick);
-        }}
-        className="post-hidden"
-      >
+      <div className="post-hidden">
         <div className="post-image">
           <img
             src={
@@ -33,7 +27,12 @@ const PostComponent = ({
             alt=""
           />
         </div>
-        <div className="post-content">
+        <div
+          onClick={() => {
+            setOnClick(!onClick);
+          }}
+          className="post-content"
+        >
           <div className="post-category">
             <img src={ic_category} alt="" />
             <span>{category}</span>
@@ -45,7 +44,7 @@ const PostComponent = ({
               <span className="post-status">Status: {status}</span>
               <span className="post-amount">Amount: {amount}</span>
             </div>
-            <span className="post-price">${price}</span>
+            <span className="post-price">$ {price}</span>
           </div>
           <button className="post-add">Add cart</button>
         </div>

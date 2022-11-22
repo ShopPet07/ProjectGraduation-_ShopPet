@@ -4,7 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
-import { changeTextSearch, changeCategory } from "../../redux/actions";
+// import { changeTextSearch, changeCategory } from "../../redux/actions";
+import { filtersSlice } from "./filterSlide";
 import "./main.scss";
 import logo from "../../assets/images/logo.png";
 
@@ -21,6 +22,7 @@ import ic_menu from "../../assets/icons/icon-menu.svg";
 import ic_menuLeft from "../../assets/icons/icon-menuLeft.svg";
 import ic_arrow from "../../assets/icons/icon-arrow.svg";
 import ic_close from "../../assets/icons/icon-close.svg";
+import ic_logout from "../../assets/icons/icon-logout.svg";
 
 import MainMore from "../../components/MainMore";
 const Main = ({ children }) => {
@@ -32,18 +34,20 @@ const Main = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [textChange, setTextChange] = useState("");
   const [categoryChange, setCategoryChange] = useState("All");
+
+  useEffect(() => {
+    localStorage.getItem("userLogin") ? navigate("/") : navigate();
+  }, []);
+
   const handleTextChange = (e) => {
-    dispatch(changeTextSearch(e.target.value));
+    dispatch(filtersSlice.actions.changeTextSearch(e.target.value));
     setTextChange(e.target.value);
   };
   const handleCategoryChange = (e) => {
     setCategoryChange(e.target.value);
-    dispatch(changeCategory(e.target.value));
+    console.log(e.target.value);
+    dispatch(filtersSlice.actions.changeCategorySearch(e.target.value));
   };
-
-  useEffect(() => {
-    localStorage.getItem("userLogin") ? navigate("/") : navigate("/login");
-  }, []);
 
   const handleToggleTab = (index) => {
     setToggleState(index);
@@ -52,8 +56,13 @@ const Main = ({ children }) => {
     setShowMenu(true);
     setShowMore(false);
   };
+  const handleLogout = () => {
+    navigate("/login");
+    localStorage.removeItem("userLogin");
+  };
+
   return (
-    <div className="container">
+    <div onClick={() => {}} className="container">
       <div className="main-container">
         <div className={showMenu ? "main-menu active" : "main-menu"}>
           <div className="main-logo">
@@ -75,7 +84,7 @@ const Main = ({ children }) => {
               </li>
               <li>
                 <Link
-                  to="/user"
+                  to={localStorage.getItem("userLogin") ? "/user" : "/login"}
                   onClick={() => {
                     handleToggleTab(2);
                   }}
@@ -90,7 +99,7 @@ const Main = ({ children }) => {
                     handleToggleTab(3);
                   }}
                   className={toggleState === 3 ? "active" : ""}
-                  to="/mypost"
+                  to={localStorage.getItem("userLogin") ? "/mypost" : "/login"}
                 >
                   <img src={ic_Favourite} alt="" />
                 </Link>
@@ -101,7 +110,7 @@ const Main = ({ children }) => {
                     handleToggleTab(4);
                   }}
                   className={toggleState === 4 ? "active" : ""}
-                  to="/add"
+                  to={localStorage.getItem("userLogin") ? "/add" : "/login"}
                 >
                   <img src={ic_plus} alt="" />
                 </Link>
@@ -112,7 +121,7 @@ const Main = ({ children }) => {
                     handleToggleTab(5);
                   }}
                   className={toggleState === 5 ? "active" : ""}
-                  to="/contact"
+                  to={localStorage.getItem("userLogin") ? "/contact" : "/login"}
                 >
                   <img src={ic_Contact} alt="" />
                 </Link>
@@ -128,7 +137,7 @@ const Main = ({ children }) => {
           <ul className="main-item main-item-last">
             <li>
               <Link
-                to="/settings"
+                to={localStorage.getItem("userLogin") ? "/settings" : "/login"}
                 onClick={() => {
                   handleToggleTab(6);
                 }}
@@ -161,10 +170,10 @@ const Main = ({ children }) => {
                 <option className="main-category-item" value="All" key="0">
                   All
                 </option>
-                <option className="main-category-item" value="Dogs" key="1">
+                <option className="main-category-item" value="dog" key="1">
                   Dogs
                 </option>
-                <option className="main-category-item" value="Cats" key="2">
+                <option className="main-category-item" value="cat" key="2">
                   Cats
                 </option>
               </select>
@@ -194,6 +203,18 @@ const Main = ({ children }) => {
               >
                 <img src={ic_menu} alt="" />
               </div>
+              {localStorage.getItem("userLogin") ? (
+                <div
+                  onClick={() => handleLogout()}
+                  className="main-notification main-menu-icon"
+                >
+                  <img src={ic_logout} alt="" />
+                </div>
+              ) : (
+                <div className="main-notification main-menu-icon">
+                  <a href="/login">Login</a>
+                </div>
+              )}
             </div>
           </div>
           <div
@@ -213,7 +234,16 @@ const Main = ({ children }) => {
         >
           <img src={ic_close} alt="" />
         </span>
-        <MainMore active={showMore ? true : false}></MainMore>
+        {localStorage.getItem("userLogin") ? (
+          <MainMore active={showMore ? true : false}></MainMore>
+        ) : (
+          <div
+            onClick={() => handleLogout()}
+            className="main-notification desktop-icon"
+          >
+            Login
+          </div>
+        )}
       </div>
     </div>
   );

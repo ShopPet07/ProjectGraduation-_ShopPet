@@ -7,6 +7,7 @@ import { getMyPosts } from "../../../redux/selectors";
 
 const MyPost = () => {
   const myPosts = useSelector(getMyPosts);
+
   return (
     <div className="MyPost">
       <div className="mypost-top">
@@ -19,21 +20,22 @@ const MyPost = () => {
         </div>
       </div>
       <div className="mypost-primary">
-        {myPosts.map((post) => {
-          return (
-            <MyPostItem
-              key={post.id}
-              image={post.image}
-              title={post.title}
-              desc={post.desc}
-              user={post.user}
-              number={post.number}
-              status={post.status}
-              species={post.species}
-              price={post.price}
-            />
-          );
-        })}
+        {myPosts &&
+          myPosts.map((post) => {
+            return (
+              <MyPostItem
+                key={post.id}
+                image={post.image}
+                title={post.title}
+                desc={post.desc}
+                user={post.user}
+                number={post.number}
+                status={post.status}
+                species={post.species}
+                price={post.price}
+              />
+            );
+          })}
       </div>
     </div>
   );
