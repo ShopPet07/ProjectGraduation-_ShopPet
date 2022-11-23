@@ -79,59 +79,57 @@ const Login = () => {
           ".link",
         ]}
       />
-      <div className="container">
-        <div className="login-container">
-          <ToastContainer></ToastContainer>
-          <div className="login-primary">
-            <h1 className="login-heading">
-              Welcome Backs <span>!</span>
-            </h1>
-            <p className="login-more">
-              Dont have an account? <a href="./Register">Sign up</a>
-            </p>
-            <button className="login-google">
-              <img src={google} alt="" />
-              Sign in with google
-            </button>
-            <InputComponents
-              icon={ic_mail}
-              value={email}
-              onChange={getEmail}
-              placeholder={"abc@gmail.com"}
-              label={"Email"}
-            />
-            <InputComponents
-              onKeyPress={(event) => {
-                if (event.key === "Enter") Login();
-              }}
-              value={password}
-              onChange={getPassword}
-              placeholder={"********"}
-              label={"Password"}
-              password
-            />
-            <a href="/forgot" className="login-forgot">
-              Forgot password
-            </a>
-            <button
-              onClick={Login}
-              className={
-                checkEmail
-                  ? error
-                    ? "login-submit check-email"
-                    : "login-submit"
-                  : "login-submit check-email"
-              }
-            >
-              {checkEmail
+      <div className="login-container">
+        <ToastContainer></ToastContainer>
+        <div className="login-primary">
+          <h1 className="login-heading">
+            Welcome Backs <span>!</span>
+          </h1>
+          <p className="login-more">
+            Dont have an account? <a href="./Register">Sign up</a>
+          </p>
+          <button className="login-google">
+            <img src={google} alt="" />
+            Sign in with google
+          </button>
+          <InputComponents
+            icon={ic_mail}
+            value={email}
+            onChange={getEmail}
+            placeholder={"abc@gmail.com"}
+            label={"Email"}
+          />
+          <InputComponents
+            onKeyPress={(event) => {
+              if (event.key === "Enter") Login();
+            }}
+            value={password}
+            onChange={getPassword}
+            placeholder={"********"}
+            label={"Password"}
+            password
+          />
+          <a href="/forgot" className="login-forgot">
+            Forgot password
+          </a>
+          <button
+            onClick={Login}
+            className={
+              checkEmail
                 ? error
-                  ? "Please, Check again!!!"
-                  : "Sign In"
-                : "Wrong email format!!!"}
-            </button>
-          </div>
-          <div className="login-background"></div>
+                  ? "login-submit check-email"
+                  : "login-submit"
+                : "login-submit check-email"
+            }
+          >
+            {checkEmail
+              ? error
+                ? "Please, Check again!!!"
+                : "Sign In"
+              : "Wrong email format!!!"}
+          </button>
         </div>
+        <div className="login-background"></div>
       </div>
     </div>
   );

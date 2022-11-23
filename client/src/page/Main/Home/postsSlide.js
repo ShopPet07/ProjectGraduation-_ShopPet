@@ -27,7 +27,11 @@ export const postsSlice = createSlice({
 });
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const res = await fetch(`${API}/api/pets/fetchAll`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`${API}/api/pets/fetchAll`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 });
