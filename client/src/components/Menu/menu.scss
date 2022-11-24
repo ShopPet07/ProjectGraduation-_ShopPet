@@ -1,0 +1,25 @@
+@import "../../global/variables";
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  ul {
+    li {
+      a {
+        span {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+.menu > ul > li > a.active {
+  span {
+    opacity: 1;
+  }
+  img {
+    opacity: 1;
+  }
+}

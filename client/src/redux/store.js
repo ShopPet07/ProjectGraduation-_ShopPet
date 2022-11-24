@@ -12,7 +12,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { cartSlice } from "../components/MainCart/cartSlice";
 import { filtersSlice } from "../page/Main/filterSlide";
 import { postsSlice } from "../page/Main/Home/postsSlide";
-import { postUserSlice } from "../page/Main/MyPost/postUserSlide";
+import { postUserSlice } from "../page/Main/MyCart/postUserSlide";
 import { userSlice } from "../page/Main/User/userSlice";
 const store = configureStore({
   reducer: {

@@ -1,13 +1,20 @@
 $font: "Epilogue", sans-serif;
+$fontRoboto: "Roboto", sans-serif;
 $white: #ffffff;
-$text-color: #949494;
+$black: #000000;
+$text-color: #d9d9d9;
 $heading-color: #0b132a;
 $background-color: #13131a;
 $background-light: #5c5c5c64;
-$background-gradient: linear-gradient(to right, #050725, #160516);
-$error-color: #761616;
+$background-gradient: linear-gradient(to right, #090b27a7, #160516);
+$error-color: #d71e1e;
 $gray-color: #dde0e4;
-$green-color: #11a65d;
+$green-color: #199c6d;
 // $green-color: #000000;
 $blue-color: #0e2060;
 $dark-color: #323645b5;
+$background-container: linear-gradient(
+  249.11deg,
+  rgba(0, 0, 0, 0.575) 16.82%,
+  rgba(29, 26, 193, 0.769) 146.56%
+);
