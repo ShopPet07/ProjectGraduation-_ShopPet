@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { Request, response, Response } from 'express'
 // import { ShoppingCart } from 'src/entity/cart.entity'
 import { ShoppingCart } from '../../entity/cart.entity'
 import { Pets } from '../../entity/pets.entity'
@@ -9,16 +9,18 @@ export class UsersController {
     static GetMe = async (
         req: Request,
         res: Response
-    ): Promise<Partial<Users> | any> => {
+    ): Promise<Users | any> => {
         const paramsId: number = Number(req.params.id)
+        console.log('User Id:', paramsId)
         // const data = res.locals.jwtPayload
-        const userId: number = await UsersController.GetCurrentUserId(res)
+        // const userId: number = await UsersController.GetCurrentUserId(res)
         const userRepository = AppDataSource.getRepository(Users)
+        let user: Users | any = await userRepository.findOne({
+            where: { id: paramsId },
+        })
+        if (!user) res.status(404).json('User not found')
         try {
-            if (paramsId === userId) {
-                const user: Users | any = await userRepository.findOne({
-                    where: { id: paramsId },
-                })
+            if (paramsId === user!.id) {
                 return res.status(200).json(user)
             }
         } catch (error) {

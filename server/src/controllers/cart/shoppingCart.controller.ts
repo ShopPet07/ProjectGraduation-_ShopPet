@@ -33,7 +33,7 @@ export class ShoppingCartController {
         }
     }
 
-    static GettAllProductInCart = async (
+    static GetAllProductInCart = async (
         req: Request,
         res: Response
     ): Promise<Pets | any> => {
@@ -61,7 +61,6 @@ export class ShoppingCartController {
         const userId: number = Number(res.locals.jwtPayload.id)
         const petId = req.body.cartId
         try {
-           
         } catch (error) {
             res.status(403).send(error)
         }

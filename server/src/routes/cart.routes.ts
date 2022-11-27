@@ -3,6 +3,6 @@ import { ShoppingCartController } from '../controllers/cart/shoppingCart.control
 import { VerifyToken } from '../middleware/verifyToken.middleware'
 
 const router = express.Router()
-router.get('/', VerifyToken, ShoppingCartController.GettAllProductInCart)
+router.get('/', VerifyToken, ShoppingCartController.GetAllProductInCart)
 router.post('/addToCart/:id', VerifyToken, ShoppingCartController.AddToCart)
 export default router
