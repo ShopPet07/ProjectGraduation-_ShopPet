@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API } from "../../../api";
+import { fetchPosts } from "../../../api/postsApi";
 
 const initialState = {
   status: "idle",
@@ -17,21 +18,12 @@ export const postsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state, action) => {
-        state.status = "loadding";
+        state.status = "loading";
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.status = "idle";
-        state.postList = action.payload;
+        state.postList = action.payload[0];
       });
   },
-});
-
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  try {
-    const res = await fetch(`${API}/api/pets/fetchAll`);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
 });

@@ -1,19 +1,19 @@
 import React from "react";
 import ic_user from "../../assets/icons/icon-permission.svg";
 
-import "./showInfomation.scss";
-export default function ShowInfomation() {
+import "./showInformation.scss";
+export default function ShowInformation() {
   return (
-    <div className="show-infomation">
+    <div className="show-information">
       <img
-        className="show-infomation-avatar"
+        className="show-information-avatar"
         src={
           "https://i.pinimg.com/736x/d4/15/95/d415956c03d9ca8783bfb3c5cc984dde.jpg"
         }
         alt=""
       />
-      <span className="show-infomation-name">Manh’S Huys</span>
-      <span className="show-infomation-permission">
+      <span className="show-information-name">Manh’S Huys</span>
+      <span className="show-information-permission">
         <img src={ic_user} alt="" />
         Admin
       </span>

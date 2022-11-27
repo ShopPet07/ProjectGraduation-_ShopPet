@@ -16,11 +16,11 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [cofirmPassword, setCofirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [checkBox, setCheckBox] = useState(false);
   const [error, setError] = useState(false);
   const [checkEmail, setCheckEmail] = useState(true);
-  const [checkCofirm, setCheckCofirm] = useState(true);
+  const [checkConfirm, setCheckConfirm] = useState(true);
   const [checkName, setCheckName] = useState(true);
 
   function validateEmail(email) {
@@ -31,14 +31,14 @@ const Register = () => {
     setFirstName(e.target.value);
     setError(false);
     setCheckEmail(true);
-    setCheckCofirm(true);
+    setCheckConfirm(true);
     setCheckName(true);
   };
   const getLastName = (e) => {
     setLastName(e.target.value);
     setError(false);
     setCheckEmail(true);
-    setCheckCofirm(true);
+    setCheckConfirm(true);
     setCheckName(true);
   };
   const getEmail = (e) => {
@@ -46,7 +46,7 @@ const Register = () => {
     if (validateEmail(e.target.value)) {
       setCheckEmail(true);
       setError(false);
-      setCheckCofirm(true);
+      setCheckConfirm(true);
       setCheckName(true);
     } else {
       setCheckEmail(false);
@@ -56,34 +56,34 @@ const Register = () => {
     setPassword(e.target.value);
     setError(false);
     setCheckEmail(true);
-    setCheckCofirm(true);
+    setCheckConfirm(true);
     setCheckName(true);
   };
-  const getCofirmPassword = (e) => {
-    setCofirmPassword(e.target.value);
+  const getConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
     if (password === e.target.value) {
-      setCheckCofirm(true);
+      setCheckConfirm(true);
       setError(false);
     } else {
-      setCheckCofirm(false);
+      setCheckConfirm(false);
       setError(true);
     }
   };
   const getValueCheckBox = (e) => {
     setCheckBox(!checkBox);
     setError(false);
-    setCheckCofirm(true);
+    setCheckConfirm(true);
     setCheckName(true);
   };
 
-  function handleButonSubmit() {
+  function handleButtonSubmit() {
     if (
       checkEmail &&
       firstName !== "" &&
       lastName !== "" &&
       email !== "" &&
       password !== "" &&
-      password === cofirmPassword &&
+      password === confirmPassword &&
       checkBox
     ) {
       setError(false);
@@ -191,12 +191,12 @@ const Register = () => {
           <InputComponents
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                handleButonSubmit();
+                handleButtonSubmit();
               }
             }}
-            error={checkCofirm ? false : true}
-            value={cofirmPassword}
-            onChange={getCofirmPassword}
+            error={checkConfirm ? false : true}
+            value={confirmPassword}
+            onChange={getConfirmPassword}
             placeholder={"********"}
             label={"Cofirm Password"}
             password
@@ -213,7 +213,7 @@ const Register = () => {
             </p>
           </div>
           <button
-            onClick={handleButonSubmit}
+            onClick={handleButtonSubmit}
             className={
               checkEmail
                 ? error

@@ -7,7 +7,7 @@ import { publicRoutes } from "./routes/index";
 import MainPage from "./page/Main";
 import img_background from "./assets/images/animation-background.svg";
 
-import { fetchPosts } from "./page/Main/Home/postsSlide";
+import { fetchPosts } from "./api/postsApi";
 
 function App() {
   const dispatch = useDispatch();

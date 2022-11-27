@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import { API } from "../../api";
 import ic_Home from "../../assets/icons/icon-home.svg";
 import ic_User from "../../assets/icons/icon-user.svg";
 import ic_settings from "../../assets/icons/icon-settings.svg";
@@ -9,12 +10,26 @@ import ic_logout from "../../assets/icons/icon-logout.svg";
 import ic_report from "../../assets/icons/icon-contact.svg";
 import style from "./menu.module.scss";
 import "./menu.scss";
+import axios from "axios";
 
 export default function Menu() {
+  const navigate = useNavigate();
   const [toggleState, setToggleState] = useState(1);
 
   const handleToggleTab = (index) => {
     setToggleState(index);
+  };
+  const handleLogout = async () => {
+    await axios
+      .post(`${API}/api/auth/logout`)
+      .then(function (response) {
+        console.log(response);
+        navigate("/login");
+        localStorage.removeItem("userLogin");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
   return (
     <div className="menu">
@@ -72,21 +87,17 @@ export default function Menu() {
         style={{ marginBottom: "20px" }}
         className={("menu-more", style.styleMenu)}
       >
-        <li className={style.styleMenuItem}>
-          <Link
-            to="/"
-            onClick={() => {
-              handleToggleTab(5);
-            }}
-            className={toggleState === 5 ? "active" : ""}
-          >
-            <img
-              style={{ transform: "translateX(3px)" }}
-              src={ic_logout}
-              alt=""
-            />
-          </Link>
-        </li>
+        {localStorage.getItem("userLogin") && (
+          <li className={style.styleMenuItem}>
+            <Link onClick={() => handleLogout()}>
+              <img
+                style={{ transform: "translateX(3px)" }}
+                src={ic_logout}
+                alt=""
+              />
+            </Link>
+          </li>
+        )}
         <li className={style.styleMenuItem}>
           <Link
             onClick={() => {
