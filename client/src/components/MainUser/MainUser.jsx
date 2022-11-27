@@ -1,15 +1,33 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import ic_avatar from "../../assets/icons/icon-avatar.png";
 import ic_location from "../../assets/icons/icon-location.svg";
 import { userSelector } from "../../redux/selectors";
+import { API } from "../../api";
+import { fetchUser } from "../../page/Main/User/userSlice";
 
 const MainUser = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("userLogin")) {
+      dispatch(fetchUser());
+    }
+  }, []);
+
   const user = useSelector(userSelector);
 
   const LogOut = () => {
-    localStorage.clear();
+    axios
+      .post(`${API}/api/auth/logout`)
+      .then((res) => {
+        localStorage.clear();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="main-profile">
@@ -20,7 +38,7 @@ const MainUser = () => {
         <div className="main-profile-info">
           <img src={ic_avatar} alt="" />
           <span>
-            <h6 className="main-profile-name">{user.name}</h6>
+            <h6 className="main-profile-name">{user.username}</h6>
             <p className="main-profile-permission">User</p>
             <div className="main-profile-location">
               <img src={ic_location} alt="" />

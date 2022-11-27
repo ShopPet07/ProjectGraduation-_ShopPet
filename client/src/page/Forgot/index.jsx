@@ -3,9 +3,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import AnimatedCursor from "react-animated-cursor";
 
 import InputComponents from "../../components/Input/InputComponents";
 import { API } from "../../api";
+import "./forgot.scss";
+import ic_mail from "../../assets/icons/icon-mail.svg";
 
 const Forgot = () => {
   const navigate = useNavigate();
@@ -69,11 +72,38 @@ const Forgot = () => {
     }
   }
   return (
-    <div className="login-background">
-      <ToastContainer></ToastContainer>
-      <div className="login-container">
-        <div className="login-primary">
-          <h1 className="login-heading">Forgot Password</h1>
+    <div className="wrapper">
+      <AnimatedCursor
+        innerSize={13}
+        outerSize={30}
+        color="220, 90, 90"
+        outerAlpha={0.5}
+        innerScale={1.2}
+        outerScale={3}
+        outerStyle={{
+          mixBlendMode: "exclusion",
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
+      <div className="forgot-container">
+        <ToastContainer></ToastContainer>
+        <div className="forgot-primary">
+          <h1 className="login-heading forgot-heading">Forgot Password</h1>
+          <p className="forgot-desc">
+            Please enter your information to recover your password !!!
+          </p>
           <div className="row">
             <InputComponents
               value={firstName}
@@ -90,6 +120,7 @@ const Forgot = () => {
             />
           </div>
           <InputComponents
+            icon={ic_mail}
             value={email}
             onChange={getEmail}
             placeholder={"abc@gmail.com"}
@@ -120,7 +151,7 @@ const Forgot = () => {
             {checkEmail
               ? error
                 ? "Please, Check again!!!"
-                : "Sign In"
+                : "Submit"
               : "Wrong email format!!!"}
           </button>
         </div>

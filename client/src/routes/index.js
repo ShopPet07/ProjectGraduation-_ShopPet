@@ -2,7 +2,7 @@ import HomePage from "../page/Main/Home";
 
 import UserPage from "../page/Main/User";
 import ContactPage from "../page/Main/Contact";
-import MyPost from "../page/Main/MyPost";
+import MyCart from "../page/Main/MyCart";
 import SettingsPage from "../page/Main/Settings";
 import AddPost from "../page/Main/AddPost";
 
@@ -26,9 +26,9 @@ const publicRoutes = [
     layout: ContactPage,
   },
   {
-    path: "/mypost",
-    components: MyPost,
-    layout: MyPost,
+    path: "/mycart",
+    components: MyCart,
+    layout: MyCart,
   },
   {
     path: "/add",

@@ -3,13 +3,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import AnimatedCursor from "react-animated-cursor";
 import InputComponents from "../../components/Input/InputComponents";
 
+import ic_mail from "../../assets/icons/icon-mail.svg";
 import "./login.scss";
 import { API } from "../../api";
 import google from "../../assets/icons/Google.svg";
 const Login = () => {
   const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -40,8 +43,7 @@ const Login = () => {
           password: password.toString(),
         })
         .then((response) => {
-          console.log(response.data);
-          localStorage.setItem("userLogin", response.data);
+          localStorage.setItem("userLogin", response.data.id);
           navigate("/");
         })
         .catch((error) => {
@@ -52,11 +54,37 @@ const Login = () => {
     }
   }
   return (
-    <div className="login-background">
-      <ToastContainer></ToastContainer>
+    <div className="wrapper">
+      <AnimatedCursor
+        innerSize={13}
+        outerSize={30}
+        color="220, 90, 90"
+        outerAlpha={0.5}
+        innerScale={1.2}
+        outerScale={3}
+        outerStyle={{
+          mixBlendMode: "exclusion",
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
       <div className="login-container">
+        <ToastContainer></ToastContainer>
         <div className="login-primary">
-          <h1 className="login-heading">Welcome Back!</h1>
+          <h1 className="login-heading">
+            Welcome Backs <span>!</span>
+          </h1>
           <p className="login-more">
             Dont have an account? <a href="./Register">Sign up</a>
           </p>
@@ -65,6 +93,7 @@ const Login = () => {
             Sign in with google
           </button>
           <InputComponents
+            icon={ic_mail}
             value={email}
             onChange={getEmail}
             placeholder={"abc@gmail.com"}
@@ -100,6 +129,7 @@ const Login = () => {
               : "Wrong email format!!!"}
           </button>
         </div>
+        <div className="login-background"></div>
       </div>
     </div>
   );

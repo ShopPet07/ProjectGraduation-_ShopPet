@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import CartItem from "../../components/CartItem/CartItem";
 import { getCarts } from "../../redux/selectors";
-
+import { fetchCart } from "./cartSlice";
 const MainCart = () => {
+  const dispatch = useDispatch();
   const carts = useSelector(getCarts);
+  // useEffect(() => {
+  //   if (localStorage.getItem("userLogin")) {
+  //     dispatch(fetchCart());
+  //   }
+  // }, []);
 
   const [cart, setCartItem] = useState({
     userId: 1,
@@ -46,19 +52,23 @@ const MainCart = () => {
       </div>
       <div className="main-cart-container">
         <div className="main-cart-list">
-          {carts.map((itemCart) => {
-            return (
-              <span onClick={() => addCart(itemCart.id)} key={itemCart.id}>
-                <CartItem
-                  image={itemCart.image}
-                  name={itemCart.name}
-                  user={itemCart.user}
-                  status={itemCart.status}
-                  price={itemCart.price}
-                />
-              </span>
-            );
-          })}
+          {carts.length !== 0 ? (
+            carts.map((itemCart) => {
+              return (
+                <span onClick={() => addCart(itemCart.id)} key={itemCart.id}>
+                  <CartItem
+                    image={itemCart.image}
+                    name={itemCart.name}
+                    user={itemCart.user}
+                    status={itemCart.status}
+                    price={itemCart.price}
+                  />
+                </span>
+              );
+            })
+          ) : (
+            <p style={{ textAlign: "center", fontSize: "14px" }}>No product</p>
+          )}
         </div>
         <div className="main-cart-btn">
           <button className="main-cart-pay">Order</button>
