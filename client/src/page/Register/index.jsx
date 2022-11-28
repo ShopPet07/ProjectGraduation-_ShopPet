@@ -94,11 +94,14 @@ const Register = () => {
           email: email,
           password: password,
         })
-        .then((response) => {
+        .then(async (response) => {
           if (response.status === 200) {
-            setTimeout(() => {
+            await toast.success("Successfully !", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            await setTimeout(() => {
               navigator("/login");
-            }, 1000);
+            }, 2000);
           }
         })
         .catch((error) => {
@@ -121,6 +124,7 @@ const Register = () => {
   }
   return (
     <div className="wrapper">
+      <ToastContainer></ToastContainer>
       <AnimatedCursor
         innerSize={13}
         outerSize={30}
@@ -146,7 +150,6 @@ const Register = () => {
         ]}
       />
       <div className="register-container">
-        <ToastContainer></ToastContainer>
         <div className="login-primary register-primary">
           <h1 className="register-heading">Register</h1>
           <p className="register-more">

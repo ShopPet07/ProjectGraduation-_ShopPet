@@ -55,6 +55,7 @@ const Login = () => {
   }
   return (
     <div className="wrapper">
+      <ToastContainer></ToastContainer>
       <AnimatedCursor
         innerSize={13}
         outerSize={30}
@@ -80,7 +81,6 @@ const Login = () => {
         ]}
       />
       <div className="login-container">
-        <ToastContainer></ToastContainer>
         <div className="login-primary">
           <h1 className="login-heading">
             Welcome Backs <span>!</span>
