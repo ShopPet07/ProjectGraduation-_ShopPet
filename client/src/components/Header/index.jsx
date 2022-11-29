@@ -12,6 +12,7 @@ import "./header.scss";
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [input, setInput] = React.useState(false);
   const [textChange, setTextChange] = React.useState("");
   const [category, setCategory] = React.useState(0);

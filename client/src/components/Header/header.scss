@@ -44,6 +44,7 @@
     margin-right: 15px;
     border-radius: 100rem;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
     input {
       outline: none;
       border: none;
@@ -63,7 +64,6 @@
       justify-content: center;
       align-items: center;
       box-sizing: border-box;
-      cursor: pointer;
       img {
         width: 15px;
         height: 15px;
@@ -72,6 +72,7 @@
     }
   }
   &-category {
+    cursor: pointer;
     padding: 15px;
     border-radius: 100rem;
     display: flex;

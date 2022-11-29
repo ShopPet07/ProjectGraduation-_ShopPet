@@ -9,17 +9,24 @@
     li {
       a {
         span {
-          color: $black;
+          color: $white;
+          opacity: 0.2;
+        }
+        svg path {
+          fill: $white;
+          opacity: 0.2;
         }
       }
     }
   }
 }
 .menu > ul > li > a.active {
-  span {
+  svg path {
+    fill: #ffa407;
     opacity: 1;
   }
-  img {
+  span {
+    color: #ffa407;
     opacity: 1;
   }
 }

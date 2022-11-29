@@ -36,7 +36,6 @@ const Main = ({ children }) => {
       <div className="main-container">
         <div className="main-dashboard">
           <h5 className="main-logo">XopBet</h5>
-          <ShowInformation />
           <Menu />
         </div>
         <div className="main-content">

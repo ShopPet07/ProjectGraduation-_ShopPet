@@ -107,6 +107,39 @@
       transition: all 0.3s linear;
     }
   }
+  &-opacity {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #141414a9;
+    border-radius: 40px;
+  }
+  &-show {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    height: 0;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    &-close {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      transform: translateY(-200%);
+      cursor: pointer;
+    }
+  }
+  &-show.active {
+    position: absolute;
+    height: 90%;
+    width: 100%;
+    background: #f8f8f8;
+    opacity: 1;
+    border-radius: 20px 20px 40px 40px;
+  }
 }
 .post {
   &-container:hover {
