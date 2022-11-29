@@ -5,6 +5,9 @@ export class AuthRegister {
     firstName: string
 
     @IsNotEmpty()
+    username: string
+
+    @IsNotEmpty()
     lastName: string
 
     @IsNotEmpty()
@@ -19,6 +22,8 @@ export class AuthLogin {
     @IsNotEmpty()
     @IsEmail()
     email: string
+
+    username: string
 
     @IsNotEmpty()
     password: string

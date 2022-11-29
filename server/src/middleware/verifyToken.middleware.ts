@@ -11,6 +11,7 @@ export const VerifyToken = async (
     let decodeData
     try {
         const token: string = req.cookies['access_token']
+        // console.log('Check token middleware ', token)
         if (token) {
             jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
             res.locals.jwtPayload = jwtPayload
@@ -25,9 +26,10 @@ export const VerifyToken = async (
 
     //The token is valid for 1 hour
     //We want to send a new token on every request
-    const { userId, username } = jwtPayload
+    const { id, email, username } = jwtPayload
+    // console.log(jwtPayload)
     const newToken = jwt.sign(
-        { userId, username },
+        { id, email, username },
         config.get<string>('JWT_KEY'),
         {
             expiresIn: '1h',

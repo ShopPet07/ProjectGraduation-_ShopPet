@@ -26,6 +26,9 @@ export class Users {
     lastName: string
 
     @Column()
+    username: string
+
+    @Column()
     email: string
 
     @Column()

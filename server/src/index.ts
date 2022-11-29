@@ -7,6 +7,8 @@ import usersRoutes from './routes/users.routes'
 import authRoutes from './routes/auth.routes'
 import petsRoutes from './routes/pets.routes'
 import cartRoutes from './routes/cart.routes'
+import path from 'path'
+import multer from 'multer'
 import config from 'config'
 AppDataSource.initialize()
     .then(() => {
@@ -15,6 +17,7 @@ AppDataSource.initialize()
         app.use(bodyParser.json({ limit: '30mb' }))
         app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
         app.use(cors({ origin: true }))
+        app.use(express.static(__dirname + '../public'))
         app.use(cookieParser())
         app.use('/api/users', usersRoutes)
         app.use('/api/auth', authRoutes)

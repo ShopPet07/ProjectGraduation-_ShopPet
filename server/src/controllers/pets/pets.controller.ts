@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import { Like } from 'typeorm'
 import { Pets } from '../../entity/pets.entity'
 import { AppDataSource } from '../../utils/data-source'
 export class PetsController {
@@ -9,12 +8,17 @@ export class PetsController {
         res: Response
     ): Promise<Pets | any> => {
         const data = req.body
+        const image = req.file
         const userId = Number(res.locals.jwtPayload.id)
+
         try {
+            // data.image = 'http://127.0.0.1:3000/images/' + req!.file!.filename
+
             if (data?.price >= 0 && data?.number >= 0) {
                 const petsRepository = AppDataSource.getRepository(Pets)
                 const newPet = await petsRepository.save({
                     ...data,
+                    image,
                     userId: userId,
                 })
                 // console.log('Check pet:', newPet)
@@ -81,7 +85,13 @@ export class PetsController {
     ): Promise<Pets[] | any> => {
         try {
             const petsRepository = AppDataSource.getRepository(Pets)
-            const petsPost: Pets[] = await petsRepository.find()
+            const petsPost: Pets[] | any = await petsRepository.findAndCount({
+                order: {
+                    productId: 'DESC',
+                },
+                skip: 0,
+                take: 12,
+            })
             return res.status(200).json(petsPost)
         } catch (error) {
             res.status(500).send(error)

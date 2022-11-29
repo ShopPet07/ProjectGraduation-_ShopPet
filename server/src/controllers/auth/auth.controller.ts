@@ -13,7 +13,10 @@ export class AuthController {
         const data: AuthRegister = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
-            const user: any = await AuthController.validateUser(data.email)
+            const user: any = await AuthController.validateUser(
+                data.email,
+                data.username
+            )
             if (user) {
                 return res.status(401).json('User already exists')
             } else {
@@ -37,7 +40,8 @@ export class AuthController {
         const data: AuthLogin = req.body
         try {
             const user: Users | any = await AuthController.validateUser(
-                data.email
+                data.email,
+                data.username
             )
             if (!user) {
                 res.status(404).send('UserNotFound')
@@ -51,16 +55,27 @@ export class AuthController {
                 {
                     id: user!.id,
                     email: user!.email,
+                    username: user!.username,
                     role: user!.role,
                 },
                 config.get<string>('JWT_KEY')
+            )
+            console.log(
+                'Check cookies:',
+                res.cookie('access_token', token, {
+                    httpOnly: true,
+                })
             )
             return res
                 .cookie('access_token', token, {
                     httpOnly: true,
                 })
                 .status(200)
-                .json({ userEmail: user!.email, userId: user!.id })
+                .json({
+                    id: user!.id,
+                    username: user!.username,
+                    email: user!.email,
+                })
         } catch (error) {
             res.status(403).send(error)
         }
@@ -70,9 +85,14 @@ export class AuthController {
         res.clearCookie('access_token').status(200).json('Logout success')
     }
 
-    static validateUser = async (email: string): Promise<Users | null> => {
+    static validateUser = async (
+        email: string,
+        username: string
+    ): Promise<Users | null> => {
         const usersRepository = AppDataSource.getRepository(Users)
-        const user = await usersRepository.findOne({ where: { email } })
+        const user = await usersRepository.findOne({
+            where: [{ email }, { username }],
+        })
         return user
     }
 
