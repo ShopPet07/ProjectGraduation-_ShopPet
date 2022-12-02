@@ -4,13 +4,14 @@ export const userSelector = (state) => state.user.data;
 export const getPosts = (state) => state.posts.postList;
 export const getCarts = (state) => state.cart;
 export const getMyCart = (state) => state.postsUser;
-export const textChangeSeletor = (state) => state.filters.search;
-export const categoryChangeSeletor = (state) => state.filters.category;
+export const textChangeSelector = (state) => state.filters.search;
+export const categoryChangeSelector = (state) => state.filters.category;
+export const postLoading = (state) => state.posts.status;
 
 export const todosRemaining = createSelector(
   getPosts,
-  textChangeSeletor,
-  categoryChangeSeletor,
+  textChangeSelector,
+  categoryChangeSelector,
   (posts, textChange, category) => {
     return posts.filter((post) => {
       if (category === "All") {

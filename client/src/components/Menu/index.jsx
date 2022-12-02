@@ -44,7 +44,6 @@ export default function Menu() {
           >
             {/* <img src={ic_Home} alt="" /> */}
             <IconHome />
-            <span>Home</span>
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -57,7 +56,6 @@ export default function Menu() {
           >
             {/* <img src={ic_cart} alt="" /> */}
             <Iconcart />
-            <span>My cart</span>
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -70,7 +68,6 @@ export default function Menu() {
           >
             {/* <img src={ic_User} alt="" /> */}
             <IconUser />
-            <span>Account</span>
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -83,12 +80,11 @@ export default function Menu() {
           >
             {/* <img src={ic_settings} alt="" /> */}
             <Iconsettings />
-            <span>Settings</span>
           </Link>
         </li>
       </ul>
       <ul
-        style={{ marginBottom: "20px" }}
+        style={{ marginBottom: "-35px" }}
         className={("menu-more", style.styleMenu)}
       >
         {localStorage.getItem("userLogin") && (

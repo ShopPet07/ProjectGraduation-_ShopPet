@@ -1,6 +1,46 @@
-html {
-  scroll-behavior: smooth;
+:root {
+  --color-bg: #eaeaea;
+  --color-loader: #222;
+  --loader-size: 100px;
+  --loader-speed: 500ms;
 }
+
+.loader {
+  --loader-height: calc(var(--loader-size) / 7);
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader::before {
+  content: "";
+  position: absolute;
+}
+.loader::before,
+.loader > span {
+  display: block;
+  width: var(--loader-height);
+  height: var(--loader-height);
+  border-radius: 50%;
+  background: var(--color-loader);
+
+  animation-name: to-right;
+  animation-duration: var(--loader-speed);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+.loader > span:nth-child(even) {
+  visibility: hidden;
+}
+.loader > span:first-child {
+  animation-name: scale-up;
+}
+.loader > span:last-child {
+  animation-name: scale-up;
+  animation-direction: reverse;
+}
+
 body {
   font-size: 1.2rem;
   line-height: 1;
@@ -8,11 +48,8 @@ body {
   font-family: $font;
   color: $white;
   overflow: hidden;
-  background: $background-container;
-  background-image: url("https://i.guim.co.uk/img/media/94ba556c55bfda594523431aec69c464ae3605de/152_0_2498_1500/master/2498.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=3f3afc0de62ca26cc297aec59749b9fe");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: #b6b6b6;
+  padding: 20px;
   &::after {
     content: "";
     position: absolute;
@@ -20,8 +57,6 @@ body {
     height: 200%;
     top: -50%;
     left: -50%;
-    background-color: rgba(0, 0, 0, 0.258);
-    backdrop-filter: blur(20px);
     z-index: -1;
   }
 }
@@ -31,8 +66,6 @@ body {
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-  // background-image: url("https://images.unsplash.com/photo-1669061935095-36c69c5fc387?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
-  // background-image: url("https://images.pexels.com/photos/3090628/pexels-photo-3090628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   background-image: url("https://i.guim.co.uk/img/media/94ba556c55bfda594523431aec69c464ae3605de/152_0_2498_1500/master/2498.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=3f3afc0de62ca26cc297aec59749b9fe");
   background-position: center;
   background-size: cover;
@@ -50,28 +83,36 @@ body {
     z-index: 0;
   }
 }
+
 .container {
   margin: 0 auto;
   max-width: 1440px;
   max-height: 100vh;
   height: 100vh;
   overflow: hidden;
-  border-radius: 20px;
-  padding: 10px 100px;
   cursor: auto;
 }
 
-@keyframes backgroundAnimation {
-  0% {
-    transform: scale(1.4) translate(0%, 10%);
-    opacity: 0.7;
+.posts-null {
+  display: block;
+  margin: 0 auto;
+  color: $black;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: calc(22 / 14);
+  border-radius: 5px;
+}
+@keyframes to-right {
+  to {
+    transform: translateX(200%);
   }
-  50% {
-    transform: scale(1.2) translate(100%, -100%) rotate(30deg);
-    opacity: 0.4;
+}
+@keyframes scale-up {
+  from {
+    transform: scale(0);
   }
-  100% {
-    transform: scale(1) translate(230%, -100%) rotate(80deg);
-    opacity: 1;
+  to {
+    transform: scale(1);
   }
 }

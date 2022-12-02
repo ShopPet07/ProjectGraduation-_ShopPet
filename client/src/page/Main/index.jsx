@@ -4,38 +4,30 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { userSelector } from "../../redux/selectors";
-// import { changeTextSearch, changeCategory } from "../../redux/actions";
 
-import ShowInformation from "../../components/AvatarComponents";
 import Menu from "../../components/Menu";
 import Header from "../../components/Header";
 import "./main.scss";
 
 const Main = ({ children }) => {
-  // const checkNotification = useSelector(userSelector);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  const [showMore, setShowMore] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  // const [categoryChange, setCategoryChange] = useState("All");
 
   useEffect(() => {
     localStorage.getItem("userLogin") ? navigate("/") : navigate();
   }, []);
 
-  // const handleShowMenu = async () => {
-  //   setShowMenu(true);
-  //   setShowMore(false);
-  // };
-  // const handleLogout = () => {
-  //   navigate("/login");
-  //   localStorage.removeItem("userLogin");
-  // };
   return (
     <div className="container">
       <div className="main-container">
         <div className="main-dashboard">
-          <h5 className="main-logo">XopBet</h5>
+          <span className="main-logo">
+            <img
+              src={
+                "https://iweb.tatthanh.com.vn/pic/3/blog/images/image(2068).png"
+              }
+              alt=""
+            />
+          </span>
           <Menu />
         </div>
         <div className="main-content">
