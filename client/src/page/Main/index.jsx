@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useDispatch, useSelector } from "react-redux";
-import { userSelector } from "../../redux/selectors";
-
 import Menu from "../../components/Menu";
 import Header from "../../components/Header";
 import "./main.scss";
 
 const Main = ({ children }) => {
   const navigate = useNavigate();
-
+  const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     localStorage.getItem("userLogin") ? navigate("/") : navigate();
   }, []);
@@ -19,18 +16,17 @@ const Main = ({ children }) => {
   return (
     <div className="container">
       <div className="main-container">
-        <div className="main-dashboard">
-          <span className="main-logo">
-            <img
-              src={
-                "https://iweb.tatthanh.com.vn/pic/3/blog/images/image(2068).png"
-              }
-              alt=""
-            />
-          </span>
+        <div className={showMenu ? "main-dashboard active" : "main-dashboard"}>
+          {!showMenu && (
+            <span
+              onClick={() => setShowMenu(true)}
+              className="menu-button-mobile"
+            ></span>
+          )}
+          <span className="main-logo">XB</span>
           <Menu />
         </div>
-        <div className="main-content">
+        <div onClick={() => setShowMenu(false)} className="main-content">
           <Header />
           <main className="main-primary">{children}</main>
         </div>

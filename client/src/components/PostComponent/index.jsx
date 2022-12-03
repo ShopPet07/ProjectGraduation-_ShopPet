@@ -37,8 +37,11 @@ const PostComponent = ({
           <h3 className="post-container-title">
             {title ?? "Noodle eat eat soup"}
           </h3>
-          <p className="post-container-desc">{desc ?? "Noodle eat eat soup"}</p>
-          <div className="post-container-information">
+          <p className="post-container-desc">
+            Noodle eat eat soup Noodle eat eat soup
+            {desc ?? "Noodle eat eat soup"}
+          </p>
+          {/* <div className="post-container-information">
             <div className="post-container-info-item">
               <h6>{age ?? "00"}</h6>
               <span>Age/Month</span>
@@ -51,13 +54,16 @@ const PostComponent = ({
               <h6>{species ?? "Other"}</h6>
               <span>Species</span>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="post-container-more">
           <span className="post-container-price">${price || "0.00"}</span>
           <button className="post-container-button">
             <IconCart />
           </button>
+        </div>
+        <div className="post-container-buy">
+          <button className="post-container-button">Buy now</button>
         </div>
       </div>
       {show && (

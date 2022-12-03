@@ -3,31 +3,39 @@ import { useSelector } from "react-redux";
 // import "react-slideshow-image/dist/styles.css";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
 
 import PostComponent from "../../../components/PostComponent/";
 import "./home.scss";
-import { todosRemaining, postLoading } from "../../../redux/selectors";
+import {
+  potsRemaining,
+  postLoading,
+  textChangeSelector,
+  categoryChangeSelector,
+} from "../../../redux/selectors";
 const Home = () => {
-  const posts = useSelector(todosRemaining);
-  console.log(posts.length);
+  const posts = useSelector(potsRemaining);
   const status = useSelector(postLoading);
+  const searchText = useSelector(textChangeSelector);
+  const searchCategory = useSelector(categoryChangeSelector);
+  console.log(searchCategory);
   return (
     <section className="home">
-      <div className="home-container">
-        <div className="home-image">
-          <img
-            src={
-              "https://www.freewebheaders.com/wp-content/uploads/cute-sleepy-kitten.jpg"
-            }
-            alt=""
-          />
-          <h1 className="home-title">
-            Xop<span>Bet</span>
-          </h1>
-          {/* <p className="home-text">Glad to be of service to you!!!</p> */}
-        </div>
-        {/* <div className="home-more">
+      <div className="home-content">
+        {searchText === "" && searchCategory === "All" && (
+          <div className="home-container">
+            <div className="home-image">
+              <img
+                src={
+                  "https://www.freewebheaders.com/wp-content/uploads/cute-sleepy-kitten.jpg"
+                }
+                alt=""
+              />
+              <h1 className="home-title">
+                Xop<span>Bet</span>
+              </h1>
+              {/* <p className="home-text">Glad to be of service to you!!!</p> */}
+            </div>
+            {/* <div className="home-more">
           <h1 className="home-title">
             Xop<span>Bet</span>
           </h1>
@@ -39,34 +47,53 @@ const Home = () => {
             perspiciatis nobis?
           </p>
         </div> */}
-      </div>
-      <h5 className="home-label">Product</h5>
-      <div className="home-posts">
-        {status === "loading" ? (
-          <div className="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
           </div>
-        ) : posts.length == 0 || posts === null ? (
-          <h6 className="posts-null">Not found</h6>
-        ) : (
-          posts.map((post) => {
-            return (
-              <PostComponent
-                key={post.productId}
-                category={post.category === 0 ? "Dogs" : "Cats"}
-                title={post.title}
-                desc={post.description}
-                price={post.price}
-              />
-            );
-          })
         )}
+        <h5 className="home-label">Product</h5>
+        <div className="home-posts">
+          {status === "loading" ? (
+            <div className="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          ) : posts.length == 0 || posts === null ? (
+            <h6 className="posts-null">Not found</h6>
+          ) : (
+            posts.map((post) => {
+              return (
+                <PostComponent
+                  key={post.productId}
+                  category={post.category === 0 ? "Dogs" : "Cats"}
+                  title={post.title}
+                  desc={post.description}
+                  price={post.price}
+                />
+              );
+            })
+          )}
+        </div>
+      </div>
+      <div className="home-more">
+        <div className="home-cart">
+          <label className="home-cart-title home-more-label">Discover</label>
+          <div className="home-cart-primary">Discover not found</div>
+        </div>
+        <div className="home-topics">
+          <label className="home-cart-title home-more-label">Topics</label>
+          <div className="home-topics-primary">
+            <div className="home-topics-item"></div>
+            <div className="home-topics-item"></div>
+            <div className="home-topics-item"></div>
+            <div className="home-topics-item"></div>
+            <div className="home-topics-item"></div>
+            <div className="home-topics-item"></div>
+          </div>
+        </div>
       </div>
     </section>
   );

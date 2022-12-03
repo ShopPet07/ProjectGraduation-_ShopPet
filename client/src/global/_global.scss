@@ -46,19 +46,9 @@ body {
   line-height: 1;
   font-weight: 400;
   font-family: $font;
-  color: $white;
+  color: $black;
   overflow: hidden;
-  background: #b6b6b6;
-  padding: 20px;
-  &::after {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    z-index: -1;
-  }
+  background: $white;
 }
 .wrapper {
   max-width: 100vw;
@@ -88,9 +78,26 @@ body {
   margin: 0 auto;
   max-width: 1440px;
   max-height: 100vh;
+  padding: 30px 70px;
   height: 100vh;
   overflow: hidden;
   cursor: auto;
+  background-image: url("https://i.guim.co.uk/img/media/94ba556c55bfda594523431aec69c464ae3605de/152_0_2498_1500/master/2498.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=3f3afc0de62ca26cc297aec59749b9fe");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  backdrop-filter: blur(30px);
+  &::after {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-color: rgba(0, 0, 0, 0.655);
+    z-index: -1;
+  }
 }
 
 .posts-null {

@@ -8,7 +8,7 @@ export const textChangeSelector = (state) => state.filters.search;
 export const categoryChangeSelector = (state) => state.filters.category;
 export const postLoading = (state) => state.posts.status;
 
-export const todosRemaining = createSelector(
+export const potsRemaining = createSelector(
   getPosts,
   textChangeSelector,
   categoryChangeSelector,
