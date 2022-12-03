@@ -5,6 +5,7 @@ import { AppDataSource } from '../../utils/data-source'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import config from 'config'
+import { SendMail } from '../mailer/sendMail.controller'
 export class AuthController {
     static Register = async (
         req: Request,
@@ -60,12 +61,12 @@ export class AuthController {
                 },
                 config.get<string>('JWT_KEY')
             )
-            console.log(
-                'Check cookies:',
-                res.cookie('access_token', token, {
-                    httpOnly: true,
-                })
-            )
+            // console.log(
+            //     'Check cookies:',
+            //     res.cookie('access_token', token, {
+            //         httpOnly: true,
+            //     })
+            // )
             return res
                 .cookie('access_token', token, {
                     httpOnly: true,
@@ -96,26 +97,42 @@ export class AuthController {
         return user
     }
 
-    static ForgotPassword = async (req: Request, res: Response) => {
-        const { email, lastName, firstName, newPassword } = req.body
-        console.log(req.body)
+    static ForgotPassword = async (
+        req: Request,
+        res: Response
+    ): Promise<any> => {
+        const email = req.body.email
+        // console.log(req.body)
         try {
             const usersRepository = AppDataSource.getRepository(Users)
-            const user = await usersRepository.findOne({
+            let user = await usersRepository.findOne({
                 where: { email: email },
             })
-            if (
-                email !== user!.email &&
-                lastName !== user!.lastName &&
-                firstName !== user!.firstName
-            ) {
-                res.status(403).json('Data is validateUser')
-            } else {
-                const hashPassword = bcrypt.hashSync(newPassword, 8)
-                const newUser = await usersRepository.update(user!.id, {
-                    password: hashPassword,
+            // console.log(user)
+            if (user) {
+                let randomNewPasword: string = ''
+                const characters =
+                    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+                const charactersLength = characters.length
+                for (var i = 0; i <= 6; i++) {
+                    randomNewPasword += characters.charAt(
+                        Math.floor(Math.random() * charactersLength)
+                    )
+                }
+                console.log(randomNewPasword)
+                const hashed: string = await bcrypt.hash(randomNewPasword, 8)
+                console.log(hashed)
+                const updated = await usersRepository.update(user!.id, {
+                    password: hashed,
                 })
-                res.status(200).json('Change Password is successful')
+                console.log(updated)
+                if (updated) {
+                    await SendMail.SendMailForgotPasswor({
+                        email,
+                        randomNewPasword,
+                    })
+                    return res.status(200).json('Send Email Success')
+                }
             }
         } catch (error) {
             res.status(402).send(error)

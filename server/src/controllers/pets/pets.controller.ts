@@ -83,16 +83,24 @@ export class PetsController {
         req: Request,
         res: Response
     ): Promise<Pets[] | any> => {
+        const page = Number(req.query.page as any) || 1
+        const take: number = 12
+
         try {
             const petsRepository = AppDataSource.getRepository(Pets)
-            const petsPost: Pets[] | any = await petsRepository.findAndCount({
-                order: {
-                    productId: 'DESC',
-                },
-                skip: 0,
-                take: 12,
+            const total = await petsRepository.count()
+            let options = {}
+            const petsPost: Pets[] | any = await petsRepository.find({
+                ...options,
+                take,
+                skip: (page - 1) * take,
             })
-            return res.status(200).json(petsPost)
+            return res.status(200).json({
+                petsPost,
+                total,
+                page,
+                lastPage: Math.ceil(total / take),
+            })
         } catch (error) {
             res.status(500).send(error)
             return

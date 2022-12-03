@@ -15,9 +15,6 @@ export class ShoppingCart {
     cartId: number
 
     @Column()
-    cartCartId: number
-
-    @Column()
     productId: number
 
     @Column()

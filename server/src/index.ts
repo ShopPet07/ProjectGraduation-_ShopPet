@@ -24,8 +24,6 @@ AppDataSource.initialize()
         app.use('/api/pets', petsRoutes)
         app.use('/api/cart', cartRoutes)
         const Port: number | string = config.get<number>('PORT') || 5000
-        app.listen(Port, '192.168.2.12', () =>
-            console.log(`Server id running on port ${5000}`)
-        )
+        app.listen(Port, () => console.log(`Server id running on port ${5000}`))
     })
     .catch((err) => console.log(err))
