@@ -47,7 +47,7 @@ export default function Menu() {
           </Link>
           <span>Home</span>
         </li>
-        <li className={style.styleMenuItem}>
+        <li className={`${style.styleMenuItem} ${style.cart}`}>
           <Link
             onClick={() => {
               handleToggleTab(2);
@@ -57,6 +57,7 @@ export default function Menu() {
           >
             {/* <img src={ic_cart} alt="" /> */}
             <Iconcart />
+            <span>{"5"}</span>
           </Link>
           <span>Cart</span>
         </li>

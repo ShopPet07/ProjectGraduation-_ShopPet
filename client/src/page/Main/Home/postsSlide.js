@@ -4,7 +4,134 @@ import { fetchPosts } from "../../../api/postsApi";
 
 const initialState = {
   status: "idle",
-  postList: [],
+  postList: [
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+    {
+      productId: 3,
+      userId: 2,
+      categoryId: 0,
+      title: "Cat short hart Us",
+      description: "Cat short hart Us",
+    },
+    {
+      productId: 2,
+      userId: 2,
+      categoryId: 0,
+      title: "dog husky",
+      description: "dog husky",
+    },
+    {
+      productId: 1,
+      userId: 2,
+      categoryId: 0,
+      title: "dog corgi",
+      description: "dog corgi",
+    },
+  ],
 };
 
 export const postsSlice = createSlice({
@@ -23,7 +150,7 @@ export const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "idle";
         // state.postList = action.payload[0];
-        state.postList = action.payload;
+        // state.postList = action.payload;
       });
   },
 });

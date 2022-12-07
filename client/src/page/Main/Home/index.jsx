@@ -21,38 +21,28 @@ const Home = () => {
   const status = useSelector(postLoading);
   const searchText = useSelector(textChangeSelector);
   const searchCategory = useSelector(categoryChangeSelector);
-  console.log(posts.length, visible);
   return (
     <section className="home">
       <div className="home-content">
         {searchText === "" && searchCategory === "All" && (
-          <div className="home-container">
-            <div className="home-image">
-              <img src={img} alt="" />
-              <h1 className="home-title">
-                Xop<span>Bet</span>
-              </h1>
-              <p className="home-text">Glad to be of service to you!!!</p>
-            </div>
-            <div className="home-more">
-              <div className="home-discover">
-                <label
-                  style={{
-                    marginBottom: "10px",
-                    // background: "transparent",
-                    // color: "black",
-                    // border: "1px solid black",
-                  }}
-                  className="home-discover-title home-more-label"
-                >
-                  Discover
-                </label>
-                <div className="home-discover-primary">
-                  <DiscoverItem />
+          <>
+            <div className="home-container">
+              <div className="home-image">
+                <img src={img} alt="" />
+                <p className="home-text">Glad to be of service to you!!!</p>
+                <h1 className="home-title">
+                  Xop<span>Bet</span>
+                </h1>
+              </div>
+              <div className="home-more">
+                <div className="home-discover">
+                  <div className="home-discover-primary">
+                    <DiscoverItem />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </>
         )}
         <h5 className="home-label">Product</h5>
         <div className="home-posts">

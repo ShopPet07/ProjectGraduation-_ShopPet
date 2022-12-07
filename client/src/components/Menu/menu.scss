@@ -6,8 +6,6 @@
   flex-direction: column;
   flex: 1;
   width: 100%;
-  // box-shadow: 10px 10px 50px rgba(155, 155, 155, 0.295),
-  // inset 10px 10px 50px rgba(122, 122, 122, 0.358);
   ul {
     li {
       a {
@@ -29,11 +27,14 @@
   }
 }
 .menu > ul > li > a.active {
-  // background: rgba(229, 229, 229, 0.226);
   + span {
     color: $white;
   }
-  background: #ff7551;
+  span {
+    background: $white;
+    color: $orange-color;
+  }
+  background: $orange-color;
   svg path {
     fill: $white;
     opacity: 1;
