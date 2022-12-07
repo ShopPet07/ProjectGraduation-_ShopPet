@@ -18,14 +18,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 15px;
+    padding: 13px 15px;
     margin-right: 15px;
     border-radius: 10px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-    box-shadow: 10px 10px 20px rgba(133, 129, 129, 0.144),
-      inset 10px 10px 20px rgba(133, 129, 129, 0.174);
-    background: $white;
+    // box-shadow: 10px 10px 20px rgba(133, 129, 129, 0.144),
+    //   inset 10px 10px 20px rgba(133, 129, 129, 0.174);
+    background: $item-color;
     border: 1px solid rgba(75, 75, 75, 0.251);
     input {
       outline: none;
@@ -34,8 +34,9 @@
       font-size: 14px;
       width: 0;
       width: 300px;
+      color: $white;
       &::placeholder {
-        color: #282828d4;
+        color: $text-color;
       }
     }
     &-icon {
@@ -44,48 +45,87 @@
       justify-content: center;
       align-items: center;
       box-sizing: border-box;
-      img {
+      svg {
         width: 15px;
         height: 15px;
-        object-fit: cover;
+        path {
+          fill: $text-color;
+        }
       }
     }
   }
   &-category {
     border: 1px solid rgba(75, 75, 75, 0.251);
-    background: $white;
+    background: $item-color;
     cursor: pointer;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 15px;
-    box-shadow: 10px 10px 20px rgba(133, 129, 129, 0.162),
-      inset 10px 10px 20px rgba(133, 129, 129, 0.174);
-    img {
+    // box-shadow: 10px 10px 20px rgba(133, 129, 129, 0.162),
+    //   inset 10px 10px 20px rgba(133, 129, 129, 0.174);
+    transition: all 0.3s linear;
+    svg {
+      width: 10px;
+      height: 10px;
+      path {
+        fill: $text-color;
+      }
+    }
+  }
+  &-category.notification {
+    background: transparent;
+    padding: 13px;
+    svg {
       width: 15px;
       height: 15px;
+      path {
+        fill: $green-color;
+      }
+    }
+    &:hover {
+      background: $item-color;
+    }
+  }
+  &-category.message {
+    background: transparent;
+    padding: 13px;
+    svg {
+      width: 15px;
+      height: 15px;
+      path {
+        fill: #31aabc;
+      }
+    }
+    &:hover {
+      background: $item-color;
     }
   }
   &-button {
     padding: 15px 0;
     width: 100px;
     text-align: center;
-    background: #000;
-    border-radius: 100rem;
+    background: #1f1d2b;
+    border-radius: 70px 100px / 80px;
     text-decoration: none;
     font-family: $fontRoboto;
     font-weight: 500;
     font-size: 14px;
     line-height: calc(23 / 20);
-    color: $white;
+    color: #31aabc;
+    transition: all 0.3s linear;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid $white;
+    }
   }
   &-register {
     margin-right: 20px;
-    background: transparent;
-    color: $black;
-    box-shadow: 10px 10px 20px rgba(133, 129, 129, 0.144);
+    background: $item-color;
+    color: $white;
+    border-radius: 100px 60px / 50px;
   }
 }
 

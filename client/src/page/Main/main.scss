@@ -5,21 +5,21 @@
     max-height: 100vh;
     height: 100%;
     border-radius: 20px;
-    background: #e6e6e6;
+    background: #171a2ae0;
     // background: #1f1d2b;
-    padding: 20px;
-    z-index: 9999999999999999;
+    border: 2px solid rgba(204, 204, 204, 0.119);
+    padding: 40px;
+    z-index: 99999999;
   }
   &-dashboard {
-    width: 75px;
+    width: 180px;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-direction: column;
     padding: 20px 0;
-    background: rgb(28, 30, 41);
-    border-radius: 15px;
+    border-right: 1px solid #525252;
   }
   &-content {
     flex: 1;

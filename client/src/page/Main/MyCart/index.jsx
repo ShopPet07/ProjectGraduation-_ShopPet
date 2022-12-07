@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import "./mycart.scss";
-import { getMyCart } from "../../../redux/selectors";
+// import { getMyCart } from "../../../redux/selectors";
 
 const MyCart = () => {
-  const myCarts = useSelector(getMyCart);
+  // const myCarts = useSelector(getMyCart);
 
   return (
     <div className="Mycart">
