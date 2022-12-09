@@ -11,16 +11,17 @@ export class UsersController {
         res: Response
     ): Promise<Users | any> => {
         const paramsId: number = Number(req.params.id)
-        console.log('User Id:', paramsId)
+        // console.log('User Id:', paramsId)
+        const userId = Number(res.locals.jwtPayload.Id)
         // const data = res.locals.jwtPayload
         // const userId: number = await UsersController.GetCurrentUserId(res)
         const userRepository = AppDataSource.getRepository(Users)
         let user: Users | any = await userRepository.findOne({
-            where: { id: paramsId },
+            where: { id: userId },
         })
         if (!user) res.status(404).json('User not found')
         try {
-            if (paramsId === user!.id) {
+            if (userId === user!.id) {
                 return res.status(200).json(user)
             }
         } catch (error) {

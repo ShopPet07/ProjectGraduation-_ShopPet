@@ -47,7 +47,7 @@ export class ShoppingCartController {
             })
 
             const petInCart = cart.map((item: any) => {
-                console.log(item.pet.flat())
+                // console.log(item.pet.flat())
                 return item.pet
             })
             return res.status(200).json(petInCart)
