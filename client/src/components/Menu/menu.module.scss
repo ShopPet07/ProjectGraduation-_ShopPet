@@ -44,13 +44,28 @@
       top: 0;
       right: 0;
       color: $white;
-      padding: 0px 4px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15px;
+      height: 15px;
       font-size: 12px;
       border-radius: 100rem;
       background: $orange-color;
       transform: translate(25%, -25%);
-      transition: all 0.3s linear;
     }
+    span.zoom {
+      transition: all 0.3s linear;
+      animation: zoom-up 1s alternate;
+    }
+  }
+}
+
+@keyframes zoom-up {
+  from {
+    scale: 1.5;
+  }
+  to {
+    scale: 1;
   }
 }

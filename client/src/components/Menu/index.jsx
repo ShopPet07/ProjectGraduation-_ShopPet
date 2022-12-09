@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 import { API } from "../../api";
+import { getCarts } from "../../redux/selectors";
 import { ReactComponent as IconHome } from "../../assets/icons/icon-home.svg";
 import { ReactComponent as IconUser } from "../../assets/icons/icon-user.svg";
 import { ReactComponent as Iconsettings } from "../../assets/icons/icon-settings.svg";
@@ -10,11 +13,11 @@ import { ReactComponent as Iconlogout } from "../../assets/icons/icon-logout.svg
 import { ReactComponent as Iconreport } from "../../assets/icons/icon-contact.svg";
 import style from "./menu.module.scss";
 import "./menu.scss";
-import axios from "axios";
 
 export default function Menu() {
   const navigate = useNavigate();
-  const [toggleState, setToggleState] = useState(1);
+  const [toggleState, setToggleState] = React.useState(1);
+  const lengthCart = useSelector(getCarts);
 
   const handleToggleTab = (index) => {
     setToggleState(index);
@@ -57,7 +60,7 @@ export default function Menu() {
           >
             {/* <img src={ic_cart} alt="" /> */}
             <Iconcart />
-            <span>{"5"}</span>
+            <span>{lengthCart.length}</span>
           </Link>
           <span>Cart</span>
         </li>

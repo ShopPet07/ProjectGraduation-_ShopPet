@@ -93,21 +93,10 @@ body {
   margin: 0 auto;
   max-width: 1440px;
   max-height: 100vh;
-  padding: 30px 100px;
+  padding: 20px 100px 20px;
   height: 100vh;
   overflow: hidden;
   cursor: auto;
-}
-
-.posts-null {
-  display: block;
-  margin: 0 auto;
-  color: $black;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: calc(22 / 14);
-  border-radius: 5px;
 }
 
 .loading {

@@ -1,19 +1,30 @@
 @import "../../global/variables";
 
-.cart {
-  padding: 15px;
-  background: rgba(204, 204, 204, 0.1);
+.cartItem {
+  padding: 10px;
+  background: rgba(117, 117, 117, 0.096);
   backdrop-filter: blur(25px);
-  border-radius: 35px;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   flex: 1;
+  height: 120px;
+  &:hover {
+    .cartItem-price {
+      opacity: 1;
+    }
+  }
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
   &-image {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 20px;
     margin-right: 15px;
     img {
@@ -23,7 +34,7 @@
       object-fit: cover;
     }
   }
-  &-name {
+  &-title {
     font-weight: 500;
     font-size: 16px;
     line-height: calc(19 / 16);
@@ -32,21 +43,25 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    margin-bottom: 5px;
   }
   &-user {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: flex;
     align-items: center;
     img {
-      width: 15px;
-      height: 15px;
+      width: 25px;
+      height: 25px;
       object-fit: cover;
     }
     span {
       font-weight: 500;
-      font-size: 10px;
+      font-size: 16px;
       line-height: calc(12 / 10);
       color: $white;
-      margin-left: 5px;
+      margin-left: 10px;
     }
   }
   &-status {
@@ -56,56 +71,23 @@
     color: $text-color;
   }
   &-price {
+    opacity: 0;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: calc(19 / 16);
     color: $background-color;
-    padding: 3px;
     background: yellow;
     border-radius: 100rem;
+    padding: 10px 0;
+    width: 80px;
+    text-align: center;
     position: absolute;
-    right: 15px;
-    bottom: 15px;
+    right: 10px;
+    bottom: 10px;
+    transition: all 0.3s linear;
   }
 }
-.cart.active {
-  border: 2px solid $green-color;
-}
-@media screen and (max-width: 1439.98px) {
-  .cart {
-    padding: 5px;
-    position: relative;
-    &:hover {
-      .cart-price {
-        opacity: 1;
-      }
-    }
-    &-image {
-      width: 50px;
-      height: 50px;
-    }
-    &-name {
-      font-size: 12px;
-      margin-bottom: 3px;
-    }
-    &-user {
-      img {
-        width: 10px;
-        height: 10px;
-      }
-      span {
-        font-size: 8px;
-      }
-    }
-    &-price {
-      font-size: 12px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      transform: translate(0%, 50%);
-      opacity: 0;
-      transition: all 0.2s linear;
-    }
-  }
+.cartItem.active {
+  border: 1px solid $green-color;
 }

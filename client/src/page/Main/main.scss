@@ -5,9 +5,9 @@
     max-height: 100vh;
     height: 100%;
     border-radius: 20px;
-    background: #171a2ae0;
+    background: $main-color-opacity;
     // background: #1f1d2b;
-    border: 2px solid rgba(204, 204, 204, 0.119);
+    border: 2px solid #cccccc1e;
     padding: 40px;
     z-index: 99999999;
   }
@@ -37,6 +37,7 @@
     margin-bottom: 50px;
     color: $white;
     font-weight: bold;
+    font-size: 25px;
     span {
       color: $green-color;
     }

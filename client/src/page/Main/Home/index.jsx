@@ -57,13 +57,13 @@ const Home = () => {
               <span></span>
             </div>
           ) : posts.length === 0 || posts === null ? (
-            <h6 className="posts-null">Not found</h6>
+            <h6 className="home-null">Not found</h6>
           ) : (
             posts.slice(0, visible).map((post) => {
               return (
                 <PostComponent
                   key={post.productId}
-                  category={post.category === 0 ? "Dogs" : "Cats"}
+                  category={post.categoryId === 0 ? "Dogs" : "Cats"}
                   title={post.title}
                   desc={post.description}
                   price={post.price}
@@ -73,14 +73,18 @@ const Home = () => {
           )}
         </div>
         {posts.length >= visible ? (
-          <button
-            onClick={() => setVisible(visible + 12)}
-            className="home-loadMore"
-          >
-            Load More
-          </button>
+          status !== "loading" ? (
+            <button
+              onClick={() => setVisible(visible + 12)}
+              className="home-loadMore"
+            >
+              Load More
+            </button>
+          ) : (
+            ""
+          )
         ) : (
-          <span className="home-loadMore"></span>
+          <span></span>
         )}
       </div>
     </section>

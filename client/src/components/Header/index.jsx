@@ -21,7 +21,6 @@ export default function Header() {
   const handleTextChange = (e) => {
     dispatch(filtersSlice.actions.changeTextSearch(e.target.value));
     setTextChange(e.target.value);
-    console.log(e.target.value);
   };
   const handleCategoryChange = (e) => {
     dispatch(
