@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import Menu from "../../components/Menu";
@@ -23,7 +23,9 @@ const Main = ({ children }) => {
               className="menu-button-mobile"
             ></span>
           )}
-          <span className="main-logo">XB</span>
+          <span className="main-logo">
+            Xot<span>Bet</span>
+          </span>
           <Menu />
         </div>
         <div onClick={() => setShowMenu(false)} className="main-content">

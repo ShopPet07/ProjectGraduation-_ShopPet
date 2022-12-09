@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 
+import img from "../../../assets/images/tomandjerry.svg";
 import PostComponent from "../../../components/PostComponent/";
+import DiscoverItem from "../../../components/DiscoverItem";
 import "./home.scss";
 import {
   potsRemaining,
@@ -13,46 +15,39 @@ import {
   categoryChangeSelector,
 } from "../../../redux/selectors";
 const Home = () => {
+  const [visible, setVisible] = React.useState(12);
+
   const posts = useSelector(potsRemaining);
   const status = useSelector(postLoading);
   const searchText = useSelector(textChangeSelector);
   const searchCategory = useSelector(categoryChangeSelector);
-  console.log(searchCategory);
   return (
     <section className="home">
       <div className="home-content">
         {searchText === "" && searchCategory === "All" && (
-          <div className="home-container">
-            <div className="home-image">
-              <img
-                src={
-                  "https://www.freewebheaders.com/wp-content/uploads/cute-sleepy-kitten.jpg"
-                }
-                alt=""
-              />
-              <h1 className="home-title">
-                Xop<span>Bet</span>
-              </h1>
-              {/* <p className="home-text">Glad to be of service to you!!!</p> */}
+          <>
+            <div className="home-container">
+              <div className="home-image">
+                <img src={img} alt="" />
+                <p className="home-text">Glad to be of service to you!!!</p>
+                <h1 className="home-title">
+                  Xop<span>Bet</span>
+                </h1>
+              </div>
+              <div className="home-more">
+                <div className="home-discover">
+                  <div className="home-discover-primary">
+                    <DiscoverItem />
+                  </div>
+                </div>
+              </div>
             </div>
-            {/* <div className="home-more">
-          <h1 className="home-title">
-            Xop<span>Bet</span>
-          </h1>
-          <p className="home-text">Glad to be of service to you!!!</p>
-          <p className="home-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            expedita recusandae eos magnam odit! Ipsa facere maxime expedita
-            mollitia quos ipsam aut tenetur! A laborum pariatur ullam? Tenetur,
-            perspiciatis nobis?
-          </p>
-        </div> */}
-          </div>
+          </>
         )}
         <h5 className="home-label">Product</h5>
         <div className="home-posts">
           {status === "loading" ? (
-            <div className="loader">
+            <div style={{ transform: "translateY(1000%)" }} className="loader">
               <span></span>
               <span></span>
               <span></span>
@@ -61,10 +56,10 @@ const Home = () => {
               <span></span>
               <span></span>
             </div>
-          ) : posts.length == 0 || posts === null ? (
+          ) : posts.length === 0 || posts === null ? (
             <h6 className="posts-null">Not found</h6>
           ) : (
-            posts.map((post) => {
+            posts.slice(0, visible).map((post) => {
               return (
                 <PostComponent
                   key={post.productId}
@@ -77,26 +72,18 @@ const Home = () => {
             })
           )}
         </div>
-      </div>
-      <div className="home-more">
-        <div className="home-cart">
-          <label className="home-cart-title home-more-label">Discover</label>
-          <div className="home-cart-primary">Discover not found</div>
-        </div>
-        <div className="home-topics">
-          <label className="home-cart-title home-more-label">Topics</label>
-          <div className="home-topics-primary">
-            <div className="home-topics-item"></div>
-            <div className="home-topics-item"></div>
-            <div className="home-topics-item"></div>
-            <div className="home-topics-item"></div>
-            <div className="home-topics-item"></div>
-            <div className="home-topics-item"></div>
-          </div>
-        </div>
+        {posts.length >= visible ? (
+          <button
+            onClick={() => setVisible(visible + 12)}
+            className="home-loadMore"
+          >
+            Load More
+          </button>
+        ) : (
+          <span className="home-loadMore"></span>
+        )}
       </div>
     </section>
   );
 };
-
 export default Home;

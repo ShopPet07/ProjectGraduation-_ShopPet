@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import ic_Category from "../../assets/icons/icon-categoryPost.svg";
+import { ReactComponent as IconCategory } from "../../assets/icons/icon-categoryPost.svg";
 import { ReactComponent as IconCart } from "../../assets/icons/icon-cart.svg";
 import "./postcomponents.scss";
 const PostComponent = ({
@@ -31,7 +31,7 @@ const PostComponent = ({
         </span>
         <div onClick={() => setShow(true)} className="post-container-info">
           <span className="post-container-category">
-            <img src={ic_Category} alt="" />
+            <IconCategory />
             {category ?? "Non"}
           </span>
           <h3 className="post-container-title">

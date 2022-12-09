@@ -45,18 +45,21 @@ export default function Menu() {
             {/* <img src={ic_Home} alt="" /> */}
             <IconHome />
           </Link>
+          <span>Home</span>
         </li>
-        <li className={style.styleMenuItem}>
+        <li className={`${style.styleMenuItem} ${style.cart}`}>
           <Link
             onClick={() => {
               handleToggleTab(2);
             }}
             className={toggleState === 2 ? "active" : ""}
-            to={localStorage.getItem("userLogin") ? "/mycart" : "/login"}
+            to={localStorage.getItem("userLogin") ? "/myCart" : "/login"}
           >
             {/* <img src={ic_cart} alt="" /> */}
             <Iconcart />
+            <span>{"5"}</span>
           </Link>
+          <span>Cart</span>
         </li>
         <li className={style.styleMenuItem}>
           <Link
@@ -69,6 +72,7 @@ export default function Menu() {
             {/* <img src={ic_User} alt="" /> */}
             <IconUser />
           </Link>
+          <span>User</span>
         </li>
         <li className={style.styleMenuItem}>
           <Link
@@ -81,6 +85,7 @@ export default function Menu() {
             {/* <img src={ic_settings} alt="" /> */}
             <Iconsettings />
           </Link>
+          <span>Settings</span>
         </li>
       </ul>
       <ul
@@ -89,13 +94,11 @@ export default function Menu() {
       >
         {localStorage.getItem("userLogin") && (
           <li className={style.styleMenuItem}>
-            <Link
-              style={{ transform: "translateX(3px)" }}
-              onClick={() => handleLogout()}
-            >
+            <Link onClick={() => handleLogout()}>
               {/* <img src={ic_logout} alt="" /> */}
               <Iconlogout />
             </Link>
+            <span>Log out</span>
           </li>
         )}
         <li className={style.styleMenuItem}>
@@ -109,6 +112,7 @@ export default function Menu() {
             {/* <img src={ic_report} alt="" /> */}
             <Iconreport />
           </Link>
+          <span>Contact</span>
         </li>
       </ul>
     </div>

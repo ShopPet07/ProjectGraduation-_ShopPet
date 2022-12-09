@@ -1,0 +1,34 @@
+@import "../../global/variables";
+
+.discover {
+  &-item {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    span {
+      display: block;
+      width: 100%;
+      height: 50px;
+      padding: 5px;
+      transform: translateY(-100%);
+      border-radius: 10px 10px 20px 20px;
+      overflow: hidden;
+      color: $white;
+      font-size: 14px;
+      background: rgba(102, 102, 102, 0.658);
+      transition: all 0.2s ease;
+    }
+    &:hover {
+      span {
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}

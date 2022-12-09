@@ -3,13 +3,12 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { filtersSlice } from "../../page/Main/filterSlide";
-import ic_back from "../../assets/icons/icon-back.svg";
-import ic_search from "../../assets/icons/icon-search.svg";
-import ic_category from "../../assets/icons/icon-category.svg";
-import ic_categoryDog from "../../assets/icons/icon-categoryDog.svg";
-import ic_categoryCat from "../../assets/icons/icon-categoryCat.svg";
-import ic_notification from "../../assets/icons/icon-notification.svg";
-import ic_message from "../../assets/icons/icon-message.svg";
+import { ReactComponent as IcSearch } from "../../assets/icons/icon-search.svg";
+import { ReactComponent as IcCategory } from "../../assets/icons/icon-category.svg";
+import { ReactComponent as IcCategoryDog } from "../../assets/icons/icon-categoryDog.svg";
+import { ReactComponent as IcCategoryCat } from "../../assets/icons/icon-categoryCat.svg";
+import { ReactComponent as IcNotification } from "../../assets/icons/icon-notification.svg";
+import { ReactComponent as IcMessage } from "../../assets/icons/icon-message.svg";
 
 import "./header.scss";
 export default function Header() {
@@ -46,16 +45,13 @@ export default function Header() {
           }}
           className="header-category"
         >
-          <img
-            src={
-              category == 0
-                ? ic_category
-                : category === 1
-                ? ic_categoryDog
-                : ic_categoryCat
-            }
-            alt=""
-          />
+          {category == 0 ? (
+            <IcCategory />
+          ) : category === 1 ? (
+            <IcCategoryDog />
+          ) : (
+            <IcCategoryCat />
+          )}
         </span>
         <div className="header-search">
           <input
@@ -67,7 +63,7 @@ export default function Header() {
             placeholder="Search..."
           />
           <span className="header-search-icon">
-            <img src={ic_search} alt="" />
+            <IcSearch />
           </span>
         </div>
       </div>
@@ -85,10 +81,10 @@ export default function Header() {
         {localStorage.getItem("userLogin") && (
           <>
             <span className="header-category message">
-              <img src={ic_message} alt="" />
+              <IcMessage />
             </span>
             <span className="header-category notification">
-              <img src={ic_notification} alt="" />
+              <IcNotification />
             </span>
           </>
         )}
