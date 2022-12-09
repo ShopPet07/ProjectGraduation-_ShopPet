@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Information from "../../../components/Infomation/Infomation";
+import Information from "../../../components/Information/";
 import "./user.scss";
 import ic_pencil from "../../../assets/icons/icon-pencil.svg";
 

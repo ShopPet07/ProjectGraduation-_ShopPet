@@ -7,7 +7,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     const res = axios.get(`${API}/api/pets/fetchAll`);
     return res.then(({ data }) => {
       console.log(data);
-      return data;
+      return data[0];
     });
   } catch (error) {
     console.log(error);

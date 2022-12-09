@@ -83,7 +83,7 @@ export class PetsController {
         req: Request,
         res: Response
     ): Promise<Pets[] | any> => {
-        const page = Number(req.query.page as any) || 1
+        const page = Number(req.params.page as any) || 1
         const take: number = 12
 
         try {

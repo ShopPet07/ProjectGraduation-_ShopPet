@@ -54,16 +54,16 @@ const Forgot = () => {
           lastName: lastName.toString(),
           newPassword: newPassword.toString(),
         })
-        .then(function (response) {
-          toast.success("Change password successfully <3", {
+        .then(async (response) => {
+          await toast.success("Change password successfully <3", {
             position: toast.POSITION.TOP_RIGHT,
           });
-          setTimeout(() => {
+          await setTimeout(() => {
             navigate("/login");
           }, 5000);
         })
-        .catch(function (error) {
-          toast.error("Error !", {
+        .catch(() => {
+          toast.error(`Error ! `, {
             position: toast.POSITION.TOP_RIGHT,
           });
         });
@@ -73,6 +73,7 @@ const Forgot = () => {
   }
   return (
     <div className="wrapper">
+      <ToastContainer></ToastContainer>
       <AnimatedCursor
         innerSize={13}
         outerSize={30}
@@ -98,9 +99,8 @@ const Forgot = () => {
         ]}
       />
       <div className="forgot-container">
-        <ToastContainer></ToastContainer>
         <div className="forgot-primary">
-          <h1 className="login-heading forgot-heading">Forgot Password</h1>
+          <h1 className="login-heading forgot-heading">Forgot</h1>
           <p className="forgot-desc">
             Please enter your information to recover your password !!!
           </p>

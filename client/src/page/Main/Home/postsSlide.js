@@ -21,9 +21,9 @@ export const postsSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.status = "idle";
-        state.postList = action.payload[0];
+        // state.postList = action.payload[0];
+        state.postList = action.payload;
       });
   },
 });

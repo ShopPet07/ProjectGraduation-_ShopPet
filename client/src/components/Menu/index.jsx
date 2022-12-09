@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { API } from "../../api";
-import ic_Home from "../../assets/icons/icon-home.svg";
-import ic_User from "../../assets/icons/icon-user.svg";
-import ic_settings from "../../assets/icons/icon-settings.svg";
-import ic_cart from "../../assets/icons/icon-cart.svg";
-import ic_logout from "../../assets/icons/icon-logout.svg";
-import ic_report from "../../assets/icons/icon-contact.svg";
+import { ReactComponent as IconHome } from "../../assets/icons/icon-home.svg";
+import { ReactComponent as IconUser } from "../../assets/icons/icon-user.svg";
+import { ReactComponent as Iconsettings } from "../../assets/icons/icon-settings.svg";
+import { ReactComponent as Iconcart } from "../../assets/icons/icon-cart.svg";
+import { ReactComponent as Iconlogout } from "../../assets/icons/icon-logout.svg";
+import { ReactComponent as Iconreport } from "../../assets/icons/icon-contact.svg";
 import style from "./menu.module.scss";
 import "./menu.scss";
 import axios from "axios";
@@ -42,8 +42,8 @@ export default function Menu() {
             }}
             className={toggleState === 1 ? "active" : ""}
           >
-            <img src={ic_Home} alt="" />
-            <span>Home</span>
+            {/* <img src={ic_Home} alt="" /> */}
+            <IconHome />
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -54,8 +54,8 @@ export default function Menu() {
             className={toggleState === 2 ? "active" : ""}
             to={localStorage.getItem("userLogin") ? "/mycart" : "/login"}
           >
-            <img src={ic_cart} alt="" />
-            <span>My cart</span>
+            {/* <img src={ic_cart} alt="" /> */}
+            <Iconcart />
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -66,8 +66,8 @@ export default function Menu() {
             }}
             className={toggleState === 3 ? "active" : ""}
           >
-            <img src={ic_User} alt="" />
-            <span>Account</span>
+            {/* <img src={ic_User} alt="" /> */}
+            <IconUser />
           </Link>
         </li>
         <li className={style.styleMenuItem}>
@@ -78,23 +78,23 @@ export default function Menu() {
             className={toggleState === 4 ? "active" : ""}
             to={localStorage.getItem("userLogin") ? "/settings" : "/login"}
           >
-            <img src={ic_settings} alt="" />
-            <span>Settings</span>
+            {/* <img src={ic_settings} alt="" /> */}
+            <Iconsettings />
           </Link>
         </li>
       </ul>
       <ul
-        style={{ marginBottom: "20px" }}
+        style={{ marginBottom: "-35px" }}
         className={("menu-more", style.styleMenu)}
       >
         {localStorage.getItem("userLogin") && (
           <li className={style.styleMenuItem}>
-            <Link onClick={() => handleLogout()}>
-              <img
-                style={{ transform: "translateX(3px)" }}
-                src={ic_logout}
-                alt=""
-              />
+            <Link
+              style={{ transform: "translateX(3px)" }}
+              onClick={() => handleLogout()}
+            >
+              {/* <img src={ic_logout} alt="" /> */}
+              <Iconlogout />
             </Link>
           </li>
         )}
@@ -106,7 +106,8 @@ export default function Menu() {
             className={toggleState === 6 ? "active" : ""}
             to={"/contact"}
           >
-            <img src={ic_report} alt="" />
+            {/* <img src={ic_report} alt="" /> */}
+            <Iconreport />
           </Link>
         </li>
       </ul>

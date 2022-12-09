@@ -10,6 +10,6 @@ router.post(
 )
 router.patch('/update/:id', VerifyToken, PetsController.UpdatePost)
 router.delete('/delete/:id', VerifyToken, PetsController.DeletePost)
-router.get('/fetchAll', PetsController.GetAll)
+router.get('/fetchAll/:page', PetsController.GetAll)
 // router.get('/search', PetsController.GetItemBySearch)
 export default router

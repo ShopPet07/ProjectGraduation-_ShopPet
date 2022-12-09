@@ -1,0 +1,13 @@
+@import "variables";
+.fixed {
+  cursor: pointer;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(172, 172, 172, 0.274);
+  img {
+    width: 15px;
+  }
+}

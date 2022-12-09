@@ -7,8 +7,6 @@ import usersRoutes from './routes/users.routes'
 import authRoutes from './routes/auth.routes'
 import petsRoutes from './routes/pets.routes'
 import cartRoutes from './routes/cart.routes'
-import path from 'path'
-import multer from 'multer'
 import config from 'config'
 AppDataSource.initialize()
     .then(() => {
@@ -24,6 +22,8 @@ AppDataSource.initialize()
         app.use('/api/pets', petsRoutes)
         app.use('/api/cart', cartRoutes)
         const Port: number | string = config.get<number>('PORT') || 5000
-        app.listen(Port, () => console.log(`Server id running on port ${5000}`))
+        app.listen(Port, '192.168.43.70', () =>
+            console.log(`Server id running on port ${5000}`)
+        )
     })
     .catch((err) => console.log(err))

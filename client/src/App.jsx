@@ -16,7 +16,6 @@ function App() {
   }, []);
 
   return (
-    // {/* <img className="image-background" src={img_background} alt="" /> */}
     <Routes>
       {publicRoutes.map((route) => {
         const Layout = route.layout == null ? Fragment : MainPage;

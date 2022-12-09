@@ -26,7 +26,7 @@ const publicRoutes = [
     layout: ContactPage,
   },
   {
-    path: "/mycart",
+    path: "/myCart",
     components: MyCart,
     layout: MyCart,
   },
