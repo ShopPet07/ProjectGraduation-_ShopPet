@@ -63,6 +63,7 @@ const Home = () => {
               return (
                 <PostComponent
                   key={post.productId}
+                  id={post.productId}
                   category={post.categoryId === 0 ? "Dogs" : "Cats"}
                   title={post.title}
                   desc={post.description}

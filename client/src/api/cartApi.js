@@ -12,9 +12,3 @@ export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
     console.log(error);
   }
 });
-
-// export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
-//   const res = await fetch(`${API}/api/cart`);
-//   const data = await res.json();
-//   return data;
-// });

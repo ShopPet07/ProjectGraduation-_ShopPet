@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
+import { API } from "../../api";
 import { ReactComponent as IconCategory } from "../../assets/icons/icon-categoryPost.svg";
 import { ReactComponent as IconCart } from "../../assets/icons/icon-cart.svg";
 import "./postcomponents.scss";
 const PostComponent = ({
+  id,
   image,
   category,
   title,
@@ -15,8 +19,25 @@ const PostComponent = ({
   kg,
   species,
 }) => {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [reviewImage, setReviewImage] = useState(false);
+
+  const addCart = async () => {
+    try {
+      const res = await axios.post(`${API}/api/cart/addToCart/${id}`);
+      res
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="post">
       <div className="post-container">
@@ -58,7 +79,7 @@ const PostComponent = ({
         </div>
         <div className="post-container-more">
           <span className="post-container-price">${price || "0.00"}</span>
-          <button className="post-container-button">
+          <button onClick={addCart} className="post-container-button">
             <IconCart />
           </button>
         </div>

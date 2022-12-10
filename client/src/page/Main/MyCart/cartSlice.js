@@ -10,6 +10,9 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState: initialState,
   reducers: {
+    addCart: (state, action) => {
+      state.listData.push(action.payload);
+    },
     deleteItems: (state, action) => {
       state.listData.filter((item, index) => {
         return item.productId !== action.payload[index];

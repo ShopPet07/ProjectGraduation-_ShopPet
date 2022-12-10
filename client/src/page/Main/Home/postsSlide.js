@@ -167,8 +167,7 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = "idle";
-        // state.postList = action.payload[0];
-        // state.postList = action.payload;
+        state.postList = action.payload.petsPost;
       });
   },
 });

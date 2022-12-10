@@ -127,7 +127,7 @@ export class AuthController {
                 })
                 console.log(updated)
                 if (updated) {
-                    await SendMail.SendMailForgotPasswor({
+                    await SendMail.SendMailForgotPassword({
                         email,
                         randomNewPasword,
                     })

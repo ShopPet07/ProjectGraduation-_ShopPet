@@ -1,12 +1,13 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import CartItem from "../../../components/CartItem";
 import "./mycart.scss";
-// import { getMyCart } from "../../../redux/selectors";
+import { getCarts } from "../../../redux/selectors";
 
 const MyCart = () => {
-  // const myCarts = useSelector(getMyCart);
+  const myCarts = useSelector(getCarts);
+  console.log(myCarts);
   const [cart, setCartItem] = React.useState({
     userId: 1,
     cartId: [],
@@ -50,246 +51,25 @@ const MyCart = () => {
       </div>
       <span className="mycart-selectAll">Select All</span>
       <div className="mycart-list">
-        <span
-          onClick={() => {
-            addCart(1);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(2);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(3);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(4);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(5);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(6);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(7);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(8);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(9);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(10);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(11);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(12);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(13);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(14);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(15);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
-        <span
-          onClick={() => {
-            addCart(16);
-          }}
-        >
-          <CartItem
-            image={
-              "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-            }
-            price={200}
-            title={"My Name is Dogs"}
-            user={"TrongPhucs"}
-            status={true}
-          />
-        </span>
+        {myCarts.map((item) => {
+          return (
+            <span
+              onClick={() => {
+                addCart(item.productId);
+              }}
+            >
+              <CartItem
+                image={
+                  "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+                }
+                price={item.price || "00.0"}
+                title={item.title || "My Name is Dogs"}
+                user={"TrongPhucs"}
+                status={true}
+              />
+            </span>
+          );
+        })}
       </div>
       <div className="mycart-action">
         <button className="mycart-btn mycart-btn-delete">Delete</button>
@@ -300,3 +80,244 @@ const MyCart = () => {
 };
 
 export default MyCart;
+
+// <span
+//           onClick={() => {
+//             addCart(1);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(2);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(3);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(4);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(5);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(6);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(7);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(8);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(9);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(10);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(11);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(12);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(13);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(14);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(15);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+//         </span>
+//         <span
+//           onClick={() => {
+//             addCart(16);
+//           }}
+//         >
+//           <CartItem
+//             image={
+//               "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+//             }
+//             price={200}
+//             title={"My Name is Dogs"}
+//             user={"TrongPhucs"}
+//             status={true}
+//           />
+// </span>
