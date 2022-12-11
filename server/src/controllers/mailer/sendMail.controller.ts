@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 import nodemailer from 'nodemailer'
 import config from 'config'
 export class SendMail {
-    static SendMailForgotPasswor = async (data: any) => {
-        // console.log(data.randomNewPasword)
+    static SendMailForgotPassword = async (data: any) => {
+        // console.log(data.randomNewPassword)
         let transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587,
@@ -19,10 +19,10 @@ export class SendMail {
             from: '"ADMIN" <dtramuyen@gmaill.com>', // sender address
             to: data.email, // list of receivers
             subject: 'New Password', // Subject line
-            text: data.randomNewPasword, // plain text body
-            html: `<b>New Password is:  ${data.randomNewPasword} </b>`, // html body
+            text: data.randomNewPassword, // plain text body
+            html: `<b>New Password is:  ${data.randomNewPassword} </b>`, // html body
         })
-        // console.log('check forgot pass:', data.randomNewPasword)
+        // console.log('check forgot pass:', data.randomNewPassword)
         return info
     }
 }

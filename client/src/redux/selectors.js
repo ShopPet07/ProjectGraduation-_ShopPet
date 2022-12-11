@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 
 export const userSelector = (state) => state.user.data;
 export const getPosts = (state) => state.posts.postList;
-export const getCarts = (state) => state.cart;
+export const getCarts = (state) => state.cart.listData;
 export const getMyCart = (state) => state.postsUser;
 export const textChangeSelector = (state) => state.filters.search;
 export const categoryChangeSelector = (state) => state.filters.category;

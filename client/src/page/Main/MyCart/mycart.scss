@@ -1,13 +1,15 @@
 @import "../../../global/variables";
 
 .mycart {
+  position: relative;
+  height: 100%;
   &-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: $background-light;
-    border-radius: 35px;
+    border: 1px solid #525252;
+    border-radius: 10px;
     margin-bottom: 20px;
     &-heading {
       font-style: normal;
@@ -41,16 +43,62 @@
       }
     }
   }
-  &-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  // &-container {
+  //   display: flex;
+  //   align-items: center;
+  // }
+  &-selectAll {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 10px 13px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    &:hover {
+      color: $white;
+    }
   }
-  &-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-left: -20px;
+  &-selectAll.active {
+    background: $background-light;
+    color: $white;
+  }
+  &-list {
+    max-height: 65%;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &-action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &-btn {
+    cursor: pointer;
+    display: inline-block;
+    padding: 15px 0;
+    width: 100px;
+    font-size: 14px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: $white;
+    border: 1px solid transparent;
+    opacity: 0.7;
+    transition: all 0.3s linear;
+    &:hover {
+      opacity: 1;
+    }
+    &-buy {
+      margin-left: 10px;
+      background: $green-color;
+    }
+    &-delete {
+      border-color: #6b6b6b;
+    }
   }
 }
