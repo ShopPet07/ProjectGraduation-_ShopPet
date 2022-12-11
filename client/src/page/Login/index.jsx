@@ -17,7 +17,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [checkEmail, setCheckEmail] = useState(true);
-
+  const [token, setToken] = useState('');
+  const [expire, setExpire] = useState('');
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -34,6 +35,8 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+  const axiosJWT = axios.create();
+
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
@@ -43,7 +46,9 @@ const Login = () => {
           password: password.toString(),
         })
         .then((response) => {
+          axios
           localStorage.setItem("userLogin", response.data.id);
+
           navigate("/");
         })
         .catch((error) => {
