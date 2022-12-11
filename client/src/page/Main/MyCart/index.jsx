@@ -1,17 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import CartItem from "../../../components/CartItem";
 import "./mycart.scss";
+import CartItem from "../../../components/CartItem";
+import { fetchCart } from "../../../api/cartApi";
 import { getCarts } from "../../../redux/selectors";
 
 const MyCart = () => {
+  const dispatch = useDispatch();
   const myCarts = useSelector(getCarts);
-  console.log(myCarts);
+
   const [cart, setCartItem] = React.useState({
     userId: 1,
     cartId: [],
   });
+
+  React.useEffect(() => {
+    dispatch(fetchCart());
+  }, []);
+
   function addCart(id) {
     let addCartitem = [...cart.cartId];
     let checkCart = addCartitem.find((c) => c === id);

@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API } from "../../../api/";
 import { fetchCart } from "../../../api/cartApi";
 const initialState = {
   status: "idle",

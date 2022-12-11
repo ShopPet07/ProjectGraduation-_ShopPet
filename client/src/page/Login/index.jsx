@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import AnimatedCursor from "react-animated-cursor";
 import InputComponents from "../../components/Input/InputComponents";
 
+import style from "../../global/style.module.scss";
 import ic_mail from "../../assets/icons/icon-mail.svg";
 import "./login.scss";
 import { API } from "../../api";
@@ -13,12 +15,15 @@ import google from "../../assets/icons/Google.svg";
 const Login = () => {
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [checkEmail, setCheckEmail] = useState(true);
-  const [token, setToken] = useState('');
-  const [expire, setExpire] = useState('');
+  const axiosJWT = axios.create();
+
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -35,8 +40,6 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const axiosJWT = axios.create();
-
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
@@ -46,9 +49,25 @@ const Login = () => {
           password: password.toString(),
         })
         .then((response) => {
-          axios
+          // localStorage.setItem("token", response.data.AccessToken);
           localStorage.setItem("userLogin", response.data.id);
-
+          axiosJWT.interceptors.request.use(
+            async (config) => {
+              const currentDate = new Date();
+              if (expire * 1000 < currentDate.getTime()) {
+                console.log("Hahaha", response.data.AccessToken);
+                config.headers.Authorization = `Bearer ${response.data.AccessToken}`;
+                setToken(response.data.AccessToken);
+                const decoded = jwt_decode(response.data.AccessToken);
+                setName(decoded.name);
+                setExpire(decoded.exp);
+              }
+              return config;
+            },
+            (error) => {
+              return Promise.reject(error);
+            }
+          );
           navigate("/");
         })
         .catch((error) => {
@@ -88,7 +107,23 @@ const Login = () => {
       <div className="login-container">
         <div className="login-primary">
           <h1 className="login-heading">
-            Welcome Backs <span>!</span>
+            {/* Welcome Backs <span>!</span> */}
+            <div className={style.flipAnimation}>
+              <span>W</span>
+              <span>e</span>
+              <span>l</span>
+              <span>c</span>
+              <span>o</span>
+              <span>m</span>
+              <span>e</span>
+              <span> </span>
+              <span>B</span>
+              <span>a</span>
+              <span>c</span>
+              <span>k</span>
+              <span>s</span>
+              <span>!</span>
+            </div>
           </h1>
           <p className="login-more">
             Dont have an account? <a href="./Register">Sign up</a>

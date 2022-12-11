@@ -310,6 +310,9 @@
 
 @media screen and (max-width: 1439.98px) {
   .post {
+    &-container {
+      width: 190px;
+    }
     &-show.active {
       width: 70%;
       height: 90%;
