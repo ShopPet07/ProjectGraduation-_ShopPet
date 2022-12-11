@@ -126,7 +126,7 @@ export class AuthController {
                         email,
                         randomNewPasword,
                     })
-                    return res.status(200).json('Send Email Success')
+                    return res.status(200).json('Send Email Success!')
                 }
             }
         } catch (error) {
