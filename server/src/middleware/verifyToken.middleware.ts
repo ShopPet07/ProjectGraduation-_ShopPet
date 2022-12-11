@@ -10,14 +10,16 @@ export const VerifyToken = async (
     let jwtPayload
     let decodeData
     try {
-        const token: string = req.cookies['access_token']
+        const authHeaders = <string>req.headers['authorization']
+        let token = authHeaders && authHeaders.split(' ')[1]
         // console.log('Check token middleware ', token)
         if (token) {
             jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
             res.locals.jwtPayload = jwtPayload
         } else {
-            decodeData = jwt.decode(token)
-            res.locals.jwtPayload = decodeData?.sub
+            token = req.cookies['access_token']
+            jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
+            res.locals.jwtPayload = jwtPayload
         }
     } catch (error) {
         res.status(401).send()

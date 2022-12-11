@@ -10,7 +10,7 @@ export class UsersController {
         req: Request,
         res: Response
     ): Promise<Users | any> => {
-        const paramsId: number = Number(req.params.id)
+        // const paramsId: number = Number(req.params.id)
         // console.log('User Id:', paramsId)
         const userId = Number(res.locals.jwtPayload.Id)
         // const data = res.locals.jwtPayload
@@ -66,6 +66,24 @@ export class UsersController {
             return res.status(200).json(AllUser)
         } catch (error) {
             res.status(404).send(error)
+        }
+    }
+
+    static UpdateUser = async (req: Request, res: Response): Promise<any> => {
+        const userId = Number(res.locals.jwtPayload.id)
+        const data: Users = req.body
+        try {
+            const usersRepository = AppDataSource.getRepository(Users)
+            const user = await usersRepository.findOne({
+                where: { id: userId },
+            })
+            const updated = await usersRepository.update(user!.id, { ...data })
+            if (updated) {
+                return res.status(200).json('Update user successfully')
+            }
+        } catch (error) {
+            res.status(404).send(error)
+            return
         }
     }
 }

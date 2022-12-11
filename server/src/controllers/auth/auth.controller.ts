@@ -52,7 +52,7 @@ export class AuthController {
                 res.status(401).send('Password is not match')
                 return
             }
-            const token: string = jwt.sign(
+            const AccessToken: string = jwt.sign(
                 {
                     id: user!.id,
                     email: user!.email,
@@ -61,14 +61,8 @@ export class AuthController {
                 },
                 config.get<string>('JWT_KEY')
             )
-            // console.log(
-            //     'Check cookies:',
-            //     res.cookie('access_token', token, {
-            //         httpOnly: true,
-            //     })
-            // )
             return res
-                .cookie('access_token', token, {
+                .cookie('access_token', AccessToken, {
                     httpOnly: true,
                 })
                 .status(200)
@@ -76,6 +70,7 @@ export class AuthController {
                     id: user!.id,
                     username: user!.username,
                     email: user!.email,
+                    AccessToken,
                 })
         } catch (error) {
             res.status(403).send(error)
