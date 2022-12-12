@@ -22,7 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [checkEmail, setCheckEmail] = useState(true);
-  const axiosJWT = axios.create();
+  // const axiosJWT = axios.create();
 
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
@@ -43,31 +43,26 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      axios
-        .post(`${API}/api/auth/login`, {
+      console.log("Check api:",API)
+      API
+        .post(`/api/auth/login`, {
           email: email.toString(),
           password: password.toString(),
         })
         .then((response) => {
-          // localStorage.setItem("token", response.data.AccessToken);
+          localStorage.setItem("token", response.data.AccessToken);
           localStorage.setItem("userLogin", response.data.id);
-          axiosJWT.interceptors.request.use(
-            async (config) => {
-              const currentDate = new Date();
-              if (expire * 1000 < currentDate.getTime()) {
-                console.log("Hahaha", response.data.AccessToken);
-                config.headers.Authorization = `Bearer ${response.data.AccessToken}`;
-                setToken(response.data.AccessToken);
-                const decoded = jwt_decode(response.data.AccessToken);
-                setName(decoded.name);
-                setExpire(decoded.exp);
-              }
-              return config;
-            },
-            (error) => {
-              return Promise.reject(error);
+          API.interceptors.request.use((req) => {
+            console.log("Check reqheader", req.headers)
+            const token = localStorage.getItem('token')
+            console.log("Check token", token)
+            if (token) {
+              req.headers.Authorization = `Bearer ${
+                token
+              }`         
             }
-          );
+            return req
+          })
           navigate("/");
         })
         .catch((error) => {

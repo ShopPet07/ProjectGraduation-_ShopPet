@@ -8,16 +8,13 @@ export const VerifyToken = async (
     next: NextFunction
 ) => {
     let jwtPayload
-    let decodeData
     try {
-        const authHeaders = <string>req.headers['authorization']
+        const authHeaders = <string>req.headers.authorization
+        // console.log('CHeck auth token:', authHeaders)
+        // console.log('Check req:', req!.headers)
         let token = authHeaders && authHeaders.split(' ')[1]
-        // console.log('Check token middleware ', token)
+        console.log('Check token middleware ', token)
         if (token) {
-            jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
-            res.locals.jwtPayload = jwtPayload
-        } else {
-            token = req.cookies['access_token']
             jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
             res.locals.jwtPayload = jwtPayload
         }

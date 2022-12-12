@@ -4,7 +4,7 @@ import { API } from "./index";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   try {
-    const res = axios.get(`${API}/api/pets/fetchAll`);
+    const res = API.get(`/api/pets/fetchAll`);
     return res.then(({ data }) => {
       return data;
     });
