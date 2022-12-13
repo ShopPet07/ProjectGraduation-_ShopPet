@@ -58,7 +58,10 @@ export class Users {
     @OneToMany(() => Pets, (pet) => pet.user)
     pet: Pets[]
 
-    @OneToOne(() => ShoppingCart, (cart) => cart.user) // specify inverse side as a second parameter
+    @OneToOne((type) => ShoppingCart, (ShoppingCart) => ShoppingCart.pet, {
+        cascade: ['insert', 'update', 'remove'],
+    })
+    @JoinColumn() // specify inverse side as a second parameter
     cart: ShoppingCart
 
     checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {

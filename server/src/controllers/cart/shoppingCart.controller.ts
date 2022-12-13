@@ -18,17 +18,18 @@ export class ShoppingCartController {
                 const pets: any = new Pets()
                 pets.productId = petId
                 cart.pet = [pets]
-                await cartRepository.save(cart)
-
+                const saveCart = await cartRepository.create(cart)
                 const user: Users | any = new Users()
-                user.cart = cart
-                console.log('Chcek cart in user:', user.cart)
-                const newUser = await usersRepository.create(user)
-                usersRepository.save(newUser)
+                user.cart = saveCart
+                user.cartCartId = saveCart.userId
+                console.log('Check cart in user:', user.cart)
+                await usersRepository.create(user)
+                // usersRepository.create(newUser)
                 return res.status(200).json(cart)
             }
         } catch (error) {
             res.status(403).send(error)
+            console.log(error)
             return
         }
     }

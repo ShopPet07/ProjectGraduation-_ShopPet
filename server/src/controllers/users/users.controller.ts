@@ -70,7 +70,7 @@ export class UsersController {
     }
 
     static UpdateUser = async (req: Request, res: Response): Promise<any> => {
-        const userId = Number(res.locals.jwtPayload.id)
+        const userId = Number(req.params.id)
         const data: Users = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
