@@ -23,6 +23,6 @@ export class ShoppingCart {
     @OneToMany(() => Pets, (pet) => pet.cart)
     pet: Pets[]
 
-    @OneToOne(() => Users, (user) => user.cart) // specify inverse side as a second parameter
+    @OneToOne(() => Users, (user) => user.cart)
     user: Users
 }

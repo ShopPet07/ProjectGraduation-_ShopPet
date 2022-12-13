@@ -58,8 +58,9 @@ export class Users {
     @OneToMany(() => Pets, (pet) => pet.user)
     pet: Pets[]
 
-    @OneToOne(() => ShoppingCart, (cart) => cart.user) // specify inverse side as a second parameter
-    cart: ShoppingCart
+    @OneToOne(() => ShoppingCart, (cart) => cart.user, { nullable: true })
+    @JoinColumn({ name: 'cartCartId' }) // specify inverse side as a second parameter
+    cart: ShoppingCart | null
 
     checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
         return bcrypt.compareSync(unencryptedPassword, this.password)

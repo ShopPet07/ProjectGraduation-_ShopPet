@@ -1,9 +1,7 @@
 import { Request, response, Response } from 'express'
-// import { ShoppingCart } from 'src/entity/cart.entity'
-import { ShoppingCart } from '../../entity/cart.entity'
-import { Pets } from '../../entity/pets.entity'
 import { Users } from '../../entity/users.entity'
 import { AppDataSource } from '../../utils/data-source'
+import bcrypt from 'bcrypt'
 
 export class UsersController {
     static GetMe = async (
@@ -70,13 +68,15 @@ export class UsersController {
     }
 
     static UpdateUser = async (req: Request, res: Response): Promise<any> => {
-        const userId = Number(res.locals.jwtPayload.id)
+        const userId = Number(req.params.id)
         const data: Users = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
             const user = await usersRepository.findOne({
                 where: { id: userId },
             })
+            const hashed = await bcrypt.hash(data.password, 8)
+            data.password = hashed
             const updated = await usersRepository.update(user!.id, { ...data })
             if (updated) {
                 return res.status(200).json('Update user successfully')

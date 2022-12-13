@@ -9,7 +9,11 @@ export const VerifyToken = async (
 ) => {
     let jwtPayload
     try {
+<<<<<<< HEAD
+        const authHeaders = await (<string>req.headers.authorization)
+=======
         const authHeaders = <string>req.headers.authorization
+>>>>>>> 26e0fe8880be69b6faf3d59cc2f553a2fad25d73
         // console.log('CHeck auth token:', authHeaders)
         // console.log('Check req:', req!.headers)
         let token = authHeaders && authHeaders.split(' ')[1]
@@ -17,6 +21,14 @@ export const VerifyToken = async (
         if (token) {
             jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
             res.locals.jwtPayload = jwtPayload
+<<<<<<< HEAD
+        } else {
+            jwtPayload = jwt.verify(
+                req.cookies['access_token'],
+                config.get<string>('JWT_KEY')
+            )
+=======
+>>>>>>> 26e0fe8880be69b6faf3d59cc2f553a2fad25d73
         }
     } catch (error) {
         res.status(401).send()

@@ -18,17 +18,19 @@ export class ShoppingCartController {
                 const pets: any = new Pets()
                 pets.productId = petId
                 cart.pet = [pets]
-                await cartRepository.save(cart)
-
-                const user: Users | any = new Users()
-                user.cart = cart
-                console.log('Chcek cart in user:', user.cart)
-                const newUser = await usersRepository.create(user)
-                usersRepository.save(newUser)
+                const saveCart = await cartRepository.save(cart)
+                // console.log('Check save cart:', saveCart)
+                // if (saveCart.productId !== petId) {
+                //     await cartRepository.save(saveCart)
+                //     return res.status(200).json(cart)
+                // } else {
+                //     res.send('Product already exists')
+                // }
                 return res.status(200).json(cart)
             }
         } catch (error) {
             res.status(403).send(error)
+            console.log(error)
             return
         }
     }
@@ -41,15 +43,30 @@ export class ShoppingCartController {
         try {
             const cartRepository: ShoppingCart | any =
                 AppDataSource.getRepository(ShoppingCart)
+            const usersRepository = AppDataSource.getRepository(Users)
+            const cartInUser = await cartRepository.find({
+                where: {
+                    userId: userId,
+                },
+            })
+            console.log('Check cart in user', cartInUser)
+            // const user = await usersRepository.find()
             const cart: ShoppingCart | any = await cartRepository.find({
-                where: { userId: userId },
-                relations: ['pet'],
+                where: { userId: cartInUser.userId },
+                relations: {
+                    pet: true,
+                },
             })
 
-            const petInCart = cart.map((item: any) => {
-                // console.log(item.pet.flat())
-                return item.pet
+            const petInCart = cart.map((item: any, index: number) => {
+                console.log(item.userId)
+                console.log({ userId })
+                if (cart.userId === userId) {
+                    return item.pet[0]
+                }
             })
+            // console.log(petInCart)
+
             return res.status(200).json(petInCart)
         } catch (error) {
             res.status(500).send(error)
