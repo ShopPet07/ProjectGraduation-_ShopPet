@@ -75,6 +75,9 @@
       }
     }
   }
+  &-menu-right {
+    display: none;
+  }
   &-category.notification {
     background: transparent;
     padding: 13px;
@@ -138,6 +141,28 @@
         width: 100%;
       }
     }
+    &-menu-right {
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 7px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      span {
+        display: block;
+        width: 4px;
+        height: 4px;
+        border-radius: 100rem;
+        background: $white;
+        margin-bottom: 3px;
+      }
+    }
+    // &-category {
+    //   display: none;
+    // }
     &-flex {
       display: none;
     }
@@ -146,6 +171,33 @@
       position: fixed;
       bottom: 20px;
       right: 5px;
+    }
+    &-register {
+      display: none;
+    }
+    &-login {
+      display: none;
+      &-mobile {
+        position: fixed;
+        width: 60vw;
+        padding: 30px 0;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: $heading-color;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100vw;
+          height: 100vh;
+        }
+      }
     }
   }
 }

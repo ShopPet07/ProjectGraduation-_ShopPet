@@ -1,23 +1,15 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./mycart.scss";
 import CartItem from "../../../components/CartItem";
-import { fetchCart } from "../../../api/cartApi";
 import { getCarts } from "../../../redux/selectors";
-
 const MyCart = () => {
-  const dispatch = useDispatch();
   const myCarts = useSelector(getCarts);
-
   const [cart, setCartItem] = React.useState({
     userId: 1,
     cartId: [],
   });
-
-  React.useEffect(() => {
-    dispatch(fetchCart());
-  }, []);
 
   function addCart(id) {
     let addCartitem = [...cart.cartId];
@@ -61,6 +53,7 @@ const MyCart = () => {
         {myCarts.map((item) => {
           return (
             <span
+              key={item.productId}
               onClick={() => {
                 addCart(item.productId);
               }}

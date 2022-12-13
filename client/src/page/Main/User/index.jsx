@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 import Information from "../../../components/Information/";
 import "./user.scss";
@@ -9,6 +10,7 @@ const User = () => {
 
   return (
     <div className="user">
+      <ToastContainer></ToastContainer>
       <div className="user-top">
         <div className="user-top-text">
           <h6 className="user-top-heading ">Account Users</h6>
@@ -19,7 +21,14 @@ const User = () => {
         </div>
         <div className="user-top-button">
           <button
-            onClick={() => setUpdateButton(!updateButton)}
+            onClick={() => {
+              setUpdateButton(!updateButton);
+              if (!updateButton) {
+                toast.success("Start updating");
+              } else {
+                toast.warn("End updating");
+              }
+            }}
             className="user-top-btn"
           >
             <img src={ic_pencil} alt="" />
@@ -28,12 +37,6 @@ const User = () => {
         </div>
       </div>
       <div className="user-primary">
-        <div className="user-image">
-          <img
-            src="https://www.24petwatch.com/content/24petwatch/us/en/_jcr_content/root/container/container/container_11073310_c/container_hero_copy/container_image/image.coreimg.85.1024.png/1663861300485/cat-image-new-529x540.png"
-            alt=""
-          />
-        </div>
         <div className="personal">
           <h6>Personal Information</h6>
           <div className="user-primary-personal">
@@ -88,20 +91,20 @@ const User = () => {
               />
             </div>
           </div>
-          {updateButton ? (
-            <button
-              onClick={() => setUpdateButton(!updateButton)}
-              className="update-infomation"
-            >
-              Save
-            </button>
-          ) : (
-            <button disabled className="update-infomation disable">
-              Save
-            </button>
-          )}
         </div>
       </div>
+      {updateButton ? (
+        <button
+          onClick={() => setUpdateButton(!updateButton)}
+          className="update-infomation"
+        >
+          Save
+        </button>
+      ) : (
+        <button disabled className="update-infomation disable">
+          Save
+        </button>
+      )}
     </div>
   );
 };

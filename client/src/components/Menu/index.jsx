@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-import { API } from "../../api";
+import { URL } from "../../api";
 import { getCarts } from "../../redux/selectors";
 import { ReactComponent as IconHome } from "../../assets/icons/icon-home.svg";
 import { ReactComponent as IconUser } from "../../assets/icons/icon-user.svg";
@@ -23,12 +23,13 @@ export default function Menu() {
     setToggleState(index);
   };
   const handleLogout = async () => {
-    await API
-      .post(`/api/auth/logout`)
+    await axios
+      .post(`${URL}/api/auth/logout`)
       .then(function (response) {
         console.log(response);
         navigate("/login");
         localStorage.removeItem("userLogin");
+        localStorage.removeItem("token");
       })
       .catch(function (error) {
         console.log(error);

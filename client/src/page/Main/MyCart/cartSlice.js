@@ -25,7 +25,14 @@ export const cartSlice = createSlice({
     });
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.status = "idle";
-      state.listData = action.payload;
+      const dataFormat = [];
+      console.log("element", action.payload);
+      action.payload.forEach((element) => {
+        if (element) {
+          dataFormat.push(element);
+        }
+      });
+      state.listData = dataFormat;
     });
     builder.addCase(fetchCart.rejected, (state, action) => {
       state.status = "idle";

@@ -1,5 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 // import "react-slideshow-image/dist/styles.css";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
@@ -13,9 +14,18 @@ import {
   postLoading,
   textChangeSelector,
   categoryChangeSelector,
+  getCarts,
 } from "../../../redux/selectors";
+import { fetchCart } from "../../../api/cartApi";
 const Home = () => {
+  const dispatch = useDispatch();
+
   const [visible, setVisible] = React.useState(12);
+  React.useEffect(() => {
+    if (localStorage.getItem("userLogin")) {
+      dispatch(fetchCart());
+    }
+  }, []);
 
   const posts = useSelector(potsRemaining);
   const status = useSelector(postLoading);

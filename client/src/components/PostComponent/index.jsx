@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 import { API } from "../../api";
+import { cartSlice } from "../../page/Main/MyCart/cartSlice";
 import { ReactComponent as IconCategory } from "../../assets/icons/icon-categoryPost.svg";
 import { ReactComponent as IconCart } from "../../assets/icons/icon-cart.svg";
 import "./postcomponents.scss";
@@ -25,10 +26,18 @@ const PostComponent = ({
 
   const addCart = async () => {
     try {
-      const res = await axios.post(`${API}/api/cart/addToCart/${id}`);
-      res
+      const res = await API.post(`/api/cart/addToCart/${id}`)
         .then(({ data }) => {
           console.log(data);
+          // dispatch(
+          //   cartSlice.actions.addCart({
+          //     productId: id,
+          //     image: image,
+          //     title: title,
+          //     description: desc,
+          //   })
+          // );
+          toast.success("Successfully added to cart");
         })
         .catch(function (error) {
           console.log({ error });
@@ -40,6 +49,7 @@ const PostComponent = ({
 
   return (
     <div className="post">
+      <ToastContainer></ToastContainer>
       <div className="post-container">
         <span className="post-container-image">
           <img
