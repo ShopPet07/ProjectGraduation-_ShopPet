@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import AnimatedCursor from "react-animated-cursor";
 import InputComponents from "../../components/Input/InputComponents";
 
+import style from "../../global/style.module.scss";
 import ic_mail from "../../assets/icons/icon-mail.svg";
 import "./login.scss";
 import { API } from "../../api";
@@ -13,10 +15,14 @@ import google from "../../assets/icons/Google.svg";
 const Login = () => {
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [checkEmail, setCheckEmail] = useState(true);
+  // const axiosJWT = axios.create();
 
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
@@ -37,13 +43,26 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      axios
-        .post(`${API}/api/auth/login`, {
+      console.log("Check api:",API)
+      API
+        .post(`/api/auth/login`, {
           email: email.toString(),
           password: password.toString(),
         })
         .then((response) => {
+          localStorage.setItem("token", response.data.AccessToken);
           localStorage.setItem("userLogin", response.data.id);
+          API.interceptors.request.use((req) => {
+            console.log("Check reqheader", req.headers)
+            const token = localStorage.getItem('token')
+            console.log("Check token", token)
+            if (token) {
+              req.headers.Authorization = `Bearer ${
+                token
+              }`         
+            }
+            return req
+          })
           navigate("/");
         })
         .catch((error) => {
@@ -83,7 +102,23 @@ const Login = () => {
       <div className="login-container">
         <div className="login-primary">
           <h1 className="login-heading">
-            Welcome Backs <span>!</span>
+            {/* Welcome Backs <span>!</span> */}
+            <div className={style.flipAnimation}>
+              <span>W</span>
+              <span>e</span>
+              <span>l</span>
+              <span>c</span>
+              <span>o</span>
+              <span>m</span>
+              <span>e</span>
+              <span> </span>
+              <span>B</span>
+              <span>a</span>
+              <span>c</span>
+              <span>k</span>
+              <span>s</span>
+              <span>!</span>
+            </div>
           </h1>
           <p className="login-more">
             Dont have an account? <a href="./Register">Sign up</a>

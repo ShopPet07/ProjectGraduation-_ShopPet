@@ -183,6 +183,12 @@
     &-post {
       margin-right: -10px;
     }
+    &-image {
+      flex: 1;
+    }
+    &-more {
+      display: none;
+    }
   }
 }
 

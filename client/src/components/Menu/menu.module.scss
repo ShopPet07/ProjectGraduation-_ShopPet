@@ -69,3 +69,11 @@
     scale: 1;
   }
 }
+
+@media screen and (max-width: 1439.98px) {
+  .styleMenuItem {
+    span {
+      display: none;
+    }
+  }
+}

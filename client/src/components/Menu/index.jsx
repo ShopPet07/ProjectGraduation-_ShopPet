@@ -23,8 +23,8 @@ export default function Menu() {
     setToggleState(index);
   };
   const handleLogout = async () => {
-    await axios
-      .post(`${API}/api/auth/logout`)
+    await API
+      .post(`/api/auth/logout`)
       .then(function (response) {
         console.log(response);
         navigate("/login");

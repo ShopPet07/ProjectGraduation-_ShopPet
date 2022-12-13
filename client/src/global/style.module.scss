@@ -1,13 +1,62 @@
 @import "variables";
-.fixed {
-  cursor: pointer;
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  padding: 15px;
-  border-radius: 10px;
-  background: rgba(172, 172, 172, 0.274);
-  img {
-    width: 15px;
+
+.flipAnimation {
+  display: flex;
+  justify-content: center;
+  transform: translate3d(0, 0, 0);
+}
+.flipAnimation > span {
+  animation: flipping 7s infinite;
+}
+
+.flipAnimation > span:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.flipAnimation > span:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.flipAnimation > span:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.flipAnimation > span:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.flipAnimation > span:nth-child(5) {
+  animation-delay: 1s;
+}
+
+.flipAnimation > span:nth-child(6) {
+  animation-delay: 1.2s;
+}
+.flipAnimation > span:nth-child(7) {
+  animation-delay: 1.4s;
+}
+.flipAnimation > span:nth-child(8) {
+  animation-delay: 1.6s;
+}
+.flipAnimation > span:nth-child(9) {
+  animation-delay: 1.8s;
+}
+.flipAnimation > span:nth-child(10) {
+  animation-delay: 2s;
+}
+.flipAnimation > span:nth-child(11) {
+  animation-delay: 2.2s;
+}
+.flipAnimation > span:nth-child(12) {
+  animation-delay: 2.4s;
+}
+.flipAnimation > span:nth-child(13) {
+  animation-delay: 2.6s;
+}
+
+@keyframes flipping {
+  0%,
+  80% {
+    transform: rotateY(360deg);
   }
 }

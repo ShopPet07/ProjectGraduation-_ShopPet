@@ -4,7 +4,7 @@ import { API } from "./index";
 
 export const fetchCart = createAsyncThunk("cart/fetchCart", async () => {
   try {
-    const res = await axios.get(`${API}/api/cart/`);
+    const res = await API.get(`/api/cart`);
     return res.then(({ data }) => {
       return data;
     });

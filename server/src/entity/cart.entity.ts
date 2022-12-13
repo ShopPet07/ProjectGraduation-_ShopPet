@@ -22,4 +22,7 @@ export class ShoppingCart {
 
     @OneToMany(() => Pets, (pet) => pet.cart)
     pet: Pets[]
+
+    @OneToOne(() => Users, (user) => user.cart)
+    user: Users
 }

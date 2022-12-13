@@ -40,3 +40,10 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 1439.98px) {
+  .menu {
+    display: flex;
+    align-items: center;
+  }
+}

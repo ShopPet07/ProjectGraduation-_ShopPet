@@ -9,6 +9,7 @@
     // background: #1f1d2b;
     border: 2px solid #cccccc1e;
     padding: 40px;
+    padding-left: 0;
     z-index: 99999999;
   }
   &-dashboard {
@@ -20,6 +21,7 @@
     flex-direction: column;
     padding: 20px 0;
     border-right: 1px solid #525252;
+    margin-left: 40px;
   }
   &-content {
     flex: 1;
@@ -46,6 +48,20 @@
 .menu-button-mobile {
   display: none;
 }
+
+@media screen and (max-width: 1439.98px) {
+  .main {
+    &-dashboard {
+      width: 120px;
+      align-items: center;
+      margin-left: 0;
+    }
+    &-logo {
+      font-size: 18px;
+    }
+  }
+}
+
 @media screen and (max-width: 767.98px) {
   .main {
     &-dashboard {
