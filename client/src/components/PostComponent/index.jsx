@@ -26,17 +26,17 @@ const PostComponent = ({
 
   const addCart = async () => {
     try {
-      const res = await API.post(`/api/cart/addToCart/${id}`)
+      await API.post(`/api/cart/addToCart/${id}`)
         .then(({ data }) => {
           console.log(data);
-          // dispatch(
-          //   cartSlice.actions.addCart({
-          //     productId: id,
-          //     image: image,
-          //     title: title,
-          //     description: desc,
-          //   })
-          // );
+          dispatch(
+            cartSlice.actions.addCart({
+              productId: id,
+              image: image,
+              title: title,
+              description: desc,
+            })
+          );
           toast.success("Successfully added to cart");
         })
         .catch(function (error) {

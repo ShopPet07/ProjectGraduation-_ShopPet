@@ -2,16 +2,16 @@
 
 .information {
   &-label {
-    color: $white;
-    font-size: 16px;
+    color: $text-color;
+    font-size: 12px;
   }
   &-component {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid $black;
+    border: 1px solid #525252;
     border-radius: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 10px;
     input {
       outline: none;
@@ -23,8 +23,9 @@
       padding: 15px 10px;
       width: 100%;
       &::placeholder {
-        font-weight: bold;
-        color: $background-color;
+        font-weight: 300;
+        color: $white;
+        font-size: 14px;
       }
     }
     span {
@@ -38,5 +39,5 @@
   }
 }
 .information-component.disable {
-  border: 1px solid $white;
+  border: 1px solid $green-color;
 }

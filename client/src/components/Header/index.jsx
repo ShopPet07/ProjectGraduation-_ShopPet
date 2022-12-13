@@ -45,7 +45,7 @@ export default function Header() {
           }}
           className="header-category"
         >
-          {category == 0 ? (
+          {category === 0 ? (
             <IcCategory />
           ) : category === 1 ? (
             <IcCategoryDog />

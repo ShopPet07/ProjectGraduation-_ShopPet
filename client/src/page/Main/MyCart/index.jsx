@@ -5,13 +5,16 @@ import "./mycart.scss";
 import CartItem from "../../../components/CartItem";
 import { getCarts } from "../../../redux/selectors";
 const MyCart = () => {
+  // let cartItem = React.useRef();
   const myCarts = useSelector(getCarts);
   const [cart, setCartItem] = React.useState({
     userId: 1,
     cartId: [],
   });
-
-  function addCart(id) {
+  // React.useEffect(() => {
+  //   console.log(cartItem.current);
+  // }, []);
+  function selectCart(id) {
     let addCartitem = [...cart.cartId];
     let checkCart = addCartitem.find((c) => c === id);
     if (checkCart) {
@@ -53,9 +56,10 @@ const MyCart = () => {
         {myCarts.map((item) => {
           return (
             <span
+              ref={CartItem}
               key={item.productId}
               onClick={() => {
-                addCart(item.productId);
+                selectCart(item.productId);
               }}
             >
               <CartItem

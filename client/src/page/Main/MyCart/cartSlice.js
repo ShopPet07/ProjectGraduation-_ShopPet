@@ -26,7 +26,6 @@ export const cartSlice = createSlice({
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       state.status = "idle";
       const dataFormat = [];
-      console.log("element", action.payload);
       action.payload.forEach((element) => {
         if (element) {
           dataFormat.push(element);
