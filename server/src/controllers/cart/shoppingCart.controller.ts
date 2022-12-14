@@ -11,10 +11,8 @@ export class ShoppingCartController {
         try {
             if (userId) {
                 const cartRepository = AppDataSource.getRepository(ShoppingCart)
-                // const usersRepository = AppDataSource.getRepository(Users)
                 const petsRepository = AppDataSource.getRepository(Pets)
                 const cart = new ShoppingCart()
-                // const user: Users = new Users()
                 const pet = new Pets()
                 const pets: Pets | any = await petsRepository.findOne({
                     where: { id: petId },
@@ -22,17 +20,8 @@ export class ShoppingCartController {
                 pet.carts = [cart]
                 cart.pet = pets
                 cart.userId = userId
-                // user.cart = [cart]
-
                 await petsRepository.create(pet)
                 await cartRepository.save(cart)
-                // await usersRepository.create(user)
-                // if (saveCart.id !== petId) {
-                //     await cartRepository.save(saveCart)
-                //     return res.status(200).json(cart)
-                // } else {
-                //     res.send('Product already exists')
-                // }
                 return res.status(200).json(cart)
             }
         } catch (error) {
@@ -51,13 +40,6 @@ export class ShoppingCartController {
             const cartRepository: ShoppingCart | any =
                 AppDataSource.getRepository(ShoppingCart)
             const usersRepository = AppDataSource.getRepository(Users)
-            // const cartInUser = await cartRepository.find({
-            //     where: {
-            //         userId: userId,
-            //     },
-            // })
-            // console.log('Check cart in user', cartInUser)
-            // const user = await usersRepository.find()
             const cart: ShoppingCart | any = await cartRepository.find({
                 where: { userId: userId },
                 relations: ['pet'],
@@ -66,7 +48,6 @@ export class ShoppingCartController {
             const petInCart = cart.map((item: any) => {
                 return item.pet
             })
-            // console.log(petInCart)
 
             return res.status(200).json(petInCart)
         } catch (error) {
