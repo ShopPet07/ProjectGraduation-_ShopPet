@@ -128,3 +128,17 @@ body {
     transform: scale(1);
   }
 }
+
+@media screen and (max-width: 1023.98px) {
+  .container {
+    padding: 0px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  body {
+    &::after {
+      content: none;
+    }
+  }
+}

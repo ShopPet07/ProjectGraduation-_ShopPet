@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
 import Menu from "../../components/Menu";
@@ -8,6 +8,7 @@ import "./main.scss";
 
 const Main = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
     localStorage.getItem("userLogin") ? navigate("/") : navigate();
@@ -29,7 +30,16 @@ const Main = ({ children }) => {
           <Menu />
         </div>
         <div onClick={() => setShowMenu(false)} className="main-content">
-          <Header />
+          {location.pathname === "/" ? (
+            <Header />
+          ) : (
+            <span
+              onClick={() => window.location.reload(false)}
+              className="main-logo"
+            >
+              Xot<span>Bet</span>
+            </span>
+          )}
           <main className="main-primary">{children}</main>
         </div>
       </div>

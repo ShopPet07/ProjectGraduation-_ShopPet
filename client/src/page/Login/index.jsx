@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 import AnimatedCursor from "react-animated-cursor";
 import InputComponents from "../../components/Input/InputComponents";
 
@@ -43,26 +41,13 @@ const Login = () => {
   function Login() {
     if (email !== "" && password !== "") {
       setError(false);
-      console.log("Check api:",API)
-      API
-        .post(`/api/auth/login`, {
-          email: email.toString(),
-          password: password.toString(),
-        })
+      API.post(`/api/auth/login`, {
+        email: email.toString(),
+        password: password.toString(),
+      })
         .then((response) => {
           localStorage.setItem("token", response.data.AccessToken);
           localStorage.setItem("userLogin", response.data.id);
-          API.interceptors.request.use((req) => {
-            console.log("Check reqheader", req.headers)
-            const token = localStorage.getItem('token')
-            console.log("Check token", token)
-            if (token) {
-              req.headers.Authorization = `Bearer ${
-                token
-              }`         
-            }
-            return req
-          })
           navigate("/");
         })
         .catch((error) => {

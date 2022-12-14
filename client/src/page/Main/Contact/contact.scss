@@ -1,0 +1,63 @@
+@import "../../../global/variables";
+
+.contact {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  &-heading {
+    font-size: 30px;
+    color: $white;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  &-desc {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  &-select {
+    display: flex;
+    margin-left: -20px;
+  }
+  &-option {
+    margin-left: 20px;
+    width: 250px;
+    border: 1px solid #525252;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+
+    img {
+      width: 100px;
+      margin: 0 auto;
+      display: block;
+      margin-bottom: 20px;
+    }
+    &-title {
+      font-weight: 700;
+      font-size: 20px;
+      color: $white;
+      margin-bottom: 5px;
+    }
+    &-desc {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    &-button {
+      display: inline-block;
+      text-decoration: none;
+      color: $black;
+      padding: 13px 20px;
+      width: 100%;
+      font-weight: bold;
+      background: $white;
+      border-radius: 10px;
+      transition: all 0.2s linear;
+      &:hover {
+        background: $black;
+        color: $white;
+      }
+    }
+  }
+}

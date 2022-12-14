@@ -15,6 +15,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [login, setLogin] = React.useState(false);
   const [textChange, setTextChange] = React.useState("");
   const [category, setCategory] = React.useState(0);
 
@@ -44,7 +45,7 @@ export default function Header() {
           }}
           className="header-category"
         >
-          {category == 0 ? (
+          {category === 0 ? (
             <IcCategory />
           ) : category === 1 ? (
             <IcCategoryDog />
@@ -66,6 +67,11 @@ export default function Header() {
           </span>
         </div>
       </div>
+      {!localStorage.getItem("userLogin") && (
+        <a href="/login" className="header-button">
+          Login
+        </a>
+      )}
       <div className="header-more">
         {!localStorage.getItem("userLogin") && (
           <a href="/register" className="header-button header-register">

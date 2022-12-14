@@ -4,7 +4,6 @@
     box-sizing: border-box;
     max-width: 50vw;
     width: 100%;
-    height: 60vh;
     background-size: cover;
     background-image: url("https://i.guim.co.uk/img/media/94ba556c55bfda594523431aec69c464ae3605de/152_0_2498_1500/master/2498.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=3f3afc0de62ca26cc297aec59749b9fe");
     position: relative;
@@ -12,7 +11,6 @@
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border-radius: 20px;
     padding: 30px 20px;
     box-shadow: 20px 20px 20px #02020293;
@@ -161,7 +159,6 @@
   .login {
     &-container {
       max-width: 70vw;
-      height: 70vh;
     }
   }
 }
@@ -169,16 +166,20 @@
   .login {
     &-container {
       max-width: 95vw;
-      height: 60vh;
     }
   }
 }
 @media screen and (max-width: 767.98px) {
   .login {
     &-container {
+      margin-top: 20px;
       max-width: 80vw;
-      height: 70vh;
-      padding: 10px 20px;
+      padding: 40px 20px;
+      max-height: 95vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
     &-primary {
       padding: 0px;
@@ -202,10 +203,8 @@
   .login {
     &-container {
       max-width: 85vw;
-      height: 80vh;
     }
     &-primary {
-      height: 100%;
       overflow-y: scroll;
     }
   }

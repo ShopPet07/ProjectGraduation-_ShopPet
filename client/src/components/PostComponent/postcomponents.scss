@@ -331,7 +331,7 @@
 @media screen and (max-width: 767.98px) {
   .post {
     &-container {
-      width: 150px;
+      flex: 1;
       height: 250px;
       &-information {
         display: none;

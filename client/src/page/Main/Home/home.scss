@@ -197,9 +197,12 @@
     &-container {
       flex-direction: column;
       gap: 20px;
+      padding: 0 20px;
     }
     &-image {
-      width: 100%;
+      img {
+        display: none;
+      }
     }
     &-posts {
       justify-content: space-evenly;

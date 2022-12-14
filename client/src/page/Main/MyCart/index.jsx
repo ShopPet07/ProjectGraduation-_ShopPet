@@ -1,25 +1,20 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./mycart.scss";
 import CartItem from "../../../components/CartItem";
-import { fetchCart } from "../../../api/cartApi";
 import { getCarts } from "../../../redux/selectors";
-
 const MyCart = () => {
-  const dispatch = useDispatch();
+  // let cartItem = React.useRef();
   const myCarts = useSelector(getCarts);
-
   const [cart, setCartItem] = React.useState({
     userId: 1,
     cartId: [],
   });
-
-  React.useEffect(() => {
-    dispatch(fetchCart());
-  }, []);
-
-  function addCart(id) {
+  // React.useEffect(() => {
+  //   console.log(cartItem.current);
+  // }, []);
+  function selectCart(id) {
     let addCartitem = [...cart.cartId];
     let checkCart = addCartitem.find((c) => c === id);
     if (checkCart) {
@@ -61,8 +56,10 @@ const MyCart = () => {
         {myCarts.map((item) => {
           return (
             <span
+              ref={CartItem}
+              key={item.productId}
               onClick={() => {
-                addCart(item.productId);
+                selectCart(item.productId);
               }}
             >
               <CartItem

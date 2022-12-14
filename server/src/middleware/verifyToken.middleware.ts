@@ -9,9 +9,8 @@ export const VerifyToken = async (
 ) => {
     let jwtPayload
     try {
-        const authHeaders = await (<string>req.headers.authorization)
-        // console.log('CHeck auth token:', authHeaders)
-        // console.log('Check req:', req!.headers)
+        const authHeaders = <string>req.headers.authorization
+
         let token = authHeaders && authHeaders.split(' ')[1]
         console.log('Check token middleware ', token)
         if (token) {
@@ -27,7 +26,6 @@ export const VerifyToken = async (
         res.status(401).send()
         return
     }
-
     //The token is valid for 1 hour
     //We want to send a new token on every request
     const { id, email, username } = jwtPayload
