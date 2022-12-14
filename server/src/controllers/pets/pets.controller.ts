@@ -42,11 +42,11 @@ export class PetsController {
         try {
             const petsRepository = AppDataSource.getRepository(Pets)
             const pets: Pets | null = await petsRepository.findOne({
-                where: { productId: petId },
+                where: { id: petId },
             })
             if (pets!.userId === userId) {
                 const updated: Pets | any = await petsRepository.update(
-                    pets!.productId,
+                    pets!.id,
                     {
                         ...data,
                     }
@@ -67,7 +67,7 @@ export class PetsController {
         try {
             const petsRepository = AppDataSource.getRepository(Pets)
             const pets = await petsRepository.findOne({
-                where: { productId: postId },
+                where: { id: postId },
             })
             if (pets!.userId === userId) {
                 await petsRepository.delete(postId)

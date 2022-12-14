@@ -11,16 +11,23 @@ export class ShoppingCartController {
         try {
             if (userId) {
                 const cartRepository = AppDataSource.getRepository(ShoppingCart)
-                const usersRepository = AppDataSource.getRepository(Users)
+                // const usersRepository = AppDataSource.getRepository(Users)
+                const petsRepository = AppDataSource.getRepository(Pets)
                 const cart = new ShoppingCart()
-                cart.productId = petId
+                // const user: Users = new Users()
+                const pet = new Pets()
+                const pets: Pets | any = await petsRepository.findOne({
+                    where: { id: petId },
+                })
+                pet.carts = [cart]
+                cart.pet = pets
                 cart.userId = userId
-                const pets: any = new Pets()
-                pets.productId = petId
-                cart.pet = [pets]
-                const saveCart = await cartRepository.save(cart)
-                // console.log('Check save cart:', saveCart)
-                // if (saveCart.productId !== petId) {
+                // user.cart = [cart]
+
+                await petsRepository.create(pet)
+                await cartRepository.save(cart)
+                // await usersRepository.create(user)
+                // if (saveCart.id !== petId) {
                 //     await cartRepository.save(saveCart)
                 //     return res.status(200).json(cart)
                 // } else {
@@ -44,26 +51,20 @@ export class ShoppingCartController {
             const cartRepository: ShoppingCart | any =
                 AppDataSource.getRepository(ShoppingCart)
             const usersRepository = AppDataSource.getRepository(Users)
-            const cartInUser = await cartRepository.find({
-                where: {
-                    userId: userId,
-                },
-            })
-            console.log('Check cart in user', cartInUser)
+            // const cartInUser = await cartRepository.find({
+            //     where: {
+            //         userId: userId,
+            //     },
+            // })
+            // console.log('Check cart in user', cartInUser)
             // const user = await usersRepository.find()
             const cart: ShoppingCart | any = await cartRepository.find({
-                where: { userId: cartInUser.userId },
-                relations: {
-                    pet: true,
-                },
+                where: { userId: userId },
+                relations: ['pet'],
             })
 
-            const petInCart = cart.map((item: any, index: number) => {
-                console.log(item.userId)
-                console.log({ userId })
-                if (cart.userId === userId) {
-                    return item.pet[0]
-                }
+            const petInCart = cart.map((item: any) => {
+                return item.pet
             })
             // console.log(petInCart)
 

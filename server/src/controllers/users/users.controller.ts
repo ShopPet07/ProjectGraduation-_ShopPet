@@ -46,7 +46,7 @@ export class UsersController {
                 where: { id: userId },
                 relations: ['pet'],
             })
-            const allPostInUser = user[0].pet
+            const allPostInUser = user[0].pets
             res.status(200).json(allPostInUser)
         } catch (error) {
             res.status(500).send(error)

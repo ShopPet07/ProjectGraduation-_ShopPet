@@ -3,7 +3,9 @@ import {
     Column,
     CreateDateColumn,
     Entity,
+    JoinColumn,
     ManyToOne,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm'
@@ -15,7 +17,7 @@ import { Users } from './users.entity'
 @Entity({ name: 'pets' })
 export class Pets {
     @PrimaryGeneratedColumn()
-    productId: number
+    id: number
 
     @Column()
     userId: number
@@ -60,11 +62,15 @@ export class Pets {
     @UpdateDateColumn()
     updatedAt: Date
 
-    @ManyToOne(() => Users, (user) => user.pet)
+    @ManyToOne(() => Users, (user) => user.pets, {
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT',
+    })
+    @JoinColumn([{ name: 'userId', referencedColumnName: 'id' }])
     user: Users
 
-    @ManyToOne(() => ShoppingCart, (cart) => cart.pet)
-    cart: ShoppingCart
+    @OneToMany(() => ShoppingCart, (carts) => carts.pet)
+    carts: ShoppingCart[]
 
     @ManyToOne(() => Order, (order) => order.pet)
     order: Order

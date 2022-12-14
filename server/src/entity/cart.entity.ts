@@ -1,8 +1,8 @@
 import {
     Column,
     Entity,
+    ManyToOne,
     OneToMany,
-    OneToOne,
     PrimaryColumn,
     PrimaryGeneratedColumn,
 } from 'typeorm'
@@ -12,17 +12,14 @@ import { Users } from './users.entity'
 @Entity({ name: 'cart' })
 export class ShoppingCart {
     @PrimaryGeneratedColumn()
-    cartId: number
-
-    @Column()
-    productId: number
+    id: number
 
     @Column()
     userId: number
 
-    @OneToMany(() => Pets, (pet) => pet.cart)
-    pet: Pets[]
+    @ManyToOne(() => Pets, (pet) => pet.carts)
+    pet: Pets
 
-    @OneToOne(() => Users, (user) => user.cart)
+    @ManyToOne(() => Users, (user) => user.cart)
     user: Users
 }

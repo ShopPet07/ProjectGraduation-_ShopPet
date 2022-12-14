@@ -5,7 +5,7 @@ export const AppDataSource = new DataSource({
     port: 3306,
     username: 'root',
     password: '',
-    database: 'shop-pet',
+    database: 'xopbet',
     synchronize: true,
     logging: true,
     entities: ['src/**/*.entity.ts'],

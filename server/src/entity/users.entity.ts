@@ -55,12 +55,14 @@ export class Users {
     @CreateDateColumn()
     createdAt: Date
 
-    @OneToMany(() => Pets, (pet) => pet.user)
-    pet: Pets[]
+    @OneToMany(() => Pets, (pets) => pets.user)
+    pets: Pets[]
 
-    @OneToOne(() => ShoppingCart, (cart) => cart.user, { nullable: true })
-    @JoinColumn({ name: 'cartCartId' }) // specify inverse side as a second parameter
-    cart: ShoppingCart | null
+    @OneToMany(() => ShoppingCart, (cart) => cart.user, {
+        nullable: true,
+        cascade: true,
+    })
+    cart: ShoppingCart[]
 
     checkIfUnencryptedPasswordIsValid(unencryptedPassword: string) {
         return bcrypt.compareSync(unencryptedPassword, this.password)
