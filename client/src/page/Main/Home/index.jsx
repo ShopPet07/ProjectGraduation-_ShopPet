@@ -17,13 +17,16 @@ import {
   getCarts,
 } from "../../../redux/selectors";
 import { fetchCart } from "../../../api/cartApi";
+import { getMe } from "../../../api/userApi";
 const Home = () => {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = React.useState(12);
   React.useEffect(() => {
-    if (localStorage.getItem("userLogin")) {
+    const login = localStorage.getItem("userLogin");
+    if (login) {
       dispatch(fetchCart());
+      // dispatch(getMe());
     }
   }, []);
 
@@ -72,8 +75,8 @@ const Home = () => {
             posts.slice(0, visible).map((post) => {
               return (
                 <PostComponent
-                  key={post.productId}
-                  id={post.productId}
+                  key={post.id}
+                  id={post.id}
                   category={post.categoryId === 0 ? "Dogs" : "Cats"}
                   title={post.title}
                   desc={post.description}

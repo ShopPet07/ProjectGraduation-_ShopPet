@@ -14,6 +14,32 @@
     display: flex;
     align-items: center;
   }
+  &-user {
+    font-size: 16px;
+    color: $white;
+    font-weight: 300;
+    width: 40px;
+    height: 40px;
+    border-radius: 100rem;
+    border: 1px solid $text-color;
+    position: relative;
+    cursor: pointer;
+    span {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -110%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+    }
+    &:hover {
+      span {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
   &-search {
     display: flex;
     justify-content: space-between;

@@ -9,7 +9,7 @@ import google from "../../assets/icons/Google.svg";
 import ic_mail from "../../assets/icons/icon-mail.svg";
 import InputComponents from "../../components/Input/InputComponents";
 import "./register.scss";
-import { API } from "../../api";
+import { URL } from "../../api";
 const Register = () => {
   const navigator = useNavigate();
   const [firstName, setFirstName] = useState("");
@@ -88,7 +88,7 @@ const Register = () => {
     ) {
       setError(false);
       axios
-        .post(`${API}/api/auth/register`, {
+        .post(`${URL}/api/auth/register`, {
           firstName: firstName,
           lastName: lastName,
           email: email,

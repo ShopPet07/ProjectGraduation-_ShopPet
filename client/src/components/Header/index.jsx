@@ -13,9 +13,6 @@ import { ReactComponent as IcMessage } from "../../assets/icons/icon-message.svg
 import "./header.scss";
 export default function Header() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [login, setLogin] = React.useState(false);
   const [textChange, setTextChange] = React.useState("");
   const [category, setCategory] = React.useState(0);
 
@@ -92,6 +89,11 @@ export default function Header() {
               <IcNotification />
             </span>
           </>
+        )}
+        {localStorage.getItem("userLogin") && (
+          <div className="header-user">
+            <span>huypham</span>
+          </div>
         )}
       </div>
     </header>

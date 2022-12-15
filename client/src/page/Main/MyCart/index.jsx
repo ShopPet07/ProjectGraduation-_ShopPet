@@ -56,10 +56,9 @@ const MyCart = () => {
         {myCarts.map((item) => {
           return (
             <span
-              ref={CartItem}
-              key={item.productId}
+              key={item.id}
               onClick={() => {
-                selectCart(item.productId);
+                selectCart(item.id);
               }}
             >
               <CartItem
