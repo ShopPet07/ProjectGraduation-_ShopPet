@@ -17,6 +17,9 @@ export class ShoppingCart {
     @Column()
     userId: number
 
+    @Column()
+    productId: number
+
     @ManyToOne(() => Pets, (pet) => pet.carts)
     pet: Pets
 

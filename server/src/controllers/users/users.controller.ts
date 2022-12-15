@@ -8,11 +8,8 @@ export class UsersController {
         req: Request,
         res: Response
     ): Promise<Users | any> => {
-        // const paramsId: number = Number(req.params.id)
-        // console.log('User Id:', paramsId)
-        const userId = Number(res.locals.jwtPayload.Id)
-        // const data = res.locals.jwtPayload
-        // const userId: number = await UsersController.GetCurrentUserId(res)
+        const userId = Number(res.locals.jwtPayload.id)
+        console.log(userId)
         const userRepository = AppDataSource.getRepository(Users)
         let user: Users | any = await userRepository.findOne({
             where: { id: userId },

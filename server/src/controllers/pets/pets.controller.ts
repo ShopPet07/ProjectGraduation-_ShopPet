@@ -8,17 +8,13 @@ export class PetsController {
         res: Response
     ): Promise<Pets | any> => {
         const data = req.body
-        const image = req.file
         const userId = Number(res.locals.jwtPayload.id)
 
         try {
-            // data.image = 'http://127.0.0.1:3000/images/' + req!.file!.filename
-
             if (data?.price >= 0 && data?.number >= 0) {
                 const petsRepository = AppDataSource.getRepository(Pets)
                 const newPet = await petsRepository.save({
                     ...data,
-                    image,
                     userId: userId,
                 })
                 // console.log('Check pet:', newPet)

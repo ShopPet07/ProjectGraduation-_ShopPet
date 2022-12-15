@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import { AppDataSource } from '../../utils/data-source'
 import { Pets } from '../../entity/pets.entity'
-import { Users } from '../../entity/users.entity'
 import { ShoppingCart } from '../../entity/cart.entity'
 
 export class ShoppingCartController {
@@ -19,10 +18,23 @@ export class ShoppingCartController {
                 })
                 pet.carts = [cart]
                 cart.pet = pets
+                cart.productId = petId
                 cart.userId = userId
-                await petsRepository.create(pet)
-                await cartRepository.save(cart)
-                return res.status(200).json(cart)
+                const checkCart = await cartRepository.findOne({
+                    where: { userId: userId },
+                })
+                console.log(checkCart)
+
+                if (
+                    checkCart!.userId === userId &&
+                    checkCart!.productId === petId
+                ) {
+                    res.send('Product already exists')
+                } else {
+                    await petsRepository.create(pet)
+                    await cartRepository.save(cart)
+                    return res.status(200).json(cart)
+                }
             }
         } catch (error) {
             res.status(403).send(error)
@@ -39,7 +51,6 @@ export class ShoppingCartController {
         try {
             const cartRepository: ShoppingCart | any =
                 AppDataSource.getRepository(ShoppingCart)
-            const usersRepository = AppDataSource.getRepository(Users)
             const cart: ShoppingCart | any = await cartRepository.find({
                 where: { userId: userId },
                 relations: ['pet'],
@@ -58,7 +69,7 @@ export class ShoppingCartController {
 
     static DeletePostFromCart = async (req: Request, res: Response) => {
         const userId: number = Number(res.locals.jwtPayload.id)
-        const petId = req.body.cartId
+        const petId: number = req.body.cartId
         try {
         } catch (error) {
             res.status(403).send(error)
