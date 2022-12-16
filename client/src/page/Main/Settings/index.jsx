@@ -47,8 +47,7 @@ const Settings = () => {
   };
 
   const handleButtonUpdate = () => {
-    const id = localStorage.getItem("userLogin");
-    API.patch(`api/users/update/${id}`, {
+    API.patch("api/users/update", {
       firstName: firstName,
       lastName: lastName,
       numberPhone: numberPhone,
@@ -57,6 +56,7 @@ const Settings = () => {
     })
       .then((response) => {
         console.log(response.status);
+        toast.success("Successfully");
       })
       .catch((error) => {
         toast.error(error.message);

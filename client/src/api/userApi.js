@@ -4,7 +4,7 @@ import { API } from "./index";
 
 export const getMe = createAsyncThunk("user/getMe", async () => {
   try {
-    const res = API.get(`/api/users/getme`);
+    const res = API.get(`/api/users/getMe`);
     return res.then(({ data }) => {
       return data;
     });
