@@ -41,3 +41,7 @@
 .information-component.disable {
   border: 1px solid $green-color;
 }
+
+.information-component.disable.error {
+  border: 1px solid $error-color;
+}

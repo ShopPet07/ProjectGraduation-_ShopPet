@@ -12,6 +12,7 @@ import "./register.scss";
 import { URL } from "../../api";
 const Register = () => {
   const navigator = useNavigate();
+  const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +28,13 @@ const Register = () => {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
+  const getUsername = (e) => {
+    setUserName(e.target.value);
+    setError(false);
+    setCheckEmail(true);
+    setCheckConfirm(true);
+    setCheckName(true);
+  };
   const getFirstName = (e) => {
     setFirstName(e.target.value);
     setError(false);
@@ -89,6 +97,7 @@ const Register = () => {
       setError(false);
       axios
         .post(`${URL}/api/auth/register`, {
+          username: userName,
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -160,6 +169,13 @@ const Register = () => {
             Sign in with google
           </button>
           <span className="register-email">Or sign up with email</span>
+          <InputComponents
+            error={checkName ? false : true}
+            value={userName}
+            placeholder={"Jva.cript"}
+            onChange={getUsername}
+            label={"Username"}
+          />
           <div className="register-input-container">
             <InputComponents
               error={checkName ? false : true}

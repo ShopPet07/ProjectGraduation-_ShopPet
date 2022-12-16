@@ -4,13 +4,11 @@ import { API } from "./index";
 
 export const getMe = createAsyncThunk("user/getMe", async () => {
   try {
-    const id = localStorage.getItem("userLogin");
-    const res = API.get(`/api/users/getme/${id}`);
+    const res = API.get(`/api/users/getme`);
     return res.then(({ data }) => {
-      //   return data;
-      console.log(data);
+      return data;
     });
   } catch (error) {
-    console.log(error);
+    console.log({ error });
   }
 });

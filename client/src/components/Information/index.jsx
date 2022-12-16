@@ -11,6 +11,7 @@ const Information = ({
   showInfo,
   onChange,
   value,
+  error,
 }) => {
   const [eye, setEye] = useState(false);
   const handleShowPassword = () => {
@@ -21,7 +22,11 @@ const Information = ({
       <label className="information-label">{label}</label>
       <div
         className={
-          dsb ? "information-component" : "information-component disable"
+          dsb
+            ? "information-component"
+            : error
+            ? "information-component disable error"
+            : "information-component disable"
         }
       >
         <input

@@ -28,10 +28,9 @@ const PostComponent = ({
     try {
       await API.post(`/api/cart/addToCart/${id}`)
         .then(({ data }) => {
-          console.log(data);
           dispatch(
             cartSlice.actions.addCart({
-              productId: id,
+              id: id,
               image: image,
               title: title,
               description: desc,

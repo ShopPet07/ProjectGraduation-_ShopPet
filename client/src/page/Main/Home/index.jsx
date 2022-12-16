@@ -14,7 +14,6 @@ import {
   postLoading,
   textChangeSelector,
   categoryChangeSelector,
-  getCarts,
 } from "../../../redux/selectors";
 import { fetchCart } from "../../../api/cartApi";
 import { getMe } from "../../../api/userApi";
@@ -26,7 +25,7 @@ const Home = () => {
     const login = localStorage.getItem("userLogin");
     if (login) {
       dispatch(fetchCart());
-      // dispatch(getMe());
+      dispatch(getMe());
     }
   }, []);
 

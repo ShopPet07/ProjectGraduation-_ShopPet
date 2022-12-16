@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API } from "../../../api";
+import { getMe } from "../../../api/userApi";
 const initialState = {
   loading: "idle",
   data: {},
@@ -11,16 +11,12 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUser.pending, (state, action) => {})
-      .addCase(fetchUser.fulfilled, (state, action) => {
+      .addCase(getMe.pending, (state, action) => {
+        state.loading = "loading";
+      })
+      .addCase(getMe.fulfilled, (state, action) => {
+        state.loading = "idle";
         state.data = action.payload;
       });
   },
-});
-
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  const idUser = await localStorage.getItem("userLogin");
-  const res = await fetch(`${API}/api/users/getMe/${idUser}`);
-  const data = res.json();
-  return data;
 });

@@ -1,6 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { filtersSlice } from "../../page/Main/filterSlide";
 import { ReactComponent as IcSearch } from "../../assets/icons/icon-search.svg";
@@ -9,9 +8,12 @@ import { ReactComponent as IcCategoryDog } from "../../assets/icons/icon-categor
 import { ReactComponent as IcCategoryCat } from "../../assets/icons/icon-categoryCat.svg";
 import { ReactComponent as IcNotification } from "../../assets/icons/icon-notification.svg";
 import { ReactComponent as IcMessage } from "../../assets/icons/icon-message.svg";
+import { userSelector } from "../../redux/selectors";
 
 import "./header.scss";
 export default function Header() {
+  const username = useSelector(userSelector);
+
   const dispatch = useDispatch();
   const [textChange, setTextChange] = React.useState("");
   const [category, setCategory] = React.useState(0);
@@ -92,7 +94,13 @@ export default function Header() {
         )}
         {localStorage.getItem("userLogin") && (
           <div className="header-user">
-            <span>huypham</span>
+            <img
+              src={
+                "https://media.npr.org/assets/img/2022/11/08/ap22312071681283-0d9c328f69a7c7f15320e8750d6ea447532dff66-s1100-c50.jpg"
+              }
+              alt=""
+            />
+            <span>{username.username}</span>
           </div>
         )}
       </div>

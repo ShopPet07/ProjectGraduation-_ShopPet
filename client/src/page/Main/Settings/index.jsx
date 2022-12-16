@@ -1,11 +1,67 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 
+import { API } from "../../../api";
+import { userSelector } from "../../../redux/selectors";
 import Information from "../../../components/Information/";
 import ic_pencil from "../../../assets/icons/icon-pencil.svg";
 
 const Settings = () => {
+  const userData = useSelector(userSelector);
+  const [error, setError] = React.useState(false);
   const [updateButton, setUpdateButton] = React.useState(false);
+  const [firstName, setFirstName] = React.useState(userData.firstName);
+  const [lastName, setLastName] = React.useState(userData.lastName);
+  const [numberPhone, setNumberPhone] = React.useState(userData.numberPhone);
+  const [address, setAddress] = React.useState(userData.address);
+  const [sex, setSex] = React.useState(userData.sex);
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  const getFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const getLastName = (e) => {
+    setLastName(e.target.value);
+  };
+  const getNumberPhone = (e) => {
+    setNumberPhone(e.target.value);
+  };
+  const getAddress = (e) => {
+    setAddress(e.target.value);
+  };
+  const getSex = (e) => {
+    setSex(e.target.value);
+  };
+  const getPassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const getConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+    if (e.target.value === password) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+  const handleButtonUpdate = () => {
+    const id = localStorage.getItem("userLogin");
+    API.patch(`api/users/update/${id}`, {
+      firstName: firstName,
+      lastName: lastName,
+      numberPhone: numberPhone,
+      address: address,
+      sex: sex,
+    })
+      .then((response) => {
+        console.log(response.status);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   return (
     <>
@@ -45,7 +101,7 @@ const Settings = () => {
           <div className="personal">
             <h6>Personal Information</h6>
             <p>
-              Acount users can assess and review risks, questionnaries, data
+              Account users can assess and review risks, questionnaries, data
               leaks and identify breaches
             </p>
             <div className="user-primary-personal">
@@ -53,29 +109,39 @@ const Settings = () => {
                 <Information
                   dsb={updateButton ? false : true}
                   label={"First name"}
-                  showInfo="First name"
+                  showInfo={userData.firstName}
+                  value={firstName}
+                  onChange={getFirstName}
                 />
                 <span></span>
                 <Information
                   dsb={updateButton ? false : true}
                   label={"Last name"}
-                  showInfo="Last name"
+                  showInfo={userData.lastName}
+                  value={lastName}
+                  onChange={getLastName}
                 />
               </div>
               <Information
                 dsb={updateButton ? false : true}
                 label={"Number phone"}
-                showInfo="Last name"
+                showInfo={userData.numberPhone}
+                value={numberPhone}
+                onChange={getNumberPhone}
               />
               <Information
                 dsb={updateButton ? false : true}
                 label={"Address"}
-                showInfo="68 - KG"
+                showInfo={userData.address}
+                value={address}
+                onChange={getAddress}
               />
               <Information
                 dsb={updateButton ? false : true}
                 label={"Sex"}
-                showInfo="Female"
+                showInfo={userData.sex}
+                value={sex}
+                onChange={getSex}
               />
             </div>
           </div>
@@ -88,26 +154,34 @@ const Settings = () => {
                   leaks and identify breaches
                 </p>
                 <Information
-                  dsb={updateButton ? false : true}
+                  dsb={true}
                   label={"Email"}
-                  showInfo="Last name"
+                  showInfo={userData.email}
                 />
                 <Information
                   dsb={updateButton ? false : true}
                   label={"Password"}
-                  showInfo="Last name"
+                  showInfo=""
+                  password
+                  onChange={getPassword}
                 />
                 <Information
+                  error={error ? true : false}
                   dsb={updateButton ? false : true}
-                  label={"Cofirm Password"}
-                  showInfo="Last name"
+                  label={"Confirm Password"}
+                  showInfo=""
+                  password
+                  onChange={getConfirmPassword}
                 />
               </div>
             </div>
           </div>
           {updateButton ? (
             <button
-              onClick={() => setUpdateButton(!updateButton)}
+              onClick={() => {
+                setUpdateButton(!updateButton);
+                handleButtonUpdate();
+              }}
               className="update-information"
             >
               Save
