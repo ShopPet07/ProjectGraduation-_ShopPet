@@ -13,8 +13,15 @@ export const cartSlice = createSlice({
       state.listData.push(action.payload);
     },
     deleteItems: (state, action) => {
-      state.listData.filter((item, index) => {
-        return item.productId !== action.payload[index];
+      const cloneId = [];
+      state.listData.forEach((element) => {
+        cloneId.push(element.id);
+      });
+      cloneId.forEach((element, index) => {
+        const value = action.payload.indexOf(element);
+        if (value > -1) {
+          state.listData.splice(index, 1);
+        }
       });
     },
     buyNow: (state, action) => {},

@@ -39,6 +39,7 @@ const PostComponent = ({
           toast.success("Successfully added to cart");
         })
         .catch(function (error) {
+          toast.error("Product already added!!!");
           console.log({ error });
         });
     } catch (error) {

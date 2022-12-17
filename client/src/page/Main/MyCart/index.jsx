@@ -1,47 +1,72 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./mycart.scss";
+import { API } from "../../../api";
+import { cartSlice } from "../MyCart/cartSlice";
 import CartItem from "../../../components/CartItem";
 import { getCarts } from "../../../redux/selectors";
 const MyCart = () => {
-  // let cartItem = React.useRef();
+  const dispatch = useDispatch();
   const myCarts = useSelector(getCarts);
-  const [cart, setCartItem] = React.useState({
-    userId: 1,
+  const [cart, setCart] = React.useState({
+    userId: localStorage.getItem("userLogin"),
     cartId: [],
   });
-  // React.useEffect(() => {
-  //   console.log(cartItem.current);
-  // }, []);
+
   function selectCart(id) {
-    let addCartitem = [...cart.cartId];
-    let checkCart = addCartitem.find((c) => c === id);
+    let addCartItem = [...cart.cartId];
+    let checkCart = addCartItem.find((c) => c === id);
     if (checkCart) {
-      addCartitem.find((item, index) => {
+      addCartItem.find((item, index) => {
         if (item === id) {
-          addCartitem.splice(index, 1);
+          addCartItem.splice(index, 1);
         }
       });
-      setCartItem((prev) => {
+      setCart((prev) => {
         return {
           ...prev,
-          cartId: addCartitem,
+          cartId: addCartItem,
         };
       });
-      return addCartitem;
+      return addCartItem;
     } else {
-      addCartitem.push(id);
-      setCartItem((prev) => {
+      addCartItem.push(id);
+      setCart((prev) => {
         return {
           ...prev,
-          cartId: addCartitem,
+          cartId: addCartItem,
         };
       });
     }
   }
+  const handleDelete = () => {
+    console.log(cart);
+    const id = localStorage.getItem("userLogin");
+    if (cart.cartId) {
+      API.delete(`api/cart/delete`, {
+        data: cart,
+      })
+        .then(() => {
+          toast.success("Successfully");
+          dispatch(cartSlice.actions.deleteItems(cart.cartId));
+          setCart({
+            userId: localStorage.getItem("userLogin"),
+            cartId: [],
+          });
+        })
+        .catch((error) => {
+          toast.error("Error!!!");
+          console.log(error);
+        });
+    } else {
+      toast.error("Please select!!!");
+    }
+  };
   return (
     <div className="mycart">
+      <ToastContainer></ToastContainer>
       <div className="mycart-top">
         <div className="mycart-top-text">
           <h6 className="mycart-top-heading ">My Cart</h6>
@@ -75,7 +100,9 @@ const MyCart = () => {
         })}
       </div>
       <div className="mycart-action">
-        <button className="mycart-btn mycart-btn-delete">Delete</button>
+        <button onClick={handleDelete} className="mycart-btn mycart-btn-delete">
+          Delete
+        </button>
         <button className="mycart-btn mycart-btn-buy">Buy Now</button>
       </div>
     </div>

@@ -13,6 +13,7 @@ const Settings = () => {
   const [updateButton, setUpdateButton] = React.useState(false);
   const [firstName, setFirstName] = React.useState(userData.firstName);
   const [lastName, setLastName] = React.useState(userData.lastName);
+  const [username, setUsername] = React.useState(userData.username);
   const [numberPhone, setNumberPhone] = React.useState(userData.numberPhone);
   const [address, setAddress] = React.useState(userData.address);
   const [sex, setSex] = React.useState(userData.sex);
@@ -37,6 +38,9 @@ const Settings = () => {
   const getPassword = (e) => {
     setPassword(e.target.value);
   };
+  const getUsername = (e) => {
+    setUsername(e.target.value);
+  };
   const getConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
     if (e.target.value === password) {
@@ -46,13 +50,26 @@ const Settings = () => {
     }
   };
 
-  const handleButtonUpdate = () => {
+  const handleButtonUpdatePersonal = () => {
     API.patch("api/users/update", {
+      username: username,
       firstName: firstName,
       lastName: lastName,
       numberPhone: numberPhone,
       address: address,
       sex: sex,
+    })
+      .then((response) => {
+        console.log(response.status);
+        toast.success("Successfully");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+  const handleButtonUpdatePassword = () => {
+    API.patch("api/users/update", {
+      password: password,
     })
       .then((response) => {
         console.log(response.status);
@@ -105,6 +122,13 @@ const Settings = () => {
               leaks and identify breaches
             </p>
             <div className="user-primary-personal">
+              <Information
+                dsb={updateButton ? false : true}
+                label={"Username"}
+                showInfo={userData.username}
+                value={username}
+                onChange={getUsername}
+              />
               <div className="row">
                 <Information
                   dsb={updateButton ? false : true}
@@ -145,6 +169,21 @@ const Settings = () => {
               />
             </div>
           </div>
+          {updateButton ? (
+            <button
+              onClick={() => {
+                setUpdateButton(!updateButton);
+                handleButtonUpdatePersonal();
+              }}
+              className="update-information"
+            >
+              Update Personal
+            </button>
+          ) : (
+            <button disabled className="update-information disable">
+              Update Personal
+            </button>
+          )}
           <div className="credentials">
             <div className="scroll">
               <div className="user-primary-credentials">
@@ -153,6 +192,7 @@ const Settings = () => {
                   Acount users can assess and review risks, questionnaries, data
                   leaks and identify breaches
                 </p>
+
                 <Information
                   dsb={true}
                   label={"Email"}
@@ -180,15 +220,15 @@ const Settings = () => {
             <button
               onClick={() => {
                 setUpdateButton(!updateButton);
-                handleButtonUpdate();
+                handleButtonUpdatePassword();
               }}
               className="update-information"
             >
-              Save
+              Update Password
             </button>
           ) : (
             <button disabled className="update-information disable">
-              Save
+              Update Password
             </button>
           )}
         </div>

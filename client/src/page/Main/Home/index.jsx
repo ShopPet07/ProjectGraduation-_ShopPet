@@ -76,7 +76,7 @@ const Home = () => {
                 <PostComponent
                   key={post.id}
                   id={post.id}
-                  category={post.categoryId === 0 ? "Dogs" : "Cats"}
+                  category={post.categoryId === 0 ? "Cats" : "Dogs"}
                   title={post.title}
                   desc={post.description}
                   price={post.price}
