@@ -10,20 +10,17 @@ export const VerifyToken = async (
     let jwtPayload
     try {
         const authHeaders = <string>req.headers.authorization
-
+        // console.log(authHeaders)
         let token = authHeaders && authHeaders.split(' ')[1]
-        console.log('Check token middleware ', token)
+        // console.log('Check token middleware ', token)
         if (token) {
             jwtPayload = <any>jwt.verify(token, config.get<string>('JWT_KEY'))
             res.locals.jwtPayload = jwtPayload
-        } else {
-            jwtPayload = jwt.verify(
-                req.cookies['access_token'],
-                config.get<string>('JWT_KEY')
-            )
         }
+        // console.log(jwtPayload)
     } catch (error) {
-        res.status(401).send()
+        res.status(401).send(error)
+        console.log(error)
         return
     }
     //The token is valid for 1 hour

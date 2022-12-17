@@ -14,7 +14,7 @@ export class UsersController {
         let user: Users | any = await userRepository.findOne({
             where: { id: userId },
         })
-        if (!user) res.status(404).json('User not found')
+
         try {
             if (userId === user!.id) {
                 return res.status(200).json(user)
@@ -65,21 +65,30 @@ export class UsersController {
     }
 
     static UpdateUser = async (req: Request, res: Response): Promise<any> => {
-        const userId = Number(req.params.id)
+        const userId = Number(res.locals.jwtPayload.id)
         const data: Users = req.body
         try {
             const usersRepository = AppDataSource.getRepository(Users)
             const user = await usersRepository.findOne({
                 where: { id: userId },
             })
-            const hashed = await bcrypt.hash(data.password, 8)
-            data.password = hashed
+            if (data.password) {
+                const hashed = await bcrypt.hash(data.password, 8)
+                data.password = hashed
+                const updated = await usersRepository.update(user!.id, {
+                    ...data,
+                })
+                if (updated) {
+                    return res.status(200).json('Update user successfully')
+                }
+            }
             const updated = await usersRepository.update(user!.id, { ...data })
             if (updated) {
                 return res.status(200).json('Update user successfully')
             }
         } catch (error) {
             res.status(404).send(error)
+            console.log(error)
             return
         }
     }
