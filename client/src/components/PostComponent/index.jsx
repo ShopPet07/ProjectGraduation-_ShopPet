@@ -34,6 +34,7 @@ const PostComponent = ({
               image: image,
               title: title,
               description: desc,
+              price: price,
             })
           );
           toast.success("Successfully added to cart");
@@ -54,8 +55,9 @@ const PostComponent = ({
         <span className="post-container-image">
           <img
             src={
-              image ??
-              "https://media.istockphoto.com/id/1210341751/photo/happy-mixed-breed-dog-posing-with-a-kitten-on-his-head.jpg?s=612x612&w=0&k=20&c=W-XLvsyFNgl5tjAJ75a8vWdFLSeMOzHrr4j9GEjw3Zo="
+              image === ""
+                ? "https://media.istockphoto.com/id/1210341751/photo/happy-mixed-breed-dog-posing-with-a-kitten-on-his-head.jpg?s=612x612&w=0&k=20&c=W-XLvsyFNgl5tjAJ75a8vWdFLSeMOzHrr4j9GEjw3Zo="
+                : image
             }
             alt=""
           />

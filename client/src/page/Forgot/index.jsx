@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import AnimatedCursor from "react-animated-cursor";
 
-import InputComponents from "../../components/Input/InputComponents";
+import InputComponents from "../../components/Input";
 import Example from "../../components/Loading";
 import { API } from "../../api";
 import "./forgot.scss";

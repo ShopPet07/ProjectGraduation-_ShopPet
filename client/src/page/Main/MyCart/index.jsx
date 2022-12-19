@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 
 import "./mycart.scss";
 import { API } from "../../../api";
-import { cartSlice } from "../MyCart/cartSlice";
+import { fetchCart } from "../../../api/cartApi";
 import CartItem from "../../../components/CartItem";
 import { getCarts } from "../../../redux/selectors";
 const MyCart = () => {
@@ -50,11 +50,7 @@ const MyCart = () => {
       })
         .then(() => {
           toast.success("Successfully");
-          dispatch(cartSlice.actions.deleteItems(cart.cartId));
-          setCart({
-            userId: localStorage.getItem("userLogin"),
-            cartId: [],
-          });
+          dispatch(fetchCart());
         })
         .catch((error) => {
           toast.error("Error!!!");
@@ -64,6 +60,7 @@ const MyCart = () => {
       toast.error("Please select!!!");
     }
   };
+
   return (
     <div className="mycart">
       <ToastContainer></ToastContainer>
@@ -76,28 +73,43 @@ const MyCart = () => {
           </p>
         </div>
       </div>
-      <span className="mycart-selectAll">Select All</span>
+      {myCarts.length ? (
+        <span className="mycart-selectAll">Select All</span>
+      ) : (
+        ""
+      )}
       <div className="mycart-list">
-        {myCarts.map((item) => {
-          return (
-            <span
-              key={item.id}
-              onClick={() => {
-                selectCart(item.id);
-              }}
-            >
-              <CartItem
-                image={
-                  "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
-                }
-                price={item.price || "00.0"}
-                title={item.title || "My Name is Dogs"}
-                user={"TrongPhucs"}
-                status={true}
-              />
-            </span>
-          );
-        })}
+        {myCarts.length ? (
+          myCarts.map((item) => {
+            return (
+              <span
+                key={item.id}
+                onClick={() => {
+                  selectCart(item.id);
+                }}
+              >
+                <CartItem
+                  image={
+                    "https://media.istockphoto.com/id/1328887289/photo/happy-dog.jpg?b=1&s=170667a&w=0&k=20&c=mp3L73BC14QUuk1EQaYtZ1-wwJRW9HAffcsGZNyMy_o="
+                  }
+                  price={item.price || "00.0"}
+                  title={item.title || "My Name is Dogs"}
+                  user={"TrongPhucs"}
+                  status={true}
+                />
+              </span>
+            );
+          })
+        ) : (
+          <div className="user-empty">
+            <h2>List is empty</h2>
+            <p>
+              Go back to your feed and bookmark posts you’d like to keep or read
+              later. Each post you bookmark will be stored here.
+            </p>
+            <a href="/">Back to feed</a>
+          </div>
+        )}
       </div>
       <div className="mycart-action">
         <button onClick={handleDelete} className="mycart-btn mycart-btn-delete">

@@ -7,7 +7,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 import google from "../../assets/icons/Google.svg";
 import ic_mail from "../../assets/icons/icon-mail.svg";
-import InputComponents from "../../components/Input/InputComponents";
+import InputComponents from "../../components/Input";
 import "./register.scss";
 import { URL } from "../../api";
 const Register = () => {

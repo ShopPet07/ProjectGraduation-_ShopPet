@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import AnimatedCursor from "react-animated-cursor";
-import InputComponents from "../../components/Input/InputComponents";
+import InputComponents from "../../components/Input";
 
 import style from "../../global/style.module.scss";
 import ic_mail from "../../assets/icons/icon-mail.svg";

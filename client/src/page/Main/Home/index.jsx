@@ -75,6 +75,7 @@ const Home = () => {
               return (
                 <PostComponent
                   key={post.id}
+                  image={post.image}
                   id={post.id}
                   category={post.categoryId === 0 ? "Cats" : "Dogs"}
                   title={post.title}

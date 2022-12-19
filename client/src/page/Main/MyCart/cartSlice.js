@@ -12,18 +12,6 @@ export const cartSlice = createSlice({
     addCart: (state, action) => {
       state.listData.push(action.payload);
     },
-    deleteItems: (state, action) => {
-      // const cloneId = [];
-      // state.listData.forEach((element) => {
-      //   cloneId.push(element.id);
-      // });
-      // cloneId.forEach((element, index) => {
-      //   const value = action.payload.indexOf(element);
-      //   if (value > -1) {
-      //     state.listData.splice(index, 1);
-      //   }
-      // });
-    },
     buyNow: (state, action) => {},
   },
   extraReducers: (builder) => {
