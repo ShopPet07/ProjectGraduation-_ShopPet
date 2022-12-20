@@ -7,7 +7,7 @@ import AnimatedCursor from "react-animated-cursor";
 
 import InputComponents from "../../components/Input";
 import Example from "../../components/Loading";
-import { API } from "../../api";
+import { URL } from "../../api";
 import "./forgot.scss";
 import ic_mail from "../../assets/icons/icon-mail.svg";
 const Forgot = () => {
@@ -32,15 +32,15 @@ const Forgot = () => {
     setLoading(true);
     if (email !== "") {
       axios
-        .post(`${API}/api/auth/forgot`, {
+        .post(`${URL}/api/auth/forgot`, {
           email: email.toString(),
         })
-        .then(async (response) => {
-          await toast.success("Password sent to email successfully <3", {
+        .then(() => {
+          toast.success("Password sent to email successfully <3", {
             position: toast.POSITION.TOP_RIGHT,
           });
           setLoading(false);
-          await setTimeout(() => {
+          setTimeout(() => {
             navigate("/login");
           }, 5000);
         })

@@ -14,8 +14,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
+  // const [token, setToken] = useState("");
+  // const [expire, setExpire] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -51,7 +51,12 @@ const Login = () => {
           navigate("/");
         })
         .catch((error) => {
-          toast.error(error.message);
+          console.log(error.response.status);
+          if (error.response.status === 404) {
+            toast.error("Not found account!!!");
+          } else {
+            toast.error("Please check your password again!!!");
+          }
         });
     } else {
       setError(true);

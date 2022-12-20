@@ -14,43 +14,24 @@ const User = () => {
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [baseImage, setBaseImage] = useState("");
-  const [imageAsFile, setImageAsFile] = useState("");
+  const [imageAsFile, setImageAsFile] = useState(null);
   const handleGetImage = async (e) => {
-    const image = await e.target.files[0];
-    console.log(image.size);
-    if (image.size > 282830) {
-      toast.error("File too large");
-      setImageAsFile("");
-    } else {
-    setImageAsFile(URL.createObjectURL(image));
-    const base64 = await convertBase64(image);
-    await setBaseImage(base64);
-    }
+    await setImageAsFile(URL.createObjectURL(e.target.files[0]));
+    await setBaseImage(e.target.files[0]);
   };
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-  const handleUploadPost = () => {
-    console.log(baseImage);
-    API.post("api/pets", {
-      image: baseImage,
-      title: "Test upload",
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis corporis est officia, repellendus suscipit quaerat itaque nisi tempore voluptas sint perferendis neque ut molestias. Laborum, suscipit repellat. Id, aperiam ducimus!",
-      categoryId: 0,
-      price: 1410,
-    })
+  const handleUploadPost = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    await formData.append("image", baseImage);
+    await formData.append("title", "Test upload");
+    await formData.append(
+      "description",
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis corporis est officia, repellendus suscipit quaerat itaque nisi tempore voluptas sint perferendis neque ut molestias. Laborum, suscipit repellat. Id, aperiam ducimus!"
+    );
+    await formData.append("categoryId", 0);
+    await formData.append("price", 1410);
+    API.post("api/pets", formData)
       .then(() => {
         dispatch(fetchPosts());
         toast.success("Successfully");
@@ -86,28 +67,33 @@ const User = () => {
         <a href="/">Back to feed</a>
       </div>
       {showForm && (
-        <div className="user-form">
-          <span onClick={() => setShowForm(false)} className="user-form-close">
-            <img src={ic_close} alt="" />
-          </span>
-          <h2>POST</h2>
-          <input
-            onChange={handleGetImage}
-            accept=".jpg, .jpeg, .png"
-            type="file"
-            id="image"
-          />
-          <div className="user-form-image">
-            <img
-              id={imageAsFile ? "true" : "false"}
-              src={imageAsFile || ic_image}
-              alt=""
+        <form onSubmit={handleUploadPost}>
+          <div className="user-form">
+            <span
+              onClick={() => setShowForm(false)}
+              className="user-form-close"
+            >
+              <img src={ic_close} alt="" />
+            </span>
+            <h2>POST</h2>
+            <input
+              onChange={handleGetImage}
+              accept=".jpg, .jpeg, .png"
+              type="file"
+              id="image"
             />
+            <div className="user-form-image">
+              <img
+                id={imageAsFile ? "true" : "false"}
+                src={imageAsFile || ic_image}
+                alt=""
+              />
+            </div>
+            <label htmlFor="image">Choose a photo</label>
+            {/* <InputUpload label={"Title"} /> */}
+            <button type="submit">Upload</button>
           </div>
-          <label htmlFor="image">Choose a photo</label>
-          {/* <InputUpload label={"Title"} /> */}
-          <button onClick={handleUploadPost}>Upload</button>
-        </div>
+        </form>
       )}
     </div>
   );

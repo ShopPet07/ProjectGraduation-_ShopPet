@@ -114,13 +114,13 @@ export class AuthController {
                         Math.floor(Math.random() * charactersLength)
                     )
                 }
-                console.log(randomNewPasword)
+                // console.log(randomNewPasword)
                 const hashed: string = await bcrypt.hash(randomNewPasword, 8)
                 console.log(hashed)
                 const updated = await usersRepository.update(user!.id, {
                     password: hashed,
                 })
-                console.log(updated)
+                // console.log(updated)
                 if (updated) {
                     await SendMail.SendMailForgotPassword({
                         email,
